@@ -1,4 +1,5 @@
 // gui mps2
+// dsi
 #include "mainwindow.h"
 
 #include <QApplication>
