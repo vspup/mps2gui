@@ -574,15 +574,21 @@ else
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
 
-    switch (channelVal)
+    if(pshModeSHIM)
     {
-        case 0: tempStr = "AX MODE";  break;
-        case 1: tempStr = "T1 MODE";  break;
-        case 2: tempStr = "T2 MODE";  break;
-        default:tempStr = "ERROR MODE";break;
+        switch (channelVal)
+        {
+            case 0: tempStr = "AX MODE";  break;
+            case 1: tempStr = "T1 MODE";  break;
+            case 2: tempStr = "T2 MODE";  break;
+            default:tempStr = "ERROR MODE";break;
+        }
+
+        ui->pTextCH1_status->setPlainText(tempStr);
+        ui->label_Mode_SHIM->setText(tempStr);
     }
 
-    ui->pTextCH1_status->setPlainText(tempStr);
+
 
     data_id = GET_SET_CURRENT;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
@@ -685,8 +691,14 @@ void MainWindow::on_pushButtonAX_clicked()
      ui->lnCh4->setText("AX4");
      ui->lnCh5->setText("AX5");
      ui->lnCh6->setText("AX6");
+
      //ui->pushButton_T1->setDisabled(true);
      //ui->pushButton_T2->setDisabled(true);
+     pshModeSHIM = 3;
+     ui->pushButton_ON->setEnabled(true);
+     ui->pushButton_OFF->setEnabled(true);
+     ui->pButt_setT2_SHIM->setEnabled(true);
+     ui->pButton_setT2_SHIM->setEnabled(true);
 }
 
 
@@ -712,6 +724,12 @@ void MainWindow::on_pushButton_T1_clicked()
      ui->lnCh5->setText("T1 5");
      ui->lnCh6->setText("T1 6");
 
+     pshModeSHIM = 1;
+     ui->pushButton_ON->setEnabled(true);
+     ui->pushButton_OFF->setEnabled(true);
+     ui->pButt_setT2_SHIM->setEnabled(true);
+     ui->pButton_setT2_SHIM->setEnabled(true);
+
 }
 
 
@@ -736,7 +754,11 @@ void MainWindow::on_pushButton_T2_clicked()
      ui->lnCh4->setText("T2 4");
      ui->lnCh5->setText("T2 5");
      ui->lnCh6->setText("T2 6");
-
+     pshModeSHIM = 2;
+     ui->pushButton_ON->setEnabled(true);
+     ui->pushButton_OFF->setEnabled(true);
+     ui->pButt_setT2_SHIM->setEnabled(true);
+     ui->pButton_setT2_SHIM->setEnabled(true);
 }
 
 
@@ -765,9 +787,9 @@ void MainWindow::on_pushButton_SetV_0_clicked()
     struct eb_write_data_point_info_s dp_write = {0};
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
-     ui->pTextV_set->setPlainText("0");
+     ui->pTextV_set->setPlainText("0.1");
      data_elements_p[0].value_p = &data;
-     data =  0;
+     data =  0.1;
      data_point_id = SET_VOLTAGE;
      dp_write.data_point_id = data_point_id;
      dp_write.array_length = 0;
@@ -1382,7 +1404,11 @@ void MainWindow::on_pushButton_17_clicked()
     ui->labelMODE->setText("MODE: SHIM");
     ui->pButt_setT2_SHIM ->  setDisabled(true);
     ui->pButton_setT2_SHIM ->  setDisabled(true);
-
+    ui->pushButton_ON -> setDisabled(true);
+    ui->pushButton_OFF->setDisabled(true);
+    ui->pButt_setax0_SHIM ->setDisabled(true);
+    ui->pButt_setT1_SHIM ->setDisabled(true);
+    ui->pButt_setT1_SHIM_2->setDisabled(true);
 }
 
 
@@ -1517,9 +1543,31 @@ void MainWindow::on_pushButton_minusI_clicked()
 void MainWindow::on_pushButton_OnOffRampUp_clicked()
 {
     uint32_t data = 0;
+    struct eb_write_data_point_info_s dp_write = {0};
+    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
+
    if(rampUp_status)
    {
-       data = 0;
+        data = 0;
+
+        #ifdef SENT_ZERO
+        float data1[2] = {0};
+
+        data1[1] = 0;
+        data1[0] = 0;
+
+
+        data_elements_p[0].value_p = &data1[0];
+        data_elements_p[1].value_p = &data1[1];
+
+        data_point_id = GET_SET_I_SETPOINT_HEATERS;
+        dp_write.data_point_id = data_point_id;
+        dp_write.array_length = 2;
+        dp_write.type = EB_TYPE_FLOAT;
+        dp_write.elements_p = data_elements_p;
+        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+        ui->pTextEditCurrent_SHIM->setPlainText("0");
+        #endif
    }
    else
    {
@@ -1527,8 +1575,7 @@ void MainWindow::on_pushButton_OnOffRampUp_clicked()
    }
 
 
-   struct eb_write_data_point_info_s dp_write = {0};
-   struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
 
    data_elements_p[0].value_p = &data;
    data_point_id = SET_ON_OFF_STATUS;

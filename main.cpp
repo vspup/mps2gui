@@ -1,6 +1,3 @@
-// gui for mps2 //
-//**************//
-
 #include "mainwindow.h"
 
 #include <QApplication>

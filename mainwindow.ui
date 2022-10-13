@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Settings">
      <attribute name="title">
@@ -121,58 +121,6 @@
      <attribute name="title">
       <string>SHIM</string>
      </attribute>
-     <widget class="QFrame" name="frame_3">
-      <property name="geometry">
-       <rect>
-        <x>780</x>
-        <y>10</y>
-        <width>171</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QPlainTextEdit" name="pTextV_get">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>10</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-        </font>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>0</y>
-         <width>31</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>30</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>V</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-     </widget>
      <widget class="QPlainTextEdit" name="pTextCurrCH1_get">
       <property name="geometry">
        <rect>
@@ -506,69 +454,10 @@
          <height>41</height>
         </rect>
        </property>
+       <property name="plainText">
+        <string>NONE</string>
+       </property>
       </widget>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>20</y>
-        <width>141</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>24</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>VOLTAGE</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-     </widget>
-     <widget class="QPlainTextEdit" name="pTextV_set">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>90</y>
-        <width>121</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_SetV">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>90</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>SET</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_SetV_0">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>90</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>SET 0</string>
-      </property>
      </widget>
      <widget class="QFrame" name="frame_4">
       <property name="enabled">
@@ -935,6 +824,120 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <widget class="QFrame" name="frame_3">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>70</y>
+         <width>171</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QPlainTextEdit" name="pTextV_get">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>10</y>
+          <width>111</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>31</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>30</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>V</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>70</y>
+         <width>141</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>VOLTAGE</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextV_set">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>121</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_SetV_0">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>10</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SET 0.1</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_SetV">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>10</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SET</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_11">
       <property name="geometry">
@@ -1110,7 +1113,6 @@
      <zorder>frame_11</zorder>
      <zorder>frame_5</zorder>
      <zorder>frame_2</zorder>
-     <zorder>frame_3</zorder>
      <zorder>pTextCurrCH1_get</zorder>
      <zorder>label_3</zorder>
      <zorder>pTextCurrCH2_get</zorder>
@@ -1127,10 +1129,6 @@
      <zorder>pushButton_T2</zorder>
      <zorder>label_8</zorder>
      <zorder>pTextCurrCH6_get</zorder>
-     <zorder>label_10</zorder>
-     <zorder>pTextV_set</zorder>
-     <zorder>pushButton_SetV</zorder>
-     <zorder>pushButton_SetV_0</zorder>
      <zorder>frame_4</zorder>
      <zorder>pTextCurrCH1_set</zorder>
      <zorder>lnCh1</zorder>
