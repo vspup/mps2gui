@@ -18,13 +18,13 @@
     <property name="geometry">
      <rect>
       <x>-10</x>
-      <y>70</y>
+      <y>90</y>
       <width>961</width>
       <height>701</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Settings">
      <attribute name="title">
@@ -58,7 +58,7 @@
        </font>
       </property>
       <property name="text">
-       <string>MODE: DISABLED</string>
+       <string>connection status:</string>
       </property>
       <property name="textFormat">
        <enum>Qt::AutoText</enum>
@@ -204,7 +204,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>160</y>
+        <y>210</y>
         <width>941</width>
         <height>171</height>
        </rect>
@@ -967,7 +967,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>340</y>
+        <y>440</y>
         <width>501</width>
         <height>61</height>
        </rect>
@@ -1080,7 +1080,7 @@
       <property name="geometry">
        <rect>
         <x>780</x>
-        <y>350</y>
+        <y>450</y>
         <width>81</width>
         <height>41</height>
        </rect>
@@ -1093,7 +1093,7 @@
       <property name="geometry">
        <rect>
         <x>690</x>
-        <y>350</y>
+        <y>450</y>
         <width>81</width>
         <height>41</height>
        </rect>
@@ -1106,7 +1106,7 @@
       <property name="geometry">
        <rect>
         <x>870</x>
-        <y>350</y>
+        <y>450</y>
         <width>71</width>
         <height>41</height>
        </rect>
@@ -1143,7 +1143,7 @@
       <property name="geometry">
        <rect>
         <x>520</x>
-        <y>340</y>
+        <y>440</y>
         <width>431</width>
         <height>61</height>
        </rect>
