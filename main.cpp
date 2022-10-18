@@ -1,5 +1,7 @@
 // gui mps2
 // dsi
+// git v 0.1
+
 #include "mainwindow.h"
 
 #include <QApplication>
