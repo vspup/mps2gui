@@ -156,6 +156,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->SHIM->setDisabled(true);
     ui->RampUP->setDisabled(true);
     ui->RampDOWN->setDisabled(true);
+    ui->pushButton_17->setDisabled(true);
+    ui->pushButton_18->setDisabled(true);
+    ui->pushButton_19->setDisabled(true);
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(500);
@@ -463,7 +466,7 @@ void MainWindow::updateGeneralGUI(void)
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
     tempStr.setNum(pwmFAN, 'f', 1);
-    ui->lbFAN_value->setText("FAN VALUE: " + tempStr);
+    ui->lbFAN_value->setText(tempStr);
 
 }
 
@@ -664,6 +667,9 @@ void MainWindow::on_pushButton_Conn_clicked()
        dp_write.elements_p = data_elements_p;
        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
        ui->pushButton_Conn->setText("DISCONNECT");
+       ui->pushButton_17->setEnabled(true);
+       ui->pushButton_18->setEnabled(true);
+       ui->pushButton_19->setEnabled(true);
        connectionStatus = 1;
    }
    else
@@ -699,8 +705,8 @@ void MainWindow::on_pushButtonAX_clicked()
      pshModeSHIM = 3;
      ui->pushButton_ON->setEnabled(true);
      //ui->pushButton_OFF->setEnabled(true);
-     //ui->pButt_setT2_SHIM->setEnabled(true);
-     //ui->pButton_setT2_SHIM->setEnabled(true);
+     ui->pButt_setT2_SHIM->setEnabled(true);
+     ui->pButton_setT2_SHIM->setEnabled(true);
 }
 
 

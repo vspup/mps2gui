@@ -17,14 +17,14 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>90</y>
+      <x>0</x>
+      <y>0</y>
       <width>961</width>
       <height>701</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Settings">
      <attribute name="title">
@@ -528,7 +528,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>20</pointsize>
+         <pointsize>18</pointsize>
          <bold>false</bold>
          <strikeout>false</strikeout>
          <kerning>true</kerning>
@@ -558,7 +558,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>20</pointsize>
+         <pointsize>18</pointsize>
          <bold>false</bold>
          <strikeout>false</strikeout>
          <kerning>true</kerning>
@@ -585,7 +585,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>20</pointsize>
+         <pointsize>18</pointsize>
          <bold>false</bold>
          <strikeout>false</strikeout>
          <kerning>true</kerning>
@@ -612,7 +612,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>20</pointsize>
+         <pointsize>18</pointsize>
          <bold>false</bold>
          <strikeout>false</strikeout>
          <kerning>true</kerning>
@@ -639,7 +639,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>20</pointsize>
+         <pointsize>18</pointsize>
          <bold>false</bold>
          <strikeout>false</strikeout>
          <kerning>true</kerning>
@@ -681,7 +681,7 @@
         </property>
         <property name="font">
          <font>
-          <pointsize>20</pointsize>
+          <pointsize>18</pointsize>
           <bold>false</bold>
           <strikeout>false</strikeout>
           <kerning>true</kerning>
@@ -989,7 +989,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>17</pointsize>
+         <pointsize>18</pointsize>
         </font>
        </property>
        <property name="text">
@@ -1128,7 +1128,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>17</pointsize>
+         <pointsize>18</pointsize>
         </font>
        </property>
        <property name="text">
