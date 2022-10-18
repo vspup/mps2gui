@@ -100,6 +100,8 @@ private slots:
 
     void on_pButton_setT2_SHIM_clicked();
 
+    void on_pushButton_SetFAN_0_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer;

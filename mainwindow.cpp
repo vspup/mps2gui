@@ -540,32 +540,32 @@ void MainWindow::updateGUI(void)
 if(channel == CHANNEL_AX)
 {
     tempStr.setNum(ReadCurrentData[1], 'f', 4);
-    ui->pTextCurrCH1_get->setPlainText(tempStr);
+    ui->lbCurrCH1_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[4], 'f', 4);
-    ui->pTextCurrCH2_get->setPlainText(tempStr);
+    ui->lbCurrCH2_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[3], 'f', 4);
-    ui->pTextCurrCH3_get->setPlainText(tempStr);
+    ui->lbCurrCH3_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[2], 'f', 4);
-    ui->pTextCurrCH4_get->setPlainText(tempStr);
+    ui->lbCurrCH4_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[0], 'f', 4);
-    ui->pTextCurrCH5_get->setPlainText(tempStr);
+    ui->lbCurrCH5_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[5], 'f', 4);
-    ui->pTextCurrCH6_get->setPlainText(tempStr);
+    ui->lbCurrCH6_get->setText(tempStr);
 }
 else
 {
     tempStr.setNum(ReadCurrentData[0], 'f', 4);
-    ui->pTextCurrCH1_get->setPlainText(tempStr);
+    ui->lbCurrCH1_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[1], 'f', 4);
-    ui->pTextCurrCH2_get->setPlainText(tempStr);
+    ui->lbCurrCH2_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[3], 'f', 4);
-    ui->pTextCurrCH3_get->setPlainText(tempStr);
+    ui->lbCurrCH3_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[4], 'f', 4);
-    ui->pTextCurrCH4_get->setPlainText(tempStr);
+    ui->lbCurrCH4_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[2], 'f', 4);
-    ui->pTextCurrCH5_get->setPlainText(tempStr);
+    ui->lbCurrCH5_get->setText(tempStr);
     tempStr.setNum(ReadCurrentData[5], 'f', 4);
-    ui->pTextCurrCH6_get->setPlainText(tempStr);
+    ui->lbCurrCH6_get->setText(tempStr);
 }
 
 
@@ -578,14 +578,14 @@ else
     {
         switch (channelVal)
         {
-            case 0: tempStr = "AX MODE";  break;
-            case 1: tempStr = "T1 MODE";  break;
-            case 2: tempStr = "T2 MODE";  break;
+            case 0: tempStr = "AX";  break;
+            case 1: tempStr = "T1";  break;
+            case 2: tempStr = "T2";  break;
             default:tempStr = "ERROR MODE";break;
         }
 
-        ui->pTextCH1_status->setPlainText(tempStr);
-        ui->label_Mode_SHIM->setText(tempStr);
+        ui->lbSHIM_Channel->setText("CHANNEL:" + tempStr);
+        //ui->label_Mode_SHIM->setText(tempStr);
     }
 
 
@@ -599,7 +599,7 @@ else
     ReadData();
 
     tempStr.setNum(getVoltage);
-    ui->pTextV_get->setPlainText(tempStr);
+    ui->lbV_get->setText(tempStr + " V");
 
     data_id = GET_ON_OFF_STATUS;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
@@ -607,11 +607,13 @@ else
 
     if(on_off_status)
     {
-        ui->pTextON_OFF->setPlainText("ON");
+        ui->lbStatusSHIM->setText("ON");
+        ui->pushButton_ON->setText("ON");
     }
     else
     {
-       ui->pTextON_OFF->setPlainText("OFF");
+       ui->lbStatusSHIM->setText("OFF");
+       ui->pushButton_ON->setText("OFF");
     }
 
     if(pshModeSHIM)
@@ -696,9 +698,9 @@ void MainWindow::on_pushButtonAX_clicked()
      //ui->pushButton_T2->setDisabled(true);
      pshModeSHIM = 3;
      ui->pushButton_ON->setEnabled(true);
-     ui->pushButton_OFF->setEnabled(true);
-     ui->pButt_setT2_SHIM->setEnabled(true);
-     ui->pButton_setT2_SHIM->setEnabled(true);
+     //ui->pushButton_OFF->setEnabled(true);
+     //ui->pButt_setT2_SHIM->setEnabled(true);
+     //ui->pButton_setT2_SHIM->setEnabled(true);
 }
 
 
@@ -726,7 +728,7 @@ void MainWindow::on_pushButton_T1_clicked()
 
      pshModeSHIM = 1;
      ui->pushButton_ON->setEnabled(true);
-     ui->pushButton_OFF->setEnabled(true);
+     //ui->pushButton_OFF->setEnabled(true);
      ui->pButt_setT2_SHIM->setEnabled(true);
      ui->pButton_setT2_SHIM->setEnabled(true);
 
@@ -756,7 +758,7 @@ void MainWindow::on_pushButton_T2_clicked()
      ui->lnCh6->setText("T2 6");
      pshModeSHIM = 2;
      ui->pushButton_ON->setEnabled(true);
-     ui->pushButton_OFF->setEnabled(true);
+     //ui->pushButton_OFF->setEnabled(true);
      ui->pButt_setT2_SHIM->setEnabled(true);
      ui->pButton_setT2_SHIM->setEnabled(true);
 }
@@ -813,6 +815,8 @@ void MainWindow::on_pushButton_ON_clicked()
     struct eb_write_data_point_info_s dp_write = {0};
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
+    if(on_off_status == 0)
+    {
      data_elements_p[0].value_p = &data;
      data =  2;
      data_point_id = SET_ON_OFF_STATUS;
@@ -822,13 +826,50 @@ void MainWindow::on_pushButton_ON_clicked()
      dp_write.elements_p = data_elements_p;
      eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
      ReadData();
+    }
+    else
+    {
+     //uint32_t data;
+     //struct eb_write_data_point_info_s dp_write = {0};
+     //struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
 
+#ifdef SENT_ZERO
+      float data1[2] = {0};
+
+        data1[1] = 0;
+        data1[0] = 0;
+
+
+        data_elements_p[0].value_p = &data1[0];
+        data_elements_p[1].value_p = &data1[1];
+
+        data_point_id = GET_SET_I_SETPOINT_HEATERS;
+        dp_write.data_point_id = data_point_id;
+        dp_write.array_length = 2;
+        dp_write.type = EB_TYPE_FLOAT;
+        dp_write.elements_p = data_elements_p;
+        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+        ui->pTextEditCurrent_SHIM->setPlainText("0");
+#endif
+     //struct eb_write_data_point_info_s dp_write = {0};
+     //struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+     data_elements_p[0].value_p = &data;
+     data =  0;
+     data_point_id = SET_ON_OFF_STATUS;
+     dp_write.data_point_id = data_point_id;
+     dp_write.array_length = 0;
+     dp_write.type = EB_TYPE_UINT32;
+     dp_write.elements_p = data_elements_p;
+     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+     ReadData();
+    }
 }
 
 
 void MainWindow::on_pushButton_OFF_clicked()
 {
-     uint32_t data;
+ /*    uint32_t data;
      struct eb_write_data_point_info_s dp_write = {0};
      struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
 
@@ -862,7 +903,7 @@ void MainWindow::on_pushButton_OFF_clicked()
      dp_write.elements_p = data_elements_p;
      eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
      ReadData();
-
+*/
 }
 
 
@@ -986,14 +1027,14 @@ void MainWindow::on_pushButton_SetV_2_clicked()
      data_elements_p[0].value_p = &data;
      QString tempData = ui->plainTextSetFAN->toPlainText();
      data =  tempData.toDouble();
-     data_point_id = GET_SET_FAN_PWM;//SET_VOLTAGE;
+     data_point_id = GET_SET_FAN_PWM;
      dp_write.data_point_id = data_point_id;
      dp_write.array_length = 0;
      dp_write.type = EB_TYPE_DOUBLE;
      dp_write.elements_p = data_elements_p;
      eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
      ReadData();
-     //updateGUI();
+
 }
 
 int ReadData (void)
@@ -1405,10 +1446,10 @@ void MainWindow::on_pushButton_17_clicked()
     ui->pButt_setT2_SHIM ->  setDisabled(true);
     ui->pButton_setT2_SHIM ->  setDisabled(true);
     ui->pushButton_ON -> setDisabled(true);
-    ui->pushButton_OFF->setDisabled(true);
-    ui->pButt_setax0_SHIM ->setDisabled(true);
-    ui->pButt_setT1_SHIM ->setDisabled(true);
-    ui->pButt_setT1_SHIM_2->setDisabled(true);
+    //ui->pushButton_OFF->setDisabled(true);
+    //ui->pButt_setax0_SHIM ->setDisabled(true);
+    //ui->pButt_setT1_SHIM ->setDisabled(true);
+    //ui->pButt_setT1_SHIM_2->setDisabled(true);
 }
 
 
@@ -1797,7 +1838,7 @@ void MainWindow::on_pushButton_setmain_clicked()
 }
 
 
-void MainWindow::on_pButt_setax0_SHIM_clicked()
+/*void MainWindow::on_pButt_setax0_SHIM_clicked()
 {
     uint32_t data =3;
     struct eb_write_data_point_info_s dp_write = {0};
@@ -1818,10 +1859,10 @@ void MainWindow::on_pButt_setax0_SHIM_clicked()
 
     tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 4);
     ui->pTextEditCurrent_SHIM->setPlainText(tempStr);
-}
+}*/
 
 
-void MainWindow::on_pButt_setT1_SHIM_clicked()
+/*void MainWindow::on_pButt_setT1_SHIM_clicked()
 {
     uint32_t data =1;
     struct eb_write_data_point_info_s dp_write = {0};
@@ -1842,10 +1883,10 @@ void MainWindow::on_pButt_setT1_SHIM_clicked()
 
     tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 4);
     ui->pTextEditCurrent_SHIM->setPlainText(tempStr);
-}
+}*/
 
 
-void MainWindow::on_pButt_setT1_SHIM_2_clicked()
+/*void MainWindow::on_pButt_setT1_SHIM_2_clicked()
 {
     uint32_t data =2;
     struct eb_write_data_point_info_s dp_write = {0};
@@ -1866,7 +1907,7 @@ void MainWindow::on_pButt_setT1_SHIM_2_clicked()
 
     tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 4);
     ui->pTextEditCurrent_SHIM->setPlainText(tempStr);
-}
+}*/
 
 
 void MainWindow::on_pButt_setT2_SHIM_clicked()
@@ -1910,6 +1951,25 @@ void MainWindow::on_pButton_setT2_SHIM_clicked()
      dp_write.data_point_id = data_point_id;
      dp_write.array_length = 2;
      dp_write.type = EB_TYPE_FLOAT;
+     dp_write.elements_p = data_elements_p;
+     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+     ReadData();
+}
+
+
+void MainWindow::on_pushButton_SetFAN_0_clicked()
+{
+    double data;
+    struct eb_write_data_point_info_s dp_write = {0};
+    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+     data_elements_p[0].value_p = &data;
+     QString tempData = 0;//ui->plainTextSetFAN->toPlainText();
+     data =  tempData.toDouble();
+     data_point_id = GET_SET_FAN_PWM;
+     dp_write.data_point_id = data_point_id;
+     dp_write.array_length = 0;
+     dp_write.type = EB_TYPE_DOUBLE;
      dp_write.elements_p = data_elements_p;
      eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
      ReadData();
