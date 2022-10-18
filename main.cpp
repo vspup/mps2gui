@@ -1,6 +1,6 @@
 // gui mps2
 // dsi
-// git v 0.1
+// git v 0.2
 
 #include "mainwindow.h"
 
