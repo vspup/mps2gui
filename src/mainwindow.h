@@ -90,12 +90,6 @@ private slots:
 
     void on_pushButton_setmain_clicked();
 
-    void on_pButt_setax0_SHIM_clicked();
-
-    void on_pButt_setT1_SHIM_clicked();
-
-    void on_pButt_setT1_SHIM_2_clicked();
-
     void on_pButt_setT2_SHIM_clicked();
 
     void on_pButton_setT2_SHIM_clicked();
