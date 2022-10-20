@@ -1,0 +1,41 @@
+if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+    MESSAGE(STATUS "64 bit system detected.")
+    SET(EX_PLATFORM 64)
+    SET(EX_PLATFORM_NAME "x64")
+else ()
+    MESSAGE(STATUS "32 bit system detected.")
+    SET(EX_PLATFORM 32)
+    SET(EX_PLATFORM_NAME "x86")
+endif ()
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(LIB_PATHS "${CMAKE_SOURCE_DIR}/lib/packs/nng/OSX")
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(LIB_PATHS "${CMAKE_SOURCE_DIR}/lib/packs/nng/Windows${EX_PLATFORM}")
+else ()
+    set(LIB_PATHS "${CMAKE_SOURCE_DIR}/lib/packs/nng/Linux${EX_PLATFORM}")
+endif ()
+
+find_path(nng_INCLUDE_DIR nng PATHS "${CMAKE_SOURCE_DIR}/lib/nng/include")
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    if (MSVC)
+        set(CMAKE_FIND_LIBRARY_SUFFIXES ".lib")
+    else ()
+        set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+    endif ()
+    find_library(nng_LIBRARY NAME nng PATHS ${LIB_PATHS})
+else (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    find_library(nng_LIBRARY NAME nng PATHS ${LIB_PATHS})
+endif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
+set(nng_DEFINITIONS "")
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(nng DEFAULT_MSG nng_LIBRARY nng_INCLUDE_DIR)
+
+mark_as_advanced(nng_LIBRARY nng_INCLUDE_DIR)
+
+set(nng_INCLUDE_DIRS ${nng_INCLUDE_DIR})
+set(nng_LIBRARIES ${nng_LIBRARY})
+set(nng_DLL "${LIB_PATHS}/libnng.dll")

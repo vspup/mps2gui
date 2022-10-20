@@ -12,30 +12,36 @@ set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -no-pie")
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMake")
+endif()
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-find_package(nng)
+find_package(nng REQUIRED)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        uart-escape.c
-        uart-escape.h
-        cwpack_utils.c
-        cwpack_utils.h
-        cwpack.c
-        cwpack.h
-        cwpack_config.h
-        cwpack_internals.h
-        electabuzz_common.c
-        electabuzz_common.h
-        electabuzz_client.c
-        electabuzz_client.h
-        electabuzz_client_helpers.c
-        electabuzz_client_helpers.h
+        src/main.cpp
+        src/mainwindow.cpp
+        src/mainwindow.h
+        src/mainwindow.ui
+        src/uart-escape.c
+        src/uart-escape.h
+        src/cwpack_utils.c
+        src/cwpack_utils.h
+        src/cwpack.c
+        src/cwpack.h
+        src/cwpack_config.h
+        src/cwpack_internals.h
+        src/electabuzz_common.c
+        src/electabuzz_common.h
+        src/electabuzz_client.c
+        src/electabuzz_client.h
+        src/electabuzz_client_helpers.c
+        src/electabuzz_client_helpers.h
 )
+
+message(STATUS "PROJECT_SOURCES=" ${PROJECT_SOURCES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(mps2gui
@@ -60,7 +66,19 @@ else()
     endif()
 endif()
 
-target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets nng::nng)
+#target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+#target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets nng::nng)
+#target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${nng_LIBRARY}::nng)
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+else ()
+    #target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${nng_LIBRARY}::nng)
+    target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets nng::nng)
+endif()
+
+target_link_libraries(mps2gui PRIVATE ${nng_LIBRARIES})
+file(COPY ${nng_LIBRARY} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 set_target_properties(mps2gui PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
