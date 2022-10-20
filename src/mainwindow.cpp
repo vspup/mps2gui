@@ -20,6 +20,7 @@
 #include <ctype.h>
 #if defined(_WIN32) || defined(WIN32)
 //#error "WINDOWS"
+#include <windows.h>
 #include "lib/nng/include/nng/nng.h"
 #include "lib/nng/include/nng/protocol/reqrep0/req.h"
 #else
@@ -149,6 +150,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+#if defined(_WIN32) || defined(WIN32)
+    // test windows timstamp
+    uint32_t ts = eb_get_time_stamp();
+    char str[50];
+    sprintf_s(str, sizeof(str), "Windows timestamp: %d \n", ts);
+    OutputDebugStringA(str);
+#else
+    // test linux timestamp
+    uint32_t ts = eb_get_time_stamp();
+    printf("TS:%d\n", ts);
+#endif
 
     QFile file("ip_config.txt");
     if(!file.open(QIODevice::ReadWrite))
@@ -1409,17 +1422,20 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
 }
 
 
+
 time_stamp_t eb_get_time_stamp()
 {
-    struct timespec tms = {0};
+    time_stamp_t time_stamp = 0;
 #if (__unix__)
+    struct timespec tms = {0};
     timespec_get(&tms, TIME_UTC);
+    time_stamp = tms.tv_sec * 1000 + (tms.tv_nsec/1000000);
+
 #else
-    // TODO
-//#include <utime.h>
-    //timespec_get(&tms, TIME_UTC);
+    SYSTEMTIME t;
+    GetSystemTime(&t); // GetLocalTime(&t)
+    time_stamp = t.wMilliseconds;
 #endif
-    time_stamp_t time_stamp = tms.tv_sec * 1000 + (tms.tv_nsec/1000000);
     return time_stamp;
 }
 
