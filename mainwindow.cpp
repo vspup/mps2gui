@@ -3,7 +3,7 @@
 #include "./ui_mainwindow.h"
 
 #include <stdio.h>
-#include <stdint.h>а
+#include <stdint.h>
 #include <inttypes.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -101,8 +101,8 @@ float     ReadIOUT[8] ={0};
 
 uint32_t  channelVal;
 double    getVoltage = 0;
-uint32_t  on_off_status = 0;
-uint32_t  rampUp_status =0;
+uint32_t  mode_status = 0;
+//uint32_t  rampUp_status =0;
 
 double    pwmFAN     = 0;
 double    tempA[8]   = {0};
@@ -467,7 +467,7 @@ void MainWindow::updateGeneralGUI(void)
     ReadData();
     tempStr.setNum(pwmFAN, 'f', 2);
     ui->lbFAN_value->setText(tempStr);
-
+    ui->lbFAN_value_2->setText(tempStr);
 }
 
 void MainWindow::updateRampUpGUI(void)
@@ -476,41 +476,51 @@ void MainWindow::updateRampUpGUI(void)
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
     tempStr.setNum(terminalVoltage, 'f', 4);
-    ui->pltextVrampUP->setPlainText(tempStr);
-
+    //ui->pltextVrampUP->setPlainText(tempStr);
+    ui->lbVrampUP->setText(tempStr);
     double current = 0;
     for(int i =0; i < 8; i++)
     {
        current += ReadCurrentData[i];
     }
     tempStr.setNum(current, 'f', 4);
-    ui->pltextIrampUP->setPlainText(tempStr);
-
+    //ui->pltextIrampUP->setPlainText(tempStr);
+    ui->lbIrampUP->setText(tempStr);
     data_id = GET_LINE_VOLTAGE;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
 
     tempStr.setNum(lineVoltage, 'f', 9);
-    ui->pltextVlead->setPlainText(tempStr);
-
+    //ui->pltextVlead->setPlainText(tempStr);
+    ui->lbVlead->setText(tempStr);
     data_id = GET_MAIN_VOLTAGE;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
 
     tempStr.setNum(mainVoltage, 'f', 9);
-    ui->pltextVmagnet->setPlainText(tempStr);
-
+    //ui->pltextVmagnet->setPlainText(tempStr);
+    ui->lbVmagnet->setText(tempStr);
     data_id = GET_RAMP_UP_STATUS;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
-    if(rampUp_status)
+
+    switch(mode_status)
+    {
+       case 0: ui->lbRampUp_status->setText("Status: Disabled"); break;
+       case 1: ui->lbRampUp_status->setText("Status: Main Coil"); break;
+       case 2: ui->lbRampUp_status->setText("Status: Shim Coils"); break;
+       case 3: ui->lbRampUp_status->setText("Status: PWM_Test Shim"); break;
+       case 100: ui->lbRampUp_status->setText("Status: ERROR"); break;
+    }
+
+    if(mode_status)
     {
       ui->pushButton_OnOffRampUp->setText("OFF");
-      ui->lbRampUp_status->setText("Status:ON");
+      //ui->lbRampUp_status->setText("Status:ON");
     }
     else
     {
-      ui->lbRampUp_status->setText("Status:OFF");
+      //ui->lbRampUp_status->setText("Status:OFF");
       ui->pushButton_OnOffRampUp->setText("ON");
     }
 
@@ -608,9 +618,18 @@ else
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
 
-    if(on_off_status)
+    switch(mode_status)
     {
-        ui->lbStatusSHIM->setText("ON");
+       case 0: ui->lbStatusSHIM->setText("Status: Disabled"); break;
+       case 1: ui->lbStatusSHIM->setText("Status: Main Coil"); break;
+       case 2: ui->lbStatusSHIM->setText("Status: Shim Coils"); break;
+       case 3: ui->lbStatusSHIM->setText("Status: PWM_Test Shim"); break;
+       case 100: ui->lbStatusSHIM->setText("Status: ERROR"); break;
+    }
+
+    if(mode_status)
+    {
+        //ui->lbStatusSHIM->setText("ON");
         ui->pushButton_ON->setText("OFF");
         switch(pshModeSHIM)
         {
@@ -621,7 +640,7 @@ else
     }
     else
     {
-       ui->lbStatusSHIM->setText("OFF");
+       //ui->lbStatusSHIM->setText("OFF");
        ui->pushButton_ON->setText("ON");
        ui->pushButtonAX->setEnabled(true);
        ui->pushButton_T1->setEnabled(true);
@@ -653,6 +672,10 @@ void MainWindow::on_pushButton_Conn_clicked()
      connectionStatus = 0;
      ui->pushButton_Conn->setText("CONNECT");
      ui->labelMODE->setText("CONNECTION: DISCONNECTED");
+     ui->pushButton_17->setDisabled(true);
+     ui->pushButton_18->setDisabled(true);
+     ui->pushButton_19->setDisabled(true);
+     ui->tabWidget->setCurrentIndex(0);
      return;
    }
 
@@ -834,7 +857,7 @@ void MainWindow::on_pushButton_ON_clicked()
     struct eb_write_data_point_info_s dp_write = {0};
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
-    if(on_off_status == 0)
+    if(mode_status == 0)
     {
      data_elements_p[0].value_p = &data;
      data =  2;
@@ -1238,8 +1261,8 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
     }
     else if(read_result_p->data_point_id == GET_ON_OFF_STATUS)
     {
-        on_off_status = *((uint32_t*)read_result_p->value_p);
-        rampUp_status = *((uint32_t*)read_result_p->value_p);
+        mode_status = *((uint32_t*)read_result_p->value_p);
+        //rampUp_status = *((uint32_t*)read_result_p->value_p);
     }
     else if(read_result_p->data_point_id == GET_SET_FAN_PWM)
     {
@@ -1493,10 +1516,30 @@ void MainWindow::on_pushButton_18_clicked()
     ui->pushButton_pllusI   ->  setDisabled(true);
     ui->pushButton_minusV   ->  setDisabled(true);
     ui->pushButton_minusI   ->  setDisabled(true);*/
-    ui->pushButton_setmain0 ->  setDisabled(true);
+
+
+   /* ui->pushButton_setmain0 ->  setDisabled(true);
     ui->pushButton_setmain  ->  setDisabled(true);
     ui->pushButton_setT2_0  ->  setDisabled(true);
-    ui->pushButton_setT2    ->  setDisabled(true);
+    ui->pushButton_setT2    ->  setDisabled(true);*/
+
+    uint32_t data =3;
+    struct eb_write_data_point_info_s dp_write = {0};
+    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+    data_elements_p[0].value_p = &data;
+    data_point_id = GET_SET_MODE;
+    dp_write.data_point_id = data_point_id;
+    dp_write.array_length = 0;
+    dp_write.type = EB_TYPE_UINT32;
+    dp_write.elements_p = data_elements_p;
+    eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+    pshModeRampUP = 3;
+    tempStr.setNum((setpointCurrPSH[0] * 1000), 'f', 4);
+    ui->plTextMainPSH->setPlainText(tempStr);
+
+    tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 4);
+    ui->plTextChPSH->setPlainText(tempStr);
 }
 
 
@@ -1613,7 +1656,7 @@ void MainWindow::on_pushButton_OnOffRampUp_clicked()
     struct eb_write_data_point_info_s dp_write = {0};
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
 
-   if(rampUp_status)
+   if(mode_status)
    {
         data = 0;
 
@@ -1668,7 +1711,6 @@ void MainWindow::on_pushButton_setax0_clicked()
     dp_write.type = EB_TYPE_UINT32;
     dp_write.elements_p = data_elements_p;
     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
-    ui->lbPSH_ModeRampUP->setText("AX");
     pshModeRampUP = 3;
 
    /* ui->pushButton_V_set0 ->      setEnabled(true);
@@ -1707,7 +1749,7 @@ void MainWindow::on_pushButton_setT1_0_clicked()
     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
     pshModeRampUP = 1;
 
-    ui->lbPSH_ModeRampUP->setText("T1");
+    //ui->lbPSH_ModeRampUP->setText("T1");
     /*ui->pushButton_V_set0 ->      setEnabled(true);
     ui->pushButton_set_I_zero ->  setEnabled(true);
     ui->pushButton_V_set    ->    setEnabled(true);
@@ -1745,7 +1787,7 @@ void MainWindow::on_pushButton_setT1_clicked()
     pshModeRampUP = 2;
 
 
-    ui->lbPSH_ModeRampUP->setText("T2");
+    //ui->lbPSH_ModeRampUP->setText("T2");
     /*ui->pushButton_V_set0 ->      setEnabled(true);
     ui->pushButton_set_I_zero ->  setEnabled(true);
     ui->pushButton_V_set    ->    setEnabled(true);
@@ -1991,6 +2033,45 @@ void MainWindow::on_pushButton_SetFAN_0_clicked()
 
      data_elements_p[0].value_p = &data;
      QString tempData = 0;//ui->plainTextSetFAN->toPlainText();
+     data =  tempData.toDouble();
+     data_point_id = GET_SET_FAN_PWM;
+     dp_write.data_point_id = data_point_id;
+     dp_write.array_length = 0;
+     dp_write.type = EB_TYPE_DOUBLE;
+     dp_write.elements_p = data_elements_p;
+     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+     ReadData();
+}
+
+
+void MainWindow::on_pushButton_SetFAN_1_clicked()
+{
+  double data;
+  struct eb_write_data_point_info_s dp_write = {0};
+  struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+  ui->plainTextSetFAN_2->setPlainText("0");
+  data_elements_p[0].value_p = &data;
+  QString tempData = 0;
+  data =  tempData.toDouble();
+  data_point_id = GET_SET_FAN_PWM;
+  dp_write.data_point_id = data_point_id;
+  dp_write.array_length = 0;
+  dp_write.type = EB_TYPE_DOUBLE;
+  dp_write.elements_p = data_elements_p;
+  eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+  ReadData();
+}
+
+
+void MainWindow::on_pushButton_SetV_3_clicked()
+{
+    double data;
+    struct eb_write_data_point_info_s dp_write = {0};
+    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+     data_elements_p[0].value_p = &data;
+     QString tempData = ui->plainTextSetFAN_2->toPlainText();
      data =  tempData.toDouble();
      data_point_id = GET_SET_FAN_PWM;
      dp_write.data_point_id = data_point_id;

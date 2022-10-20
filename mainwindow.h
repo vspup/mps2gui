@@ -102,6 +102,10 @@ private slots:
 
     void on_pushButton_SetFAN_0_clicked();
 
+    void on_pushButton_SetFAN_1_clicked();
+
+    void on_pushButton_SetV_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
