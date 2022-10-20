@@ -3,7 +3,7 @@
 #include "./ui_mainwindow.h"
 
 #include <stdio.h>
-#include <stdint.h>
+#include <stdint.h>а
 #include <inttypes.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -465,7 +465,7 @@ void MainWindow::updateGeneralGUI(void)
     data_id = GET_SET_FAN_PWM;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
-    tempStr.setNum(pwmFAN, 'f', 1);
+    tempStr.setNum(pwmFAN, 'f', 2);
     ui->lbFAN_value->setText(tempStr);
 
 }
@@ -587,7 +587,7 @@ else
             default:tempStr = "ERROR MODE";break;
         }
 
-        ui->lbSHIM_Channel->setText("CHANNEL:" + tempStr);
+        ui->lbSHIM_Channel->setText("CHANNEL: " + tempStr);
         //ui->label_Mode_SHIM->setText(tempStr);
     }
 
@@ -611,12 +611,21 @@ else
     if(on_off_status)
     {
         ui->lbStatusSHIM->setText("ON");
-        ui->pushButton_ON->setText("ON");
+        ui->pushButton_ON->setText("OFF");
+        switch(pshModeSHIM)
+        {
+           case 1: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T2->setDisabled(true); break;
+           case 2: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
+           case 3: ui->pushButton_T2->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
+        }
     }
     else
     {
        ui->lbStatusSHIM->setText("OFF");
-       ui->pushButton_ON->setText("OFF");
+       ui->pushButton_ON->setText("ON");
+       ui->pushButtonAX->setEnabled(true);
+       ui->pushButton_T1->setEnabled(true);
+       ui->pushButton_T2 ->setEnabled(true);
     }
 
     if(pshModeSHIM)
@@ -643,6 +652,7 @@ void MainWindow::on_pushButton_Conn_clicked()
      nng_close(nng_sock);
      connectionStatus = 0;
      ui->pushButton_Conn->setText("CONNECT");
+     ui->labelMODE->setText("CONNECTION: DISCONNECTED");
      return;
    }
 
@@ -651,7 +661,8 @@ void MainWindow::on_pushButton_Conn_clicked()
    //QString tempStr = ui->pTextIPaddr->toPlainText();
    QByteArray ba=tempStr.toLatin1();
    sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data()); //"tcp://" + ui->pTextIPaddr->toPlainText() + ":5555";
-
+   ui->labelMODE->setText("CONNECTION: CONNECTING...");
+   ui->labelMODE->repaint();
    if(prepare_nng(tempBuff))
    {     
        double data = 0.15;
@@ -667,6 +678,7 @@ void MainWindow::on_pushButton_Conn_clicked()
        dp_write.elements_p = data_elements_p;
        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
        ui->pushButton_Conn->setText("DISCONNECT");
+       ui->labelMODE->setText("CONNECTION: CONNECTED");
        ui->pushButton_17->setEnabled(true);
        ui->pushButton_18->setEnabled(true);
        ui->pushButton_19->setEnabled(true);
@@ -674,6 +686,7 @@ void MainWindow::on_pushButton_Conn_clicked()
    }
    else
    {
+       ui->labelMODE->setText("CONNECTION: ERROR");
        connectionStatus = 0;
    }
 }
@@ -1399,10 +1412,14 @@ static bool prepare_nng(const char* url)
         printf("zero tier transport is not supported\n");
         return false;
     } else {
-        nng_socket_set_ms(nng_sock, NNG_OPT_REQ_RESENDTIME, 500);
+        nng_socket_set_ms(nng_sock, NNG_OPT_REQ_RESENDTIME, 0); //nng_socket_set_ms(nng_sock, NNG_OPT_REQ_RESENDTIME, 500);//*YS*
     }
 
-    nng_dialer_start(dialer, NNG_FLAG_NONBLOCK);
+    if((rv =nng_dialer_start(dialer,NNG_FLAG_ALLOC)) != 0)//nng_dialer_start(dialer, NNG_FLAG_NONBLOCK);
+    {
+        printf("nng_dialer_start_ERR: %s\n", nng_strerror(rv));
+        return false;
+    }
 
     if (verbose) {
         printf("dialer started\n");
@@ -1448,10 +1465,11 @@ void MainWindow::on_pushButton_17_clicked()
     ui->RampUP->setDisabled(true);
     ui->RampDOWN ->  setDisabled(true);
     ui->SHIM->setEnabled(true);
-    ui->labelMODE->setText("MODE: SHIM");
+    //ui->labelMODE->setText("CONNECTION: CONNECTED");
     ui->pButt_setT2_SHIM ->  setDisabled(true);
     ui->pButton_setT2_SHIM ->  setDisabled(true);
     ui->pushButton_ON -> setDisabled(true);
+    ui->tabWidget->setCurrentIndex(1);
     //ui->pushButton_OFF->setDisabled(true);
     //ui->pButt_setax0_SHIM ->setDisabled(true);
     //ui->pButt_setT1_SHIM ->setDisabled(true);
@@ -1465,7 +1483,8 @@ void MainWindow::on_pushButton_18_clicked()
     ui->SHIM->       setDisabled(true);
     ui->RampDOWN ->  setDisabled(true);
     ui->RampUP   ->  setEnabled(true);
-    ui->labelMODE->setText("MODE: RAMP UP");
+    //ui->labelMODE->setText("CONNECTION: CONNECTED");
+    ui->tabWidget->setCurrentIndex(2);
     /*ui->pushButton_V_set0 ->  setDisabled(true);
     ui->pushButton_set_I_zero ->  setDisabled(true);
     ui->pushButton_V_set    ->  setDisabled(true);
@@ -1487,7 +1506,8 @@ void MainWindow::on_pushButton_19_clicked()
     ui->SHIM->       setDisabled(true);
     ui->RampDOWN ->  setDisabled(true);
     ui->RampUP   ->  setEnabled(true);
-    ui->labelMODE->setText("MODE: RAMP DOWN");
+    //ui->labelMODE->setText("CONNECTION: CONNECTED");
+    ui->tabWidget->setCurrentIndex(3);
 }
 
 
