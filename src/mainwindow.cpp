@@ -155,12 +155,12 @@ MainWindow::MainWindow(QWidget *parent)
     // test windows timstamp
     uint32_t ts = eb_get_time_stamp();
     char str[50];
-    sprintf_s(str, sizeof(str), "Windows timestamp: %d \n", ts);
+    sprintf_s(str, sizeof(str), "windows timestamp: %d \n", ts);
     OutputDebugStringA(str);
 #else
     // test linux timestamp
     uint32_t ts = eb_get_time_stamp();
-    printf("TS:%d\n", ts);
+    printf("linux timestamp:%u\n", ts);
 #endif
 
     QFile file("ip_config.txt");
@@ -1432,9 +1432,16 @@ time_stamp_t eb_get_time_stamp()
     time_stamp = tms.tv_sec * 1000 + (tms.tv_nsec/1000000);
 
 #else
-    SYSTEMTIME t;
-    GetSystemTime(&t); // GetLocalTime(&t)
-    time_stamp = t.wMilliseconds;
+//    SYSTEMTIME t;
+//    GetSystemTime(&t); // GetLocalTime(&t)
+//    time_stamp = t.wMilliseconds;
+    time_t ltime;
+    time(&ltime);
+    //printf("Local time as unix timestamp: %li\n", ltime);
+    struct tm* timeinfo = gmtime(&ltime); /* Convert to UTC */
+    ltime = mktime(timeinfo); /* Store as unix timestamp */
+    //printf("UTC time as unix timestamp: %li\n", ltime);
+    time_stamp = ltime;
 #endif
     return time_stamp;
 }
