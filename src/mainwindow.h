@@ -19,6 +19,7 @@ public:
     void updateGUI(void);
     void updateGeneralGUI(void);
     void updateRampUpGUI(void);
+    void ClearTable (void);
     ~MainWindow();
 
 private slots:
@@ -99,6 +100,7 @@ private slots:
     void on_pushButton_SetFAN_1_clicked();
 
     void on_pushButton_SetV_3_clicked();
+
 
 private:
     Ui::MainWindow *ui;

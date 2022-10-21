@@ -136,6 +136,7 @@ uint8_t mode  = 0;
 uint8_t pshModeRampUP =0;
 uint8_t pshModeSHIM =0;
 
+#define MODE_SELECTING   0
 #define MODE_SHIM        1
 #define MODE_RAMPUP      2
 #define MODE_RAMPDOWN    3
@@ -185,6 +186,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pushButton_17->setDisabled(true);
     ui->pushButton_18->setDisabled(true);
     ui->pushButton_19->setDisabled(true);
+    ui->lbRampUp_status_3->setDisabled(true);
+    //ui->frame_PSH_SHIM->setWindowTitle("PSH");
+    //ui->frame_PSH_SHIM ->setAccessibleName("PSH");
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(500);
@@ -233,6 +237,36 @@ void MainWindow::updateGeneralGUI(void)
 //ReadIOUT
 //BCMtemp
 
+    data_id = GET_ON_OFF_STATUS;
+    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    ReadData();
+
+    if(mode == MODE_SELECTING)
+    {
+        switch(mode_status)
+        {
+           case 0: ui->lbRampUp_status_3->setText("STATUS: DISABLED");
+                   ui->pushButton_17->setEnabled(true);
+                   ui->pushButton_18->setEnabled(true);
+                   ui->pushButton_19->setEnabled(true);
+           break;
+           case 1: ui->lbRampUp_status_3->setText("STATUS: Main Coil");
+                   ui->pushButton_17->setDisabled(true);
+                   ui->pushButton_18->setEnabled(true);
+                   ui->pushButton_19->setEnabled(true);
+           break;
+           case 2: ui->lbRampUp_status_3->setText("STATUS: Shim Coils");
+                   ui->pushButton_17->setEnabled(true);
+                   ui->pushButton_18->setDisabled(true);
+                   ui->pushButton_19->setDisabled(true);
+           break;
+           case 100: ui->lbRampUp_status_3->setText("STATUS: ERROR");
+                   ui->pushButton_17->setDisabled(true);
+                   ui->pushButton_18->setDisabled(true);
+                   ui->pushButton_19->setDisabled(true);
+           break;
+        }
+    }
 
     data_id = GET_CURRENT;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
@@ -253,14 +287,6 @@ void MainWindow::updateGeneralGUI(void)
     ui->txtIm6->setPlainText(tempStr);
     tempStr.setNum(ReadCurrentData[7], 'f', 5);
     ui->txtIm7->setPlainText(tempStr);
-
-   /* for(uint8_t n =1; n<8; n++)
-    {
-        tempStr.setNum(ReadCurrentData[n], 'f', 5);
-        ui->pltextIm->insertPlainText(tempStr + '\n');
-    }*/
-
-
 
     data_id = GET_VA;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
@@ -555,9 +581,9 @@ void MainWindow::updateRampUpGUI(void)
        data_id = GET_SET_CURRENT_HEATERS;
        eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
        ReadData();
-       tempStr.setNum((currentPSH[0] * 1000), 'f', 4);
+       tempStr.setNum((currentPSH[0] * 1000), 'f', 0);
        ui->lbReadMain->setText(tempStr);
-       tempStr.setNum((currentPSH[1] * 1000), 'f', 4);
+       tempStr.setNum((currentPSH[1] * 1000), 'f', 0);
        ui->lbReadCh->setText(tempStr);
     }
 
@@ -640,9 +666,9 @@ else
     tempStr.setNum(getVoltage);
     ui->lbV_get->setText(tempStr + " V");
 
-    data_id = GET_ON_OFF_STATUS;
+    /*data_id = GET_ON_OFF_STATUS;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    ReadData();
+    ReadData();*/
 
     switch(mode_status)
     {
@@ -680,7 +706,7 @@ else
        ReadData();
        //tempStr.setNum(currentPSH[0], 'f', 4);
        //ui->lbReadMain->setText(tempStr);
-       tempStr.setNum((currentPSH[1]*1000), 'f', 4);
+       tempStr.setNum((currentPSH[1]*1000), 'f', 0);
        ui->plabel_Current_SHIM->setText(tempStr);
     }
 
@@ -698,10 +724,15 @@ void MainWindow::on_pushButton_Conn_clicked()
      connectionStatus = 0;
      ui->pushButton_Conn->setText("CONNECT");
      ui->labelMODE->setText("CONNECTION: DISCONNECTED");
+     ui->lbRampUp_status_3->setText("STATUS: ");
+     ui->lbRampUp_status_3->setDisabled(true);
+     mode = 0;
+
      ui->pushButton_17->setDisabled(true);
      ui->pushButton_18->setDisabled(true);
      ui->pushButton_19->setDisabled(true);
      ui->tabWidget->setCurrentIndex(0);
+     ClearTable();
      return;
    }
 
@@ -731,6 +762,7 @@ void MainWindow::on_pushButton_Conn_clicked()
        ui->pushButton_17->setEnabled(true);
        ui->pushButton_18->setEnabled(true);
        ui->pushButton_19->setEnabled(true);
+       ui->lbRampUp_status_3->setEnabled(true);
        connectionStatus = 1;
    }
    else
@@ -1584,10 +1616,10 @@ void MainWindow::on_pushButton_18_clicked()
     dp_write.elements_p = data_elements_p;
     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
     pshModeRampUP = 3;
-    tempStr.setNum((setpointCurrPSH[0] * 1000), 'f', 4);
+    tempStr.setNum((setpointCurrPSH[0] * 1000), 'f', 0);
     ui->plTextMainPSH->setPlainText(tempStr);
 
-    tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 4);
+    tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 0);
     ui->plTextChPSH->setPlainText(tempStr);
 }
 
@@ -2131,3 +2163,106 @@ void MainWindow::on_pushButton_SetV_3_clicked()
      ReadData();
 }
 
+void MainWindow::ClearTable (void)
+{
+
+    tempStr = "";
+    ui->txtIm0->setPlainText(tempStr);
+    ui->txtIm1->setPlainText(tempStr);
+    ui->txtIm2->setPlainText(tempStr);
+    ui->txtIm3->setPlainText(tempStr);
+    ui->txtIm4->setPlainText(tempStr);
+    ui->txtIm5->setPlainText(tempStr);
+    ui->txtIm6->setPlainText(tempStr);
+    ui->txtIm7->setPlainText(tempStr);
+
+    ui->txtUa0->setPlainText(tempStr);
+    ui->txtUa1->setPlainText(tempStr);
+    ui->txtUa2->setPlainText(tempStr);
+    ui->txtUa3->setPlainText(tempStr);
+    ui->txtUa4->setPlainText(tempStr);
+    ui->txtUa5->setPlainText(tempStr);
+    ui->txtUa6->setPlainText(tempStr);
+    ui->txtUa7->setPlainText(tempStr);
+
+    ui->txtUb0->setPlainText(tempStr);
+    ui->txtUb1->setPlainText(tempStr);
+    ui->txtUb2->setPlainText(tempStr);
+    ui->txtUb3->setPlainText(tempStr);
+    ui->txtUb4->setPlainText(tempStr);
+    ui->txtUb5->setPlainText(tempStr);
+    ui->txtUb6->setPlainText(tempStr);
+    ui->txtUb7->setPlainText(tempStr);
+
+    ui->txtUab0->setPlainText(tempStr);
+    ui->txtUab1->setPlainText(tempStr);
+    ui->txtUab2->setPlainText(tempStr);
+    ui->txtUab3->setPlainText(tempStr);
+    ui->txtUab4->setPlainText(tempStr);
+    ui->txtUab5->setPlainText(tempStr);
+    ui->txtUab6->setPlainText(tempStr);
+    ui->txtUab7->setPlainText(tempStr);
+
+    ui->txtTa0->setPlainText(tempStr);
+    ui->txtTa1->setPlainText(tempStr);
+    ui->txtTa2->setPlainText(tempStr);
+    ui->txtTa3->setPlainText(tempStr);
+    ui->txtTa4->setPlainText(tempStr);
+    ui->txtTa5->setPlainText(tempStr);
+    ui->txtTa6->setPlainText(tempStr);
+    ui->txtTa7->setPlainText(tempStr);
+
+    ui->txtTb0->setPlainText(tempStr);
+    ui->txtTb1->setPlainText(tempStr);
+    ui->txtTb2->setPlainText(tempStr);
+    ui->txtTb3->setPlainText(tempStr);
+    ui->txtTb4->setPlainText(tempStr);
+    ui->txtTb5->setPlainText(tempStr);
+    ui->txtTb6->setPlainText(tempStr);
+    ui->txtTb7->setPlainText(tempStr);
+
+    ui->txtVin0->setPlainText(tempStr);
+    ui->txtVin1->setPlainText(tempStr);
+    ui->txtVin2->setPlainText(tempStr);
+    ui->txtVin3->setPlainText(tempStr);
+    ui->txtVin4->setPlainText(tempStr);
+    ui->txtVin5->setPlainText(tempStr);
+    ui->txtVin6->setPlainText(tempStr);
+    ui->txtVin7->setPlainText(tempStr);
+
+    ui->txtVout0->setPlainText(tempStr);
+    ui->txtVout1->setPlainText(tempStr);
+    ui->txtVout2->setPlainText(tempStr);
+    ui->txtVout3->setPlainText(tempStr);
+    ui->txtVout4->setPlainText(tempStr);
+    ui->txtVout5->setPlainText(tempStr);
+    ui->txtVout6->setPlainText(tempStr);
+    ui->txtVout7->setPlainText(tempStr);
+
+    ui->txtIin0->setPlainText(tempStr);
+    ui->txtIin1->setPlainText(tempStr);
+    ui->txtIin2->setPlainText(tempStr);
+    ui->txtIin3->setPlainText(tempStr);
+    ui->txtIin4->setPlainText(tempStr);
+    ui->txtIin5->setPlainText(tempStr);
+    ui->txtIin6->setPlainText(tempStr);
+    ui->txtIin7->setPlainText(tempStr);
+
+    ui->txtIout0->setPlainText(tempStr);
+    ui->txtIout1->setPlainText(tempStr);
+    ui->txtIout2->setPlainText(tempStr);
+    ui->txtIout3->setPlainText(tempStr);
+    ui->txtIout4->setPlainText(tempStr);
+    ui->txtIout5->setPlainText(tempStr);
+    ui->txtIout6->setPlainText(tempStr);
+    ui->txtIout7->setPlainText(tempStr);
+
+    ui->txtTemp0->setPlainText(tempStr);
+    ui->txtTemp1->setPlainText(tempStr);
+    ui->txtTemp2->setPlainText(tempStr);
+    ui->txtTemp3->setPlainText(tempStr);
+    ui->txtTemp4->setPlainText(tempStr);
+    ui->txtTemp5->setPlainText(tempStr);
+    ui->txtTemp6->setPlainText(tempStr);
+    ui->txtTemp7->setPlainText(tempStr);
+}
