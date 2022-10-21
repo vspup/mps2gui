@@ -649,7 +649,8 @@ else
             default:tempStr = "ERROR MODE";break;
         }
 
-        ui->lbSHIM_Channel->setText("CHANNEL: " + tempStr);
+        //ui->lbSHIM_Channel->setText("CHANNEL: " + tempStr);
+        ui->gbChannel_SHIM->setTitle("CHANNEL: " + tempStr);
         //ui->label_Mode_SHIM->setText(tempStr);
     }
 
@@ -672,16 +673,17 @@ else
 
     switch(mode_status)
     {
-       case 0: ui->lbStatusSHIM->setText("Status: Disabled"); break;
+       /*case 0: ui->lbStatusSHIM->setText("Status: Disabled"); break;  ???
        case 1: ui->lbStatusSHIM->setText("Status: Main Coil"); break;
        case 2: ui->lbStatusSHIM->setText("Status: Shim Coils"); break;
        case 3: ui->lbStatusSHIM->setText("Status: PWM_Test Shim"); break;
-       case 100: ui->lbStatusSHIM->setText("Status: ERROR"); break;
+       case 100: ui->lbStatusSHIM->setText("Status: ERROR"); break;*/
     }
 
     if(mode_status)
     {
         //ui->lbStatusSHIM->setText("ON");
+        ui->gbStatusSHIM->setTitle("Status: ON");
         ui->pushButton_ON->setText("OFF");
         switch(pshModeSHIM)
         {
@@ -693,6 +695,8 @@ else
     else
     {
        //ui->lbStatusSHIM->setText("OFF");
+       ui->gbStatusSHIM->setTitle("Status: OFF");
+
        ui->pushButton_ON->setText("ON");
        ui->pushButtonAX->setEnabled(true);
        ui->pushButton_T1->setEnabled(true);
