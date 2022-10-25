@@ -800,19 +800,23 @@ QGroupBox::title {
        <widget class="QLabel" name="lbV_get">
         <property name="geometry">
          <rect>
-          <x>-10</x>
-          <y>-49</y>
-          <width>161</width>
+          <x>4</x>
+          <y>0</y>
+          <width>151</width>
           <height>41</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>30</pointsize>
+          <pointsize>18</pointsize>
+          <kerning>false</kerning>
          </font>
         </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
         <property name="text">
-         <string/>
+         <string>0</string>
         </property>
         <property name="textFormat">
          <enum>Qt::AutoText</enum>
@@ -893,7 +897,7 @@ QGroupBox::title {
 }</string>
       </property>
       <property name="title">
-       <string>PSH, mV</string>
+       <string>PSH, mA</string>
       </property>
       <widget class="QPushButton" name="pButt_setT2_SHIM">
        <property name="geometry">
@@ -1061,6 +1065,9 @@ QGroupBox::title {
         </property>
         <property name="textFormat">
          <enum>Qt::AutoText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </widget>
@@ -1288,7 +1295,7 @@ QGroupBox::title {
        </rect>
       </property>
       <property name="title">
-       <string>PSH, mV</string>
+       <string>PSH, mA</string>
       </property>
       <widget class="QPushButton" name="pushButton_setmain0">
        <property name="geometry">
@@ -1485,34 +1492,13 @@ QGroupBox::title {
        </widget>
       </widget>
      </widget>
-     <widget class="QLabel" name="lbRampUp_status">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>520</y>
-        <width>251</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>STATUS: OFF</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_OnOffRampUp">
       <property name="geometry">
        <rect>
         <x>40</x>
         <y>560</y>
-        <width>151</width>
-        <height>51</height>
+        <width>101</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
@@ -1841,10 +1827,23 @@ QGroupBox::title {
        </widget>
       </widget>
      </widget>
+     <widget class="QGroupBox" name="gbRampUp_status">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>530</y>
+        <width>161</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>STATUS:</string>
+      </property>
+     </widget>
+     <zorder>gbRampUp_status</zorder>
      <zorder>groupBox</zorder>
      <zorder>groupBox_8</zorder>
      <zorder>groupBox_10</zorder>
-     <zorder>lbRampUp_status</zorder>
      <zorder>pushButton_OnOffRampUp</zorder>
      <zorder>label_36</zorder>
      <zorder>lbVrampUP</zorder>
@@ -3805,6 +3804,109 @@ QGroupBox::title {
      <enum>Qt::AutoText</enum>
     </property>
    </widget>
+   <zorder>label_26</zorder>
+   <zorder>label_31</zorder>
+   <zorder>label_25</zorder>
+   <zorder>label_30</zorder>
+   <zorder>label_24</zorder>
+   <zorder>label_29</zorder>
+   <zorder>label_23</zorder>
+   <zorder>label_28</zorder>
+   <zorder>label_22</zorder>
+   <zorder>label_27</zorder>
+   <zorder>txtIm0</zorder>
+   <zorder>txtUa0</zorder>
+   <zorder>txtUb0</zorder>
+   <zorder>txtUab0</zorder>
+   <zorder>txtTa0</zorder>
+   <zorder>txtTb0</zorder>
+   <zorder>label_38</zorder>
+   <zorder>txtIm1</zorder>
+   <zorder>txtIm2</zorder>
+   <zorder>txtIm3</zorder>
+   <zorder>txtIm4</zorder>
+   <zorder>txtIm5</zorder>
+   <zorder>txtIm6</zorder>
+   <zorder>txtUa1</zorder>
+   <zorder>txtUa6</zorder>
+   <zorder>txtUa2</zorder>
+   <zorder>txtUa3</zorder>
+   <zorder>txtUa4</zorder>
+   <zorder>txtUa5</zorder>
+   <zorder>txtUb6</zorder>
+   <zorder>txtUab5</zorder>
+   <zorder>txtUab4</zorder>
+   <zorder>txtUb4</zorder>
+   <zorder>txtUb3</zorder>
+   <zorder>txtUab2</zorder>
+   <zorder>txtUab6</zorder>
+   <zorder>txtUab1</zorder>
+   <zorder>txtUb1</zorder>
+   <zorder>txtUab3</zorder>
+   <zorder>txtUb2</zorder>
+   <zorder>txtUb5</zorder>
+   <zorder>txtTa6</zorder>
+   <zorder>txtTb5</zorder>
+   <zorder>txtTb4</zorder>
+   <zorder>txtTa4</zorder>
+   <zorder>txtTa3</zorder>
+   <zorder>txtTb2</zorder>
+   <zorder>txtTb6</zorder>
+   <zorder>txtTb1</zorder>
+   <zorder>txtTa1</zorder>
+   <zorder>txtTb3</zorder>
+   <zorder>txtTa2</zorder>
+   <zorder>txtTa5</zorder>
+   <zorder>txtVin6</zorder>
+   <zorder>txtVin1</zorder>
+   <zorder>txtVin0</zorder>
+   <zorder>txtVin2</zorder>
+   <zorder>txtVin3</zorder>
+   <zorder>txtVin4</zorder>
+   <zorder>txtVin5</zorder>
+   <zorder>txtIin0</zorder>
+   <zorder>txtIin3</zorder>
+   <zorder>txtIin4</zorder>
+   <zorder>txtIin5</zorder>
+   <zorder>txtIin2</zorder>
+   <zorder>txtIin6</zorder>
+   <zorder>txtIin1</zorder>
+   <zorder>txtVout2</zorder>
+   <zorder>txtVout4</zorder>
+   <zorder>txtVout1</zorder>
+   <zorder>txtVout3</zorder>
+   <zorder>txtVout0</zorder>
+   <zorder>txtIout1</zorder>
+   <zorder>txtIout2</zorder>
+   <zorder>txtIout3</zorder>
+   <zorder>txtVout5</zorder>
+   <zorder>txtIout6</zorder>
+   <zorder>txtIout5</zorder>
+   <zorder>txtIout0</zorder>
+   <zorder>txtIout4</zorder>
+   <zorder>txtVout6</zorder>
+   <zorder>txtTemp2</zorder>
+   <zorder>txtTemp4</zorder>
+   <zorder>txtTemp1</zorder>
+   <zorder>txtTemp3</zorder>
+   <zorder>txtTemp0</zorder>
+   <zorder>txtTemp5</zorder>
+   <zorder>txtTemp6</zorder>
+   <zorder>txtIm7</zorder>
+   <zorder>txtTb7</zorder>
+   <zorder>txtUb7</zorder>
+   <zorder>txtUab7</zorder>
+   <zorder>txtTa7</zorder>
+   <zorder>txtUa7</zorder>
+   <zorder>txtVout7</zorder>
+   <zorder>txtIout7</zorder>
+   <zorder>txtTemp7</zorder>
+   <zorder>txtIin7</zorder>
+   <zorder>txtVin7</zorder>
+   <zorder>comboBox</zorder>
+   <zorder>pushButton_Conn</zorder>
+   <zorder>labelMODE</zorder>
+   <zorder>tabWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

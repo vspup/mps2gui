@@ -37,6 +37,7 @@
 #include "uart-escape.h"
 #include <QFile>
 #include <QTextStream>
+#include <QMessageBox>
 //-------------------------------------------------------------
 static bool prepare_nng(const char* url);
 void eb_read_data_response_handler(const struct eb_read_data_point_result_s* read_result_p, void* parameter_p);
@@ -517,7 +518,7 @@ void MainWindow::updateGeneralGUI(void)
     data_id = GET_SET_FAN_PWM;
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
-    tempStr.setNum(pwmFAN, 'f', 2);
+    tempStr.setNum((pwmFAN * 100), 'f', 0);
     ui->lbFAN_value->setText(tempStr);
     ui->lbFAN_value_2->setText(tempStr);
 }
@@ -558,11 +559,11 @@ void MainWindow::updateRampUpGUI(void)
 
     switch(mode_status)
     {
-       case 0: ui->lbRampUp_status->setText("Status: Disabled"); break;
-       case 1: ui->lbRampUp_status->setText("Status: Main Coil"); break;
-       case 2: ui->lbRampUp_status->setText("Status: Shim Coils"); break;
-       case 3: ui->lbRampUp_status->setText("Status: PWM_Test Shim"); break;
-       case 100: ui->lbRampUp_status->setText("Status: ERROR"); break;
+       case 0: ui->gbRampUp_status->setTitle("Status: Disabled"); break;
+       case 1: ui->gbRampUp_status->setTitle("Status: Main Coil"); break;
+       case 2: ui->gbRampUp_status->setTitle("Status: Shim Coils"); break;
+       case 3: ui->gbRampUp_status->setTitle("Status: PWM_Test Shim"); break;
+       case 100: ui->gbRampUp_status->setTitle("Status: ERROR"); break;
     }
 
     if(mode_status)
@@ -871,19 +872,26 @@ void MainWindow::on_pushButton_T2_clicked()
 void MainWindow::on_pushButton_SetV_clicked()
 {
     double data;
+    QString tempData = ui->pTextV_set->toPlainText();
+    data =  tempData.toDouble();
+
+    if( (data < 0) || (data > 13))
+    {
+        QMessageBox::warning(this, "Error set voltage", "Value must be in reange from 0 to 13V");
+        return;
+    }
+
     struct eb_write_data_point_info_s dp_write = {0};
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
-     data_elements_p[0].value_p = &data;
-     QString tempData = ui->pTextV_set->toPlainText();
-     data =  tempData.toDouble();
-     data_point_id = SET_VOLTAGE;
-     dp_write.data_point_id = data_point_id;
-     dp_write.array_length = 0;
-     dp_write.type = EB_TYPE_DOUBLE;
-     dp_write.elements_p = data_elements_p;
-     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+    data_elements_p[0].value_p = &data;
 
+    data_point_id = SET_VOLTAGE;
+    dp_write.data_point_id = data_point_id;
+    dp_write.array_length = 0;
+    dp_write.type = EB_TYPE_DOUBLE;
+    dp_write.elements_p = data_elements_p;
+    eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
 }
 
 
@@ -1015,8 +1023,7 @@ void MainWindow::on_pushButton_SetCurr_clicked()
 {
 
     double data[6] = {0};//{0.17, 0.18, 0.19, 0.20, 0.21, 0.22};
-    struct eb_write_data_point_info_s dp_write = {0};
-    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*6);
+
 
      QString tempData = ui->pTextCurrCH1_set->toPlainText();
      data[0] =  tempData.toDouble();
@@ -1052,6 +1059,18 @@ void MainWindow::on_pushButton_SetCurr_clicked()
          data[5] =  tempData.toDouble();
      }
 
+     for(int i = 0; i < 6; i++)
+     {
+         if((data[i]<0) || (data[i]>30))
+         {
+             QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 30A");
+             return;
+         }
+
+     }
+
+     struct eb_write_data_point_info_s dp_write = {0};
+     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*6);
 
      data_elements_p[0].value_p = &data[0];
      data_elements_p[1].value_p = &data[1];
@@ -1130,7 +1149,7 @@ void MainWindow::on_pushButton_SetV_2_clicked()
 
      data_elements_p[0].value_p = &data;
      QString tempData = ui->plainTextSetFAN->toPlainText();
-     data =  tempData.toDouble();
+     data =  tempData.toDouble()/100;
      data_point_id = GET_SET_FAN_PWM;
      dp_write.data_point_id = data_point_id;
      dp_write.array_length = 0;
@@ -1678,12 +1697,24 @@ void MainWindow::on_pushButton_V_set0_clicked()
 void MainWindow::on_pushButton_V_set_clicked()
 {
     double data;
-    struct eb_write_data_point_info_s dp_write = {0};
-    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
-     data_elements_p[0].value_p = &data;
+
+
      QString tempData = ui->pltextSetV->toPlainText();
      data =  tempData.toDouble();
+
+     if((data < 0) || (data > 13))
+     {
+        QMessageBox::warning(this, "Error set voltage", "Value must be in reange from 0 to 13V");
+        return;
+     }
+
+
+     struct eb_write_data_point_info_s dp_write = {0};
+     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+     data_elements_p[0].value_p = &data;
+
+
      data_point_id = SET_U_MAIN;
      dp_write.data_point_id = data_point_id;
      dp_write.array_length = 0;
@@ -1696,12 +1727,21 @@ void MainWindow::on_pushButton_V_set_clicked()
 void MainWindow::on_pushButton_setI_clicked()
 {
     double data;
-    struct eb_write_data_point_info_s dp_write = {0};
-    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
-     data_elements_p[0].value_p = &data;
      QString tempData = ui->pltextSetI->toPlainText();
      data =  tempData.toDouble();
+
+     if((data < 0) || (data > 800))
+     {
+        QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 800A");
+        return;
+     }
+
+     struct eb_write_data_point_info_s dp_write = {0};
+     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+     data_elements_p[0].value_p = &data;
+
      data_point_id = SET_I_MAIN;
      dp_write.data_point_id = data_point_id;
      dp_write.array_length = 0;
@@ -1928,7 +1968,15 @@ void MainWindow::on_pushButton_setT2_clicked()
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
 
      QString tempData = ui->plTextChPSH->toPlainText();
-     data[1] =  (tempData.toFloat()/1000);
+     data[1] =  tempData.toFloat();
+
+     if((data[1] < 0) || (data[1] > 1000))
+     {
+       QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
+       return;
+     }
+
+     data[1] =  data[1] /1000;
      data[0] = setpointCurrPSH[0];
 
      data_elements_p[0].value_p = &data[0];
@@ -1971,11 +2019,21 @@ void MainWindow::on_pushButton_setmain_clicked()
 {
 
     float data[2] = {0};
-    struct eb_write_data_point_info_s dp_write = {0};
-    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
+
 
      QString tempData = ui->plTextMainPSH->toPlainText();
-     data[0] =  (tempData.toFloat() / 1000);
+     data[0] = tempData.toFloat();
+
+     if((data[0] < 0) || (data[0] > 1000))
+     {
+       QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
+       return;
+     }
+
+     struct eb_write_data_point_info_s dp_write = {0};
+     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
+
+     data[0] = data[0]/ 1000; //(tempData.toFloat() / 1000);
      data[1] = setpointCurrPSH[1];
 
      data_elements_p[0].value_p = &data[0];
@@ -2089,11 +2147,22 @@ void MainWindow::on_pButt_setT2_SHIM_clicked()
 void MainWindow::on_pButton_setT2_SHIM_clicked()
 {
     float data[2] = {0};
-    struct eb_write_data_point_info_s dp_write = {0};
-    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
+
 
      QString tempData = ui->pTextEditCurrent_SHIM->toPlainText();
-     data[1] =  (tempData.toFloat()/1000);
+     data[1] =  tempData.toFloat();
+
+
+     if((data[1] < 0) || (data[1] > 1000))
+     {
+       QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
+       return;
+     }
+
+     struct eb_write_data_point_info_s dp_write = {0};
+     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*2);
+
+     data[1] =   data[1]/1000;  //(tempData.toFloat()/1000);
      data[0] = 0;
 
 
@@ -2157,7 +2226,7 @@ void MainWindow::on_pushButton_SetV_3_clicked()
 
      data_elements_p[0].value_p = &data;
      QString tempData = ui->plainTextSetFAN_2->toPlainText();
-     data =  tempData.toDouble();
+     data =  tempData.toDouble()/100;
      data_point_id = GET_SET_FAN_PWM;
      dp_write.data_point_id = data_point_id;
      dp_write.array_length = 0;
