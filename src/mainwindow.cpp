@@ -180,16 +180,18 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     //ui->pTextIPaddr->setPlainText("192.168.8.106");
-    ui->Settings->show();
+    /*ui->Settings->show();
     ui->SHIM->setDisabled(true);
     ui->RampUP->setDisabled(true);
     ui->RampDOWN->setDisabled(true);
-    ui->pushButton_17->setDisabled(true);
+    ui->SHIM->hide();
+    ui->RampUP->hide();
+    ui->RampDOWN->hide();*/
+
+   /* ui->pushButton_17->setDisabled(true);
     ui->pushButton_18->setDisabled(true);
-    ui->pushButton_19->setDisabled(true);
-    ui->lbRampUp_status_3->setDisabled(true);
-    //ui->frame_PSH_SHIM->setWindowTitle("PSH");
-    //ui->frame_PSH_SHIM ->setAccessibleName("PSH");
+    ui->lbRampUp_status_3->setDisabled(true);*/
+
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(500);
@@ -249,22 +251,22 @@ void MainWindow::updateGeneralGUI(void)
            case 0: ui->lbRampUp_status_3->setText("STATUS: DISABLED");
                    ui->pushButton_17->setEnabled(true);
                    ui->pushButton_18->setEnabled(true);
-                   ui->pushButton_19->setEnabled(true);
+                   //ui->pushButton_19->setEnabled(true);
            break;
            case 1: ui->lbRampUp_status_3->setText("STATUS: Main Coil");
                    ui->pushButton_17->setDisabled(true);
                    ui->pushButton_18->setEnabled(true);
-                   ui->pushButton_19->setEnabled(true);
+                   //ui->pushButton_19->setEnabled(true);
            break;
            case 2: ui->lbRampUp_status_3->setText("STATUS: Shim Coils");
                    ui->pushButton_17->setEnabled(true);
                    ui->pushButton_18->setDisabled(true);
-                   ui->pushButton_19->setDisabled(true);
+                   //ui->pushButton_19->setDisabled(true);
            break;
            case 100: ui->lbRampUp_status_3->setText("STATUS: ERROR");
                    ui->pushButton_17->setDisabled(true);
                    ui->pushButton_18->setDisabled(true);
-                   ui->pushButton_19->setDisabled(true);
+                   //ui->pushButton_19->setDisabled(true);
            break;
         }
     }
@@ -733,10 +735,10 @@ void MainWindow::on_pushButton_Conn_clicked()
      ui->lbRampUp_status_3->setDisabled(true);
      mode = 0;
 
-     ui->pushButton_17->setDisabled(true);
-     ui->pushButton_18->setDisabled(true);
-     ui->pushButton_19->setDisabled(true);
-     ui->tabWidget->setCurrentIndex(0);
+     //ui->pushButton_17->setDisabled(true);
+     //ui->pushButton_18->setDisabled(true);
+
+     //ui->tabWidget->setCurrentIndex(0);
      ClearTable();
      return;
    }
@@ -766,7 +768,7 @@ void MainWindow::on_pushButton_Conn_clicked()
        ui->labelMODE->setText("CONNECTION: CONNECTED");
        ui->pushButton_17->setEnabled(true);
        ui->pushButton_18->setEnabled(true);
-       ui->pushButton_19->setEnabled(true);
+       //ui->pushButton_19->setEnabled(true);
        ui->lbRampUp_status_3->setEnabled(true);
        connectionStatus = 1;
    }
@@ -1589,43 +1591,27 @@ void eb_write_data_response_handler(const struct eb_write_data_point_result_s* w
 void MainWindow::on_pushButton_17_clicked()
 {
     mode = MODE_SHIM;
-    ui->RampUP->setDisabled(true);
-    ui->RampDOWN ->  setDisabled(true);
-    ui->SHIM->setEnabled(true);
-    //ui->labelMODE->setText("CONNECTION: CONNECTED");
+    //ui->RampUP->setDisabled(true);
+    //ui->RampDOWN ->  setDisabled(true);
+    //ui->SHIM->setEnabled(true);
+
     ui->pButt_setT2_SHIM ->  setDisabled(true);
     ui->pButton_setT2_SHIM ->  setDisabled(true);
     ui->pushButton_ON -> setDisabled(true);
-    ui->tabWidget->setCurrentIndex(1);
-    //ui->pushButton_OFF->setDisabled(true);
-    //ui->pButt_setax0_SHIM ->setDisabled(true);
-    //ui->pButt_setT1_SHIM ->setDisabled(true);
-    //ui->pButt_setT1_SHIM_2->setDisabled(true);
+    //ui->tabWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(1);
+
 }
 
 
 void MainWindow::on_pushButton_18_clicked()
 {
     mode = MODE_RAMPUP;
-    ui->SHIM->       setDisabled(true);
+   /* ui->SHIM->       setDisabled(true);
     ui->RampDOWN ->  setDisabled(true);
     ui->RampUP   ->  setEnabled(true);
-    //ui->labelMODE->setText("CONNECTION: CONNECTED");
-    ui->tabWidget->setCurrentIndex(2);
-    /*ui->pushButton_V_set0 ->  setDisabled(true);
-    ui->pushButton_set_I_zero ->  setDisabled(true);
-    ui->pushButton_V_set    ->  setDisabled(true);
-    ui->pushButton_setI     ->  setDisabled(true);
-    ui->pushButton_PlusV    ->  setDisabled(true);
-    ui->pushButton_pllusI   ->  setDisabled(true);
-    ui->pushButton_minusV   ->  setDisabled(true);
-    ui->pushButton_minusI   ->  setDisabled(true);*/
-
-
-   /* ui->pushButton_setmain0 ->  setDisabled(true);
-    ui->pushButton_setmain  ->  setDisabled(true);
-    ui->pushButton_setT2_0  ->  setDisabled(true);
-    ui->pushButton_setT2    ->  setDisabled(true);*/
+    ui->tabWidget->setCurrentIndex(2);*/
+    ui->stackedWidget->setCurrentIndex(2);
 
     uint32_t data =3;
     struct eb_write_data_point_info_s dp_write = {0};
@@ -1650,11 +1636,9 @@ void MainWindow::on_pushButton_18_clicked()
 void MainWindow::on_pushButton_19_clicked()
 {
     mode = MODE_RAMPDOWN;
-    ui->SHIM->       setDisabled(true);
+   /* ui->SHIM->       setDisabled(true);
     ui->RampDOWN ->  setDisabled(true);
-    ui->RampUP   ->  setEnabled(true);
-    //ui->labelMODE->setText("CONNECTION: CONNECTED");
-    ui->tabWidget->setCurrentIndex(3);
+    ui->tabWidget->setCurrentIndex(3);*/
 }
 
 
