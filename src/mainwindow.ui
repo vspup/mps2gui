@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1631</width>
-    <height>806</height>
+    <height>859</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>0</y>
+      <x>20</x>
+      <y>-10</y>
       <width>951</width>
-      <height>701</height>
+      <height>621</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -39,56 +39,8 @@ QGroupBox::title {
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="stackedWidgetSelect" native="true">
-     <widget class="QPushButton" name="pushButton_17">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>100</y>
-        <width>151</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>SHIM</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_18">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>100</y>
-        <width>151</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>MAIN</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbRampUp_status_3">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>50</y>
-        <width>291</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>STATUS: </string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="stackedWidgetSHIM" native="true">
+    <widget class="QWidget" name="stackedWidgetSelect"/>
+    <widget class="QWidget" name="stackedWidgetSHIM">
      <widget class="QPushButton" name="pushButtonAX">
       <property name="geometry">
        <rect>
@@ -741,7 +693,7 @@ QGroupBox::title {
      <widget class="QPushButton" name="pushButton_ON">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>40</x>
         <y>560</y>
         <width>121</width>
         <height>41</height>
@@ -1056,7 +1008,7 @@ QGroupBox::title {
      <widget class="QGroupBox" name="gbStatusSHIM">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>530</y>
         <width>161</width>
         <height>91</height>
@@ -1066,6 +1018,7 @@ QGroupBox::title {
        <string>STATUS:</string>
       </property>
      </widget>
+     <zorder>gbStatusSHIM</zorder>
      <zorder>groupBox_5</zorder>
      <zorder>gbChannel_SHIM</zorder>
      <zorder>groupBox_11</zorder>
@@ -1075,9 +1028,8 @@ QGroupBox::title {
      <zorder>pushButton_T2</zorder>
      <zorder>groupBox_4</zorder>
      <zorder>pushButton_ON</zorder>
-     <zorder>gbStatusSHIM</zorder>
     </widget>
-    <widget class="QWidget" name="stackedWidgetMain" native="true">
+    <widget class="QWidget" name="stackedWidgetMain">
      <widget class="QGroupBox" name="groupBox_8">
       <property name="geometry">
        <rect>
@@ -2944,8 +2896,8 @@ QGroupBox::title {
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>750</y>
+      <x>460</x>
+      <y>760</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -2957,8 +2909,8 @@ QGroupBox::title {
    <widget class="QPushButton" name="pushButton_Conn">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>750</y>
+      <x>690</x>
+      <y>760</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -2967,27 +2919,86 @@ QGroupBox::title {
      <string>CONNECT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelMODE">
+   <widget class="QGroupBox" name="gbStatus">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>710</y>
-      <width>421</width>
-      <height>31</height>
+      <x>40</x>
+      <y>730</y>
+      <width>361</width>
+      <height>81</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
     </property>
-    <property name="text">
-     <string>CONNECTION: DISCONECTED</string>
+    <property name="title">
+     <string>STATUS:</string>
     </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
+    <widget class="QPushButton" name="pushButton_18">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>MAIN</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_17">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>30</y>
+       <width>151</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SHIM</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gbConnection">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>729</y>
+      <width>391</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
+    </property>
+    <property name="title">
+     <string>CONNECTION:</string>
     </property>
    </widget>
+   <zorder>gbConnection</zorder>
+   <zorder>gbStatus</zorder>
    <zorder>label_26</zorder>
    <zorder>label_31</zorder>
    <zorder>label_25</zorder>
@@ -3089,7 +3100,6 @@ QGroupBox::title {
    <zorder>txtVin7</zorder>
    <zorder>comboBox</zorder>
    <zorder>pushButton_Conn</zorder>
-   <zorder>labelMODE</zorder>
    <zorder>stackedWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

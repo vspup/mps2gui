@@ -188,9 +188,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->RampUP->hide();
     ui->RampDOWN->hide();*/
 
-   /* ui->pushButton_17->setDisabled(true);
+    ui->pushButton_17->setDisabled(true);
     ui->pushButton_18->setDisabled(true);
-    ui->lbRampUp_status_3->setDisabled(true);*/
+    ui->gbStatus->setDisabled(true);
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
@@ -248,22 +248,22 @@ void MainWindow::updateGeneralGUI(void)
     {
         switch(mode_status)
         {
-           case 0: ui->lbRampUp_status_3->setText("STATUS: DISABLED");
+           case 0: ui->gbStatus->setTitle("STATUS: DISABLED");
                    ui->pushButton_17->setEnabled(true);
                    ui->pushButton_18->setEnabled(true);
                    //ui->pushButton_19->setEnabled(true);
            break;
-           case 1: ui->lbRampUp_status_3->setText("STATUS: Main Coil");
+           case 1: ui->gbStatus->setTitle("STATUS: Main Coil");
                    ui->pushButton_17->setDisabled(true);
                    ui->pushButton_18->setEnabled(true);
                    //ui->pushButton_19->setEnabled(true);
            break;
-           case 2: ui->lbRampUp_status_3->setText("STATUS: Shim Coils");
+           case 2: ui->gbStatus->setTitle("STATUS: Shim Coils");
                    ui->pushButton_17->setEnabled(true);
                    ui->pushButton_18->setDisabled(true);
                    //ui->pushButton_19->setDisabled(true);
            break;
-           case 100: ui->lbRampUp_status_3->setText("STATUS: ERROR");
+           case 100: ui->gbStatus->setTitle("STATUS: ERROR");
                    ui->pushButton_17->setDisabled(true);
                    ui->pushButton_18->setDisabled(true);
                    //ui->pushButton_19->setDisabled(true);
@@ -730,15 +730,16 @@ void MainWindow::on_pushButton_Conn_clicked()
      nng_close(nng_sock);
      connectionStatus = 0;
      ui->pushButton_Conn->setText("CONNECT");
-     ui->labelMODE->setText("CONNECTION: DISCONNECTED");
-     ui->lbRampUp_status_3->setText("STATUS: ");
-     ui->lbRampUp_status_3->setDisabled(true);
+     ui->gbConnection->setTitle("CONNECTION: DISCONNECTED");
+     ui->gbStatus->setTitle("STATUS: ");
+     ui->gbStatus->setDisabled(true);
      mode = 0;
 
-     //ui->pushButton_17->setDisabled(true);
-     //ui->pushButton_18->setDisabled(true);
+     ui->pushButton_17->setDisabled(true);
+     ui->pushButton_18->setDisabled(true);
 
      //ui->tabWidget->setCurrentIndex(0);
+     ui->stackedWidget->setCurrentIndex(0);
      ClearTable();
      return;
    }
@@ -748,8 +749,8 @@ void MainWindow::on_pushButton_Conn_clicked()
    //QString tempStr = ui->pTextIPaddr->toPlainText();
    QByteArray ba=tempStr.toLatin1();
    sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data()); //"tcp://" + ui->pTextIPaddr->toPlainText() + ":5555";
-   ui->labelMODE->setText("CONNECTION: CONNECTING...");
-   ui->labelMODE->repaint();
+   ui->gbStatus->setTitle("CONNECTION: CONNECTING...");
+   ui->gbStatus->repaint();
    if(prepare_nng(tempBuff))
    {     
        double data = 0.15;
@@ -765,16 +766,16 @@ void MainWindow::on_pushButton_Conn_clicked()
        dp_write.elements_p = data_elements_p;
        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
        ui->pushButton_Conn->setText("DISCONNECT");
-       ui->labelMODE->setText("CONNECTION: CONNECTED");
+       ui->gbStatus->setTitle("CONNECTION: CONNECTED");
        ui->pushButton_17->setEnabled(true);
        ui->pushButton_18->setEnabled(true);
        //ui->pushButton_19->setEnabled(true);
-       ui->lbRampUp_status_3->setEnabled(true);
+       ui->gbStatus->setEnabled(true);
        connectionStatus = 1;
    }
    else
    {
-       ui->labelMODE->setText("CONNECTION: ERROR");
+       ui->gbStatus->setTitle("CONNECTION: ERROR");
        connectionStatus = 0;
    }
 }
