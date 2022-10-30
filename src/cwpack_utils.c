@@ -22,7 +22,7 @@
 
 
 #include <math.h>
-#include "cwpack_utils.h"
+#include "inc/cwpack_utils.h"
 
 
 

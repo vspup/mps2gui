@@ -23,8 +23,8 @@
 #include <string.h>
 #include <math.h>
 
-#include "cwpack.h"
-#include "cwpack_internals.h"
+#include "inc/cwpack.h"
+#include "inc/cwpack_internals.h"
 
 
 

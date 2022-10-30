@@ -3,9 +3,9 @@
 #include <string.h>
 #include <stdint.h>
 #include <inttypes.h>
-#include "electabuzz_client.h"
-#include "cwpack.h"
-#include "cwpack_utils.h"
+#include "inc/electabuzz_client.h"
+#include "inc/cwpack.h"
+#include "inc/cwpack_utils.h"
 
 #ifndef EB_MAX_OUTSTANDING_TRANSACTIONS
 #define EB_MAX_OUTSTANDING_TRANSACTIONS     64

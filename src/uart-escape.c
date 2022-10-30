@@ -1,4 +1,4 @@
-#include "uart-escape.h"
+#include "inc/uart-escape.h"
 
 #define INVERT(V) ((uint8_t)(~(V)))
 enum UART_ESCAPE_STATE uart_escape_state_in;

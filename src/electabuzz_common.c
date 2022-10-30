@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <inttypes.h>
 #include <stdint.h>
-#include "electabuzz_common.h"
-#include "cwpack.h"
+#include "inc/electabuzz_common.h"
+#include "inc/cwpack.h"
 
 
 
