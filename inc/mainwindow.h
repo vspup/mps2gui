@@ -46,8 +46,6 @@ private slots:
 
     void on_pushButton_SetCurr0_clicked();
 
-    void on_pushButton_SetV_2_clicked();
-
     void slotTimerAlarm();
 
     void nngGetRequest(int);
@@ -84,21 +82,25 @@ private slots:
 
     void on_pushButton_setmain_clicked();
 
-    void on_pButt_setT2_SHIM_clicked();
-
-    void on_pButton_setT2_SHIM_clicked();
-
     void on_pushButton_SetFAN_0_clicked();
-
-    void on_pushButton_SetFAN_1_clicked();
-
-    void on_pushButton_SetV_3_clicked();
 
     void on_btConnect_clicked();
 
     void on_btSetSHIM_Tab_clicked();
 
     void on_btSetMain_Tab_clicked();
+
+    void on_btSetFAN_MainTab_clicked();
+
+    void on_btSetFAN0_MainTab_clicked();
+
+    void on_btSetFAN_ShimTab_clicked();
+
+    void on_btSetFAN0_ShimTab_clicked();
+
+    void on_btPSH_ShimSetCurrent0_clicked();
+
+    void on_btPSH_ShimSetCurrent_clicked();
 
 private:
     Ui::MainWindow *ui;

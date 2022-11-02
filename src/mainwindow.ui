@@ -832,7 +832,7 @@ QGroupBox::title {
       <property name="title">
        <string>PSH, mA</string>
       </property>
-      <widget class="QPushButton" name="pButt_setT2_SHIM">
+      <widget class="QPushButton" name="btPSH_ShimSetCurrent0">
        <property name="geometry">
         <rect>
          <x>19</x>
@@ -845,7 +845,7 @@ QGroupBox::title {
         <string>SET0</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pButton_setT2_SHIM">
+      <widget class="QPushButton" name="btPSH_ShimSetCurrent">
        <property name="geometry">
         <rect>
          <x>123</x>
@@ -909,8 +909,8 @@ QGroupBox::title {
        </widget>
       </widget>
       <zorder>frame_19</zorder>
-      <zorder>pButt_setT2_SHIM</zorder>
-      <zorder>pButton_setT2_SHIM</zorder>
+      <zorder>btPSH_ShimSetCurrent0</zorder>
+      <zorder>btPSH_ShimSetCurrent</zorder>
       <zorder>pTextEditCurrent_SHIM</zorder>
      </widget>
      <widget class="QGroupBox" name="groupBox_11">
@@ -925,7 +925,7 @@ QGroupBox::title {
       <property name="title">
        <string>FAN, %</string>
       </property>
-      <widget class="QPushButton" name="pushButton_SetFAN_0">
+      <widget class="QPushButton" name="btSetFAN0_MainTab">
        <property name="geometry">
         <rect>
          <x>15</x>
@@ -938,7 +938,7 @@ QGroupBox::title {
         <string>FAN 0</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_SetV_2">
+      <widget class="QPushButton" name="btSetFAN_MainTab">
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -1667,7 +1667,7 @@ QGroupBox::title {
       <property name="title">
        <string>FAN, %</string>
       </property>
-      <widget class="QPushButton" name="pushButton_SetFAN_1">
+      <widget class="QPushButton" name="btSetFAN0_ShimTab">
        <property name="geometry">
         <rect>
          <x>17</x>
@@ -1680,7 +1680,7 @@ QGroupBox::title {
         <string>FAN 0</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_SetV_3">
+      <widget class="QPushButton" name="btSetFAN_ShimTab">
        <property name="geometry">
         <rect>
          <x>107</x>
@@ -3130,11 +3130,11 @@ QGroupBox::title {
   <tabstop>pTextV_set</tabstop>
   <tabstop>pushButton_SetV_0</tabstop>
   <tabstop>pushButton_SetV</tabstop>
-  <tabstop>pButt_setT2_SHIM</tabstop>
-  <tabstop>pButton_setT2_SHIM</tabstop>
+  <tabstop>btPSH_ShimSetCurrent0</tabstop>
+  <tabstop>btPSH_ShimSetCurrent</tabstop>
   <tabstop>pTextEditCurrent_SHIM</tabstop>
-  <tabstop>pushButton_SetFAN_0</tabstop>
-  <tabstop>pushButton_SetV_2</tabstop>
+  <tabstop>btSetFAN0_MainTab</tabstop>
+  <tabstop>btSetFAN_MainTab</tabstop>
   <tabstop>plainTextSetFAN</tabstop>
   <tabstop>pushButton_minusV</tabstop>
   <tabstop>pushButton_minusI</tabstop>
@@ -3152,8 +3152,8 @@ QGroupBox::title {
   <tabstop>pushButton_setT2_0</tabstop>
   <tabstop>pushButton_setT2</tabstop>
   <tabstop>plTextChPSH</tabstop>
-  <tabstop>pushButton_SetFAN_1</tabstop>
-  <tabstop>pushButton_SetV_3</tabstop>
+  <tabstop>btSetFAN0_ShimTab</tabstop>
+  <tabstop>btSetFAN_ShimTab</tabstop>
   <tabstop>plainTextSetFAN_2</tabstop>
   <tabstop>pushButton_OnOffRampUp</tabstop>
   <tabstop>txtIm0</tabstop>
