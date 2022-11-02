@@ -19,7 +19,7 @@
      <rect>
       <x>20</x>
       <y>-10</y>
-      <width>951</width>
+      <width>941</width>
       <height>621</height>
      </rect>
     </property>
@@ -37,7 +37,7 @@ QGroupBox::title {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="stackedWidgetSelect"/>
     <widget class="QWidget" name="stackedWidgetSHIM">

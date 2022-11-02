@@ -84,17 +84,53 @@ MainWindow::~MainWindow()
 }
 uint8_t exeMode;
 
+#define CMD_UPDATE_BY_TIMER  1
+#define CMD_SET_FAN          2
+
 void MainWindow::nngGetRequest( int cmd)
 {
 
-    QString temp;
-    temp.setNum(cmd);
-    QMessageBox::warning(this, "got signal", "debug msg" + temp);
+    //QString temp;
+    //temp.setNum(cmd);
+    //QMessageBox::warning(this, "got signal", "debug msg" + temp);
+   if(cmd == CMD_UPDATE_BY_TIMER)
+   {
+    if(connectionStatus)
+    {
+
+       updateGeneralGUI();
+       exeMode =  mode;
+       if(exeMode == MODE_SHIM)
+       {
+          updateGUI();
+       }
+       else if(exeMode == MODE_RAMPUP)
+       {
+          updateRampUpGUI();
+       }
+    }
+   }
+   else if (cmd == CMD_SET_FAN)
+   {
+       double data;
+       struct eb_write_data_point_info_s dp_write = {0};
+       struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+       data_elements_p[0].value_p = &data;
+       QString tempData = ui->plainTextSetFAN->toPlainText();
+       data =  tempData.toDouble()/100;
+       data_point_id = GET_SET_FAN_PWM;
+       dp_write.data_point_id = data_point_id;
+       dp_write.array_length = 0;
+       dp_write.type = EB_TYPE_DOUBLE;
+       dp_write.elements_p = data_elements_p;
+       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+   }
 }
 
 void MainWindow::slotTimerAlarm()
 {
-    if(connectionStatus)
+   /* if(connectionStatus)
     {
 
        updateGeneralGUI();
@@ -111,7 +147,7 @@ void MainWindow::slotTimerAlarm()
        {
 
        }
-    }
+    }*/
 }
 
 QString tempStr;
@@ -966,7 +1002,7 @@ void MainWindow::on_pushButton_SetCurr0_clicked()
 
 void MainWindow::on_pushButton_SetV_2_clicked()
 {
-    double data;
+    /*double data;
     struct eb_write_data_point_info_s dp_write = {0};
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
@@ -978,9 +1014,9 @@ void MainWindow::on_pushButton_SetV_2_clicked()
      dp_write.array_length = 0;
      dp_write.type = EB_TYPE_DOUBLE;
      dp_write.elements_p = data_elements_p;
-     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
-     ReadData();
-
+     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);*/
+     //ReadData();
+     emit transmit_to_nng(CMD_SET_FAN);
 }
 
 
