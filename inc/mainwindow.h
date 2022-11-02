@@ -20,10 +20,13 @@ public:
     void updateGeneralGUI(void);
     void updateRampUpGUI(void);
     void ClearTable (void);
+    //void nngGetRequest( int cmd);
     ~MainWindow();
+signals:
+    void transmit_to_nng(int cmd);
 
 private slots:
-    void on_pushButton_Conn_clicked();
+    void receive_from_gui(bool value);
 
     void on_pushButtonAX_clicked();
 
@@ -39,25 +42,15 @@ private slots:
 
     void on_pushButton_ON_clicked();
 
-    void on_pushButton_OFF_clicked();
-
     void on_pushButton_SetCurr_clicked();
 
     void on_pushButton_SetCurr0_clicked();
-
-    void on_pushButton_clicked();
 
     void on_pushButton_SetV_2_clicked();
 
     void slotTimerAlarm();
 
-    void on_pushButton_17_clicked();
-
-
-    void on_pushButton_18_clicked();
-
-    void on_pushButton_19_clicked();
-
+    void nngGetRequest(int);
 
     void on_pushButton_set_I_zero_clicked();
 
@@ -101,6 +94,11 @@ private slots:
 
     void on_pushButton_SetV_3_clicked();
 
+    void on_btConnect_clicked();
+
+    void on_btSetSHIM_Tab_clicked();
+
+    void on_btSetMain_Tab_clicked();
 
 private:
     Ui::MainWindow *ui;

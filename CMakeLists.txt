@@ -23,22 +23,29 @@ find_package(nng REQUIRED)
 set(PROJECT_SOURCES
         src/main.cpp
         src/mainwindow.cpp
+        src/shim_window.cpp
+        inc/shim_window.h
+        src/variables_list.cpp
+        inc/variables_list.h
+        src/response_parser.cpp
+        inc/response_parser.h
         inc/mainwindow.h
         src/mainwindow.ui
-        src/uart-escape.c
+        lib/uart-escape.c
         inc/uart-escape.h
-        src/cwpack_utils.c
+        lib/cwpack_utils.c
         inc/cwpack_utils.h
-        src/cwpack.c
+        lib/cwpack.c
         inc/cwpack.h
         inc/cwpack_config.h
         inc/cwpack_internals.h
-        src/electabuzz_common.c
+        lib/electabuzz_common.c
         inc/electabuzz_common.h
-        src/electabuzz_client.c
+        lib/electabuzz_client.c
         inc/electabuzz_client.h
-        src/electabuzz_client_helpers.c
+        lib/electabuzz_client_helpers.c
         inc/electabuzz_client_helpers.h
+        inc/commands.h
 )
 
 message(STATUS "PROJECT_SOURCES=" ${PROJECT_SOURCES})

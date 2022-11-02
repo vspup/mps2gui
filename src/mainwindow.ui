@@ -2906,7 +2906,7 @@ QGroupBox::title {
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Conn">
+   <widget class="QPushButton" name="btConnect">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -2944,7 +2944,7 @@ QGroupBox::title {
     <property name="title">
      <string>STATUS:</string>
     </property>
-    <widget class="QPushButton" name="pushButton_18">
+    <widget class="QPushButton" name="btSetMain_Tab">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -2957,7 +2957,7 @@ QGroupBox::title {
       <string>MAIN</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_17">
+    <widget class="QPushButton" name="btSetSHIM_Tab">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -3099,7 +3099,7 @@ QGroupBox::title {
    <zorder>txtIin7</zorder>
    <zorder>txtVin7</zorder>
    <zorder>comboBox</zorder>
-   <zorder>pushButton_Conn</zorder>
+   <zorder>btConnect</zorder>
    <zorder>stackedWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -3108,12 +3108,147 @@ QGroupBox::title {
      <x>0</x>
      <y>0</y>
      <width>1631</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>pushButton_T1</tabstop>
+  <tabstop>btConnect</tabstop>
+  <tabstop>pushButton_T2</tabstop>
+  <tabstop>pushButton_SetCurr</tabstop>
+  <tabstop>pushButton_SetCurr0</tabstop>
+  <tabstop>pTextCurrCH6_set</tabstop>
+  <tabstop>pTextCurrCH5_set</tabstop>
+  <tabstop>pTextCurrCH4_set</tabstop>
+  <tabstop>pTextCurrCH3_set</tabstop>
+  <tabstop>pTextCurrCH2_set</tabstop>
+  <tabstop>pTextCurrCH1_set</tabstop>
+  <tabstop>pushButton_ON</tabstop>
+  <tabstop>pTextV_set</tabstop>
+  <tabstop>pushButton_SetV_0</tabstop>
+  <tabstop>pushButton_SetV</tabstop>
+  <tabstop>pButt_setT2_SHIM</tabstop>
+  <tabstop>pButton_setT2_SHIM</tabstop>
+  <tabstop>pTextEditCurrent_SHIM</tabstop>
+  <tabstop>pushButton_SetFAN_0</tabstop>
+  <tabstop>pushButton_SetV_2</tabstop>
+  <tabstop>plainTextSetFAN</tabstop>
+  <tabstop>pushButton_minusV</tabstop>
+  <tabstop>pushButton_minusI</tabstop>
+  <tabstop>pushButton_pllusI</tabstop>
+  <tabstop>pushButton_PlusV</tabstop>
+  <tabstop>pltextSetI</tabstop>
+  <tabstop>pltextSetV</tabstop>
+  <tabstop>pushButton_V_set</tabstop>
+  <tabstop>pushButton_setI</tabstop>
+  <tabstop>pushButton_V_set0</tabstop>
+  <tabstop>pushButton_set_I_zero</tabstop>
+  <tabstop>pushButton_setmain0</tabstop>
+  <tabstop>pushButton_setmain</tabstop>
+  <tabstop>plTextMainPSH</tabstop>
+  <tabstop>pushButton_setT2_0</tabstop>
+  <tabstop>pushButton_setT2</tabstop>
+  <tabstop>plTextChPSH</tabstop>
+  <tabstop>pushButton_SetFAN_1</tabstop>
+  <tabstop>pushButton_SetV_3</tabstop>
+  <tabstop>plainTextSetFAN_2</tabstop>
+  <tabstop>pushButton_OnOffRampUp</tabstop>
+  <tabstop>txtIm0</tabstop>
+  <tabstop>txtUa0</tabstop>
+  <tabstop>txtUb0</tabstop>
+  <tabstop>txtUab0</tabstop>
+  <tabstop>txtTa0</tabstop>
+  <tabstop>txtTb0</tabstop>
+  <tabstop>txtIm1</tabstop>
+  <tabstop>txtIm2</tabstop>
+  <tabstop>txtIm3</tabstop>
+  <tabstop>txtIm4</tabstop>
+  <tabstop>txtIm5</tabstop>
+  <tabstop>txtIm6</tabstop>
+  <tabstop>txtUa1</tabstop>
+  <tabstop>txtUa6</tabstop>
+  <tabstop>txtUa2</tabstop>
+  <tabstop>txtUa3</tabstop>
+  <tabstop>txtUa4</tabstop>
+  <tabstop>txtUa5</tabstop>
+  <tabstop>txtUb6</tabstop>
+  <tabstop>txtUab5</tabstop>
+  <tabstop>txtUab4</tabstop>
+  <tabstop>txtUb4</tabstop>
+  <tabstop>txtUb3</tabstop>
+  <tabstop>txtUab2</tabstop>
+  <tabstop>txtUab6</tabstop>
+  <tabstop>txtUab1</tabstop>
+  <tabstop>txtUb1</tabstop>
+  <tabstop>txtUab3</tabstop>
+  <tabstop>txtUb2</tabstop>
+  <tabstop>txtUb5</tabstop>
+  <tabstop>txtTa6</tabstop>
+  <tabstop>txtTb5</tabstop>
+  <tabstop>txtTb4</tabstop>
+  <tabstop>txtTa4</tabstop>
+  <tabstop>txtTa3</tabstop>
+  <tabstop>txtTb2</tabstop>
+  <tabstop>txtTb6</tabstop>
+  <tabstop>txtTb1</tabstop>
+  <tabstop>txtTa1</tabstop>
+  <tabstop>txtTb3</tabstop>
+  <tabstop>txtTa2</tabstop>
+  <tabstop>txtTa5</tabstop>
+  <tabstop>txtVin6</tabstop>
+  <tabstop>txtVin1</tabstop>
+  <tabstop>txtVin0</tabstop>
+  <tabstop>txtVin2</tabstop>
+  <tabstop>txtVin3</tabstop>
+  <tabstop>txtVin4</tabstop>
+  <tabstop>txtVin5</tabstop>
+  <tabstop>txtIin0</tabstop>
+  <tabstop>txtIin3</tabstop>
+  <tabstop>txtIin4</tabstop>
+  <tabstop>txtIin5</tabstop>
+  <tabstop>txtIin2</tabstop>
+  <tabstop>txtIin6</tabstop>
+  <tabstop>txtIin1</tabstop>
+  <tabstop>txtVout2</tabstop>
+  <tabstop>txtVout4</tabstop>
+  <tabstop>txtVout1</tabstop>
+  <tabstop>txtVout3</tabstop>
+  <tabstop>txtVout0</tabstop>
+  <tabstop>txtIout1</tabstop>
+  <tabstop>txtIout2</tabstop>
+  <tabstop>txtIout3</tabstop>
+  <tabstop>txtVout5</tabstop>
+  <tabstop>txtIout6</tabstop>
+  <tabstop>txtIout5</tabstop>
+  <tabstop>txtIout0</tabstop>
+  <tabstop>txtIout4</tabstop>
+  <tabstop>txtVout6</tabstop>
+  <tabstop>txtTemp2</tabstop>
+  <tabstop>txtTemp4</tabstop>
+  <tabstop>txtTemp1</tabstop>
+  <tabstop>txtTemp3</tabstop>
+  <tabstop>txtTemp0</tabstop>
+  <tabstop>txtTemp5</tabstop>
+  <tabstop>txtTemp6</tabstop>
+  <tabstop>txtIm7</tabstop>
+  <tabstop>txtTb7</tabstop>
+  <tabstop>txtUb7</tabstop>
+  <tabstop>txtUab7</tabstop>
+  <tabstop>txtTa7</tabstop>
+  <tabstop>txtUa7</tabstop>
+  <tabstop>txtVout7</tabstop>
+  <tabstop>txtIout7</tabstop>
+  <tabstop>txtTemp7</tabstop>
+  <tabstop>txtIin7</tabstop>
+  <tabstop>txtVin7</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>pushButtonAX</tabstop>
+  <tabstop>btSetMain_Tab</tabstop>
+  <tabstop>btSetSHIM_Tab</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
