@@ -21,6 +21,8 @@
 #include "lib/nng/include/nng/nng.h"
 #include "lib/nng/include/nng/protocol/reqrep0/req.h"
 #else
+#include "lib/nng/include/nng/nng.h"
+#include "lib/nng/include/nng/protocol/reqrep0/req.h"
 #endif
 #include "inc/electabuzz_client.h"
 #include "inc/electabuzz_common.h"
