@@ -254,24 +254,7 @@ void MainWindow::nngGetRequest( int cmd)
 
 void MainWindow::slotTimerAlarm()
 {
-   /* if(connectionStatus)
-    {
-
-       updateGeneralGUI();
-       exeMode =  mode;
-       if(exeMode == MODE_SHIM)
-       {
-          updateGUI();
-       }
-       else if(exeMode == MODE_RAMPUP)
-       {
-          updateRampUpGUI();
-       }
-       else if(exeMode == MODE_RAMPUP)
-       {
-
-       }
-    }*/
+  emit transmit_to_nng(CMD_UPDATE_BY_TIMER);
 }
 
 QString tempStr;

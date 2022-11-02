@@ -165,7 +165,7 @@ QGroupBox::title {
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>16</pointsize>
          <kerning>false</kerning>
         </font>
        </property>
@@ -206,7 +206,7 @@ QGroupBox::title {
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>16</pointsize>
          <kerning>false</kerning>
         </font>
        </property>
@@ -225,7 +225,7 @@ QGroupBox::title {
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>16</pointsize>
          <kerning>false</kerning>
         </font>
        </property>
@@ -288,7 +288,7 @@ QGroupBox::title {
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>16</pointsize>
          <kerning>false</kerning>
         </font>
        </property>
@@ -329,7 +329,7 @@ QGroupBox::title {
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>16</pointsize>
          <kerning>false</kerning>
         </font>
        </property>
@@ -370,7 +370,7 @@ QGroupBox::title {
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>16</pointsize>
          <kerning>false</kerning>
         </font>
        </property>
@@ -770,7 +770,7 @@ QGroupBox::title {
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="inputMethodHints">
@@ -3108,7 +3108,7 @@ QGroupBox::title {
      <x>0</x>
      <y>0</y>
      <width>1631</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
