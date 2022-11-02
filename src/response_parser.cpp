@@ -5,6 +5,8 @@
 #include "inc/electabuzz_client.h"
 #include "inc/electabuzz_common.h"
 #include "inc/uart-escape.h"
+#include  <string.h>
+
 
 bool prepare_nng(const char* url);
 static const char* get_type_str(enum eb_data_type_e data_type);

@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
-    timer->start(500);
+    timer->start(100);
     connect(this,SIGNAL(transmit_to_nng(int)),this,SLOT(nngGetRequest(int)));
 }
 
@@ -591,8 +591,8 @@ void MainWindow::receive_from_gui(bool value)
 
 void MainWindow::on_btConnect_clicked()
 {
-   emit transmit_to_nng(1);
-   return;
+   //emit transmit_to_nng(1);
+   //return;
    if(connectionStatus)
    {
      nng_close(nng_sock);
