@@ -38,9 +38,9 @@
 #define  GET_SET_I_SETPOINT_HEATERS   0x0100
 
 #define MODE_SELECTING   0
-#define MODE_SHIM        1
-#define MODE_RAMPUP      2
-#define MODE_RAMPDOWN    3
+#define SHIM_MODE        1
+#define MAIN_MODE        2
+//#define MODE_RAMPDOWN    3
 
 
 #define CHANNEL_AX       1

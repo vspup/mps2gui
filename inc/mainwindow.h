@@ -106,6 +106,10 @@ private slots:
 
     void on_btPSH_ShimSetCurrent_clicked();
 
+    void on_btShimOnOff_clicked();
+
+    void on_btMainOnOff_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
