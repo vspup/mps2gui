@@ -33,7 +33,8 @@
 #include "inc/commands.h"
 #include "inc/variables_list.h"
 #include "inc/response_parser.h"
-
+#include <QDateTime>
+QFile filelog;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -66,6 +67,22 @@ MainWindow::MainWindow(QWidget *parent)
     {
         QString line = stream.readLine();
         ui->comboBox->addItem(line);
+    }
+
+    QDate date = QDate::currentDate();
+    QTime time = QTime::currentTime();
+    QString log_name  = time.toString() + " " + date.toString() +"_Log.txt";
+
+    log_name.replace(":", "_");
+    log_name.replace(" ", "_");
+
+
+    filelog.setFileName(log_name);
+    if(!filelog.open(QIODevice::ReadWrite))
+    {
+       qCritical() << "Could not open file";
+       qCritical() << file.errorString();
+       //MessageBox::warning(this, "Error open log file",log_name);
     }
 
     ui->btSetMain_Tab->setDisabled(true);
@@ -732,12 +749,21 @@ void MainWindow::receive_from_gui(bool value)
     //emit transmit_to_gui(state);
 }
 
+void MainWindow::writeLog(QString logstr)
+{
+    QTextStream stream(&filelog);
+    stream << (logstr + "\r\n");
+    filelog.flush();
+}
+
 void MainWindow::on_btConnect_clicked()
 {
    //emit transmit_to_nng(1);
    //return;
    if(connectionStatus)
    {
+     writeLog("USER: CLICED \"DISCONNECT\"");
+
      nng_close(nng_sock);
      connectionStatus = 0;
      ui->btConnect->setText("CONNECT");
@@ -754,11 +780,14 @@ void MainWindow::on_btConnect_clicked()
      return;
    }
 
+   writeLog("USER: CLICED \"CONNECT\"");
+
+
    char tempBuff[64] = {0};
    QString tempStr =ui->comboBox->currentText();
-   //QString tempStr = ui->pTextIPaddr->toPlainText();
+
    QByteArray ba=tempStr.toLatin1();
-   sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data()); //"tcp://" + ui->pTextIPaddr->toPlainText() + ":5555";
+   sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
    ui->gbStatus->setTitle("CONNECTION: CONNECTING...");
    ui->gbStatus->repaint();
    if(prepare_nng(tempBuff))
@@ -782,11 +811,13 @@ void MainWindow::on_btConnect_clicked()
        //ui->pushButton_19->setEnabled(true);
        ui->gbStatus->setEnabled(true);
        connectionStatus = 1;
+       writeLog("CONNECTED");
    }
    else
    {
        ui->gbStatus->setTitle("CONNECTION: ERROR");
        connectionStatus = 0;
+       writeLog("CONNECTION: ERROR");
    }
 }
 

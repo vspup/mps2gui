@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QTimer>
+#include <QDateTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,7 +21,10 @@ public:
     void updateGeneralGUI(void);
     void updateRampUpGUI(void);
     void ClearTable (void);
+    void writeLog(QString logstr);
+
     //void nngGetRequest( int cmd);
+    //QFile filelog;
     ~MainWindow();
 signals:
     void transmit_to_nng(int cmd);
