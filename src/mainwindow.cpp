@@ -69,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem(line);
     }
 
-    QDate date = QDate::currentDate();
+/*    QDate date = QDate::currentDate();
     QTime time = QTime::currentTime();
     QString log_name  = time.toString() + " " + date.toString() +"_Log.txt";
 
@@ -82,8 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     {
        qCritical() << "Could not open file";
        qCritical() << file.errorString();
-       //MessageBox::warning(this, "Error open log file",log_name);
-    }
+    }*/
 
     ui->btSetMain_Tab->setDisabled(true);
     ui->btSetSHIM_Tab->setDisabled(true);
@@ -156,7 +155,15 @@ void MainWindow::nngGetRequest( int cmd)
    {
 
       case CMD_SET_FAN:
-           tempData = ui->plainTextSetFAN->toPlainText();
+           if(exeMode == MODE_SHIM)
+           {
+              tempData = ui->plainTextSetFAN->toPlainText();
+           }
+           else
+           {
+              tempData = ui->plainTextSetFAN_2->toPlainText();
+           }
+
            data =  tempData.toDouble()/100;
            dp_write.data_point_id = GET_SET_FAN_PWM;
            dp_write.type = EB_TYPE_DOUBLE;
@@ -749,6 +756,10 @@ void MainWindow::receive_from_gui(bool value)
 void MainWindow::writeLog(QString logstr)
 {
     QTextStream stream(&filelog);
+
+    //QString tmpStr;
+    QDateTime dt = QDateTime::currentDateTime();
+    stream << (dt.toString() + "\r\n");
     stream << (logstr + "\r\n");
     filelog.flush();
 }
@@ -774,9 +785,23 @@ void MainWindow::on_btConnect_clicked()
 
      ui->stackedWidget->setCurrentIndex(0);
      ClearTable();
+     filelog.close();
      return;
    }
 
+   QDate date = QDate::currentDate();
+   QTime time = QTime::currentTime();
+   QString log_name  = time.toString() + " " + date.toString() +"_Log.txt";
+
+   log_name.replace(":", "_");
+   log_name.replace(" ", "_");
+
+
+   filelog.setFileName(log_name);
+   if(!filelog.open(QIODevice::ReadWrite))
+   {
+      qCritical() << "Could not open file";
+   }
    writeLog("USER: CLICED \"CONNECT\"");
 
 
@@ -807,6 +832,8 @@ void MainWindow::on_btConnect_clicked()
        ui->btSetSHIM_Tab->setEnabled(true);
        //ui->pushButton_19->setEnabled(true);
        ui->gbStatus->setEnabled(true);
+
+
        connectionStatus = 1;
        writeLog("CONNECTED");
    }

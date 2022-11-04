@@ -1,6 +1,6 @@
 
 #include "inc/response_parser.h"
-#include "inc/mainwindow.h"
+//#include "inc/mainwindow.h"
 #include "inc/variables_list.h"
 #include "inc/commands.h"
 #include "inc/electabuzz_client.h"
@@ -64,22 +64,29 @@ QString logTransaction;
 void eb_read_data_response_handler(const struct eb_read_data_point_result_s* read_result_p, void* parameter_p)
 {
     QString tempStr;
+    char tempBuff[200];
+    memset((char*)&tempBuff[0], 0x00, sizeof(tempBuff));
     //memset()
     if (verbose) {
         printf("Client: Read Response Handler:\n");
         printf("  transaction id: 0x%04x\n", (unsigned int)read_result_p->transaction_id);
+        sprintf(tempBuff, "  transaction id: %d\n", (unsigned int)read_result_p->transaction_id);
+        logTransaction = tempBuff;
         printf("  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id);
+        sprintf(tempBuff, "  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id);
+        logTransaction += tempBuff;
         printf("  result code: 0x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
+        sprintf(tempBuff, "  result code: 0x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
+        logTransaction += tempBuff;
         printf("  value length: %u\n", (unsigned int)read_result_p->value_len);
+
+
         printf("  data type: 0x%02x (%s)\n", (unsigned int)read_result_p->data_type, get_type_str(read_result_p->data_type));
         printf("  number of elements: %u\n", (unsigned int)read_result_p->num_elements);
         printf("  element index: %u\n", (unsigned int)read_result_p->element_index);
         printf("  value: ");
-
-        logTransaction  = "  transaction id: 0x%04x\n", (unsigned int)read_result_p->transaction_id;
-        logTransaction += "  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id;
-        logTransaction += ("  result code: 0x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
         logTransaction += ("  value: ");
+
     }
 
 

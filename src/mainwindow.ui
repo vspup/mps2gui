@@ -37,7 +37,7 @@ QGroupBox::title {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="stackedWidgetSelect"/>
     <widget class="QWidget" name="stackedWidgetSHIM">
@@ -1449,7 +1449,7 @@ QGroupBox::title {
         <x>90</x>
         <y>100</y>
         <width>91</width>
-        <height>17</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
@@ -1467,7 +1467,7 @@ QGroupBox::title {
         <x>210</x>
         <y>100</y>
         <width>101</width>
-        <height>17</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
@@ -1485,7 +1485,7 @@ QGroupBox::title {
         <x>340</x>
         <y>100</y>
         <width>141</width>
-        <height>17</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
@@ -1503,7 +1503,7 @@ QGroupBox::title {
         <x>540</x>
         <y>100</y>
         <width>151</width>
-        <height>17</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
