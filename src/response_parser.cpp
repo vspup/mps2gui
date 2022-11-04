@@ -1,5 +1,6 @@
 
 #include "inc/response_parser.h"
+#include "inc/mainwindow.h"
 #include "inc/variables_list.h"
 #include "inc/commands.h"
 #include "inc/electabuzz_client.h"
@@ -59,9 +60,11 @@ bool prepare_nng(const char* url)
 }
 
 
-
+QString logTransaction;
 void eb_read_data_response_handler(const struct eb_read_data_point_result_s* read_result_p, void* parameter_p)
 {
+    QString tempStr;
+    //memset()
     if (verbose) {
         printf("Client: Read Response Handler:\n");
         printf("  transaction id: 0x%04x\n", (unsigned int)read_result_p->transaction_id);
@@ -72,13 +75,12 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
         printf("  number of elements: %u\n", (unsigned int)read_result_p->num_elements);
         printf("  element index: %u\n", (unsigned int)read_result_p->element_index);
         printf("  value: ");
+
+        logTransaction  = "  transaction id: 0x%04x\n", (unsigned int)read_result_p->transaction_id;
+        logTransaction += "  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id;
+        logTransaction += ("  result code: 0x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
+        logTransaction += ("  value: ");
     }
-
-
-    /*int len = strlen(dataBuff);
-    sprintf(&dataBuff[len], "element index: %u\n", (unsigned int)read_result_p->element_index);
-    len = strlen(dataBuff);
-    sprintf(&dataBuff[len], "value: %f\n", *((double*)(read_result_p->value_p)));*/
 
 
     if(read_result_p->data_point_id == GET_SET_CURRENT )
@@ -180,23 +182,78 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
         printf("Error: x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
     } else {
         switch (read_result_p->data_type) {
-            case EB_TYPE_NIL: printf("NIL\n"); break;
-            case EB_TYPE_BOOL: if (*((bool*)(read_result_p->value_p))) printf("true\n"); else printf("false\n"); break;
-            case EB_TYPE_UINT8: printf("%" PRIu8"\n", *((uint8_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_INT8: printf("%" PRIi8"\n", *((int8_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_UINT16: printf("%" PRIu16"\n", *((uint16_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_INT16: printf("%" PRIi16"\n", *((int16_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_UINT32: printf("%" PRIu32"\n", *((uint32_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_INT32: printf("%" PRIi32"\n", *((int32_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_UINT64: printf("%" PRIu64"\n", *((uint64_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_INT64: printf("%" PRIi64"\n", *((int64_t*)(read_result_p->value_p))); break;
-            case EB_TYPE_FLOAT: printf("%f\n", *((float*)(read_result_p->value_p))); break;
-            case EB_TYPE_DOUBLE: printf("%f\n", *((double*)(read_result_p->value_p))); break;
+            case EB_TYPE_NIL:
+                printf("NIL\n");
+                logTransaction += "NIL\n";
+            break;
+            case EB_TYPE_BOOL: if (*((bool*)(read_result_p->value_p)))
+            {
+                printf("true\n");
+                logTransaction += "true\n";
+            }
+            else
+            {
+                printf("false\n");
+                logTransaction += "false\n";
+            }
+            break;
+            case EB_TYPE_UINT8:
+                 printf("%" PRIu8"\n", *((uint8_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((uint8_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_INT8:
+                 printf("%" PRIi8"\n", *((int8_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((int8_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_UINT16:
+                 printf("%" PRIu16"\n", *((uint16_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((uint16_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_INT16:
+                 printf("%" PRIi16"\n", *((int16_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((int16_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_UINT32:
+                 printf("%" PRIu32"\n", *((uint32_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((uint32_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_INT32:
+                 printf("%" PRIi32"\n", *((int32_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((int32_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_UINT64:
+                 printf("%" PRIu64"\n", *((uint64_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((uint64_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_INT64:
+                 printf("%" PRIi64"\n", *((int64_t*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((int64_t*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_FLOAT:
+                 printf("%f\n", *((float*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((float*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
+            case EB_TYPE_DOUBLE:
+                 printf("%f\n", *((double*)(read_result_p->value_p)));
+                 tempStr.setNum( (*((double*)read_result_p->value_p)));
+                 logTransaction += tempStr;
+            break;
             case EB_TYPE_STR: {
                 // cave: strings are not null-terminated
                 char* v_p = (char*)read_result_p->value_p;
                 for (size_t i=0; i<read_result_p->value_len; i++) {
                     printf("%c", v_p[i]);
+                    tempStr =v_p[i] ;
+                    logTransaction += tempStr;
                 }
                 printf("\n");
                 break;

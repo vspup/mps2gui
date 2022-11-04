@@ -104,19 +104,17 @@ uint8_t exeMode;
 double dataArray[6] = {0};
 
 #define CMD_UPDATE_BY_TIMER           1
-#define CMD_SET_FAN_MAIN_TAB          2
-#define CMD_SET_FAN0_MAIN_TAB         3
-#define CMD_SET_FAN_SHIM_TAB          4
-#define CMD_SET_FAN0_SHIM_TAB         5
-#define CMD_SET_AX                    6
-#define CMD_SET_T1                    7
-#define CMD_SET_T2                    8
-#define CMD_SET_VOLTAGE_SHIM          9
-#define CMD_SET_VOLTAGE0_SHIM         10
-#define CMD_SET_CURRENT_SHIM          11
-#define CMD_SET_CURRENT0_SHIM         12
-#define CMD_SET_SHIM_PSH_CURRENT      13
-#define CMD_SET_SHIM_PSH_CURRENT0     14
+#define CMD_SET_FAN                   2
+#define CMD_SET_FAN0                  3
+#define CMD_SET_AX                    4
+#define CMD_SET_T1                    5
+#define CMD_SET_T2                    6
+#define CMD_SET_VOLTAGE_SHIM          7
+#define CMD_SET_VOLTAGE0_SHIM         8
+#define CMD_SET_CURRENT_SHIM          9
+#define CMD_SET_CURRENT0_SHIM         10
+#define CMD_SET_SHIM_PSH_CURRENT      11
+#define CMD_SET_SHIM_PSH_CURRENT0     12
 
 void MainWindow::nngGetRequest( int cmd)
 {
@@ -157,37 +155,26 @@ void MainWindow::nngGetRequest( int cmd)
    switch(cmd)
    {
 
-      case CMD_SET_FAN_MAIN_TAB:
+      case CMD_SET_FAN:
            tempData = ui->plainTextSetFAN->toPlainText();
            data =  tempData.toDouble()/100;
            dp_write.data_point_id = GET_SET_FAN_PWM;
            dp_write.type = EB_TYPE_DOUBLE;
+           writeLog("USER CLICKED: SET FAN VALUE");
       break;
 
-      case CMD_SET_FAN0_MAIN_TAB:
+      case CMD_SET_FAN0:
            data =  0;
            dp_write.data_point_id = GET_SET_FAN_PWM;
            dp_write.type = EB_TYPE_DOUBLE;
+           writeLog("USER CLICKED: SET FAN 0");
       break;
-
-      case CMD_SET_FAN_SHIM_TAB:
-           tempData = ui->plainTextSetFAN_2->toPlainText();
-           data =  tempData.toDouble()/100;
-           dp_write.data_point_id = GET_SET_FAN_PWM;
-           dp_write.type = EB_TYPE_DOUBLE;
-      break;
-
-      case CMD_SET_FAN0_SHIM_TAB:
-           data =  0;
-           dp_write.data_point_id = GET_SET_FAN_PWM;
-           dp_write.type = EB_TYPE_DOUBLE;
-      break;
-
       case CMD_SET_AX:
            dataU32 = 0;// ax mode
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
+           writeLog("USER CLICKED: SET AX MODE");
       break;
 
       case CMD_SET_T1:
@@ -195,6 +182,7 @@ void MainWindow::nngGetRequest( int cmd)
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
+           writeLog("USER CLICKED: SET T1 MODE");
       break;
 
       case CMD_SET_T2:
@@ -202,6 +190,7 @@ void MainWindow::nngGetRequest( int cmd)
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
+           writeLog("USER CLICKED: SET T2 MODE");
       break;
 
       case CMD_SET_VOLTAGE_SHIM:
@@ -209,6 +198,7 @@ void MainWindow::nngGetRequest( int cmd)
            data =  tempData.toDouble();
            dp_write.data_point_id = SET_VOLTAGE;
            dp_write.type = EB_TYPE_DOUBLE;
+           writeLog("USER CLICKED: SET SHIM VOLTAGE VALUE");
       break;
 
       case CMD_SET_VOLTAGE0_SHIM:
@@ -216,6 +206,7 @@ void MainWindow::nngGetRequest( int cmd)
            data =  0.1;
            dp_write.data_point_id = SET_VOLTAGE;
            dp_write.type = EB_TYPE_DOUBLE;
+           writeLog("USER CLICKED: SET SHIM VOLTAGE 0");
       break;
 
       case CMD_SET_CURRENT_SHIM:
@@ -228,6 +219,7 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_CURRENT;
            dp_write.array_length = 6;
            dp_write.type = EB_TYPE_DOUBLE;
+           writeLog("USER CLICKED: SET SHIM CURRENT");
 
       break;
 
@@ -240,6 +232,7 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_CURRENT;
            dp_write.array_length = 6;
            dp_write.type = EB_TYPE_DOUBLE;
+           writeLog("USER CLICKED: SET SHIM CURRENT 0");
       break;
 
       case CMD_SET_SHIM_PSH_CURRENT:
@@ -248,6 +241,7 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
            dp_write.array_length = 2;
            dp_write.type = EB_TYPE_FLOAT;
+           writeLog("USER CLICKED: SET SHIM PSH CURRENT");
       break;
 
       case CMD_SET_SHIM_PSH_CURRENT0:
@@ -258,6 +252,7 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
            dp_write.array_length = 2;
            dp_write.type = EB_TYPE_FLOAT;
+           writeLog("USER CLICKED: SET SHIM PSH CURRENT 0");
       break;
 
    }
@@ -266,7 +261,8 @@ void MainWindow::nngGetRequest( int cmd)
 
        dp_write.elements_p = data_elements_p;
        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
-
+       ReadData();
+       writeLog(logTransaction);
 }
 
 void MainWindow::slotTimerAlarm()
@@ -310,6 +306,7 @@ void MainWindow::updateGeneralGUI(void)
     data_id = cmdList [cmdCounter];
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
+    writeLog(logTransaction);
 
     cmdCounter++;
 
@@ -1254,14 +1251,7 @@ void MainWindow::on_pushButton_setax0_clicked()
     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
     pshModeRampUP = 3;
 
-   /* ui->pushButton_V_set0 ->      setEnabled(true);
-    ui->pushButton_set_I_zero ->  setEnabled(true);
-    ui->pushButton_V_set    ->    setEnabled(true);
-    ui->pushButton_setI     ->    setEnabled(true);
-    ui->pushButton_PlusV    ->    setEnabled(true);
-    ui->pushButton_pllusI   ->    setEnabled(true);
-    ui->pushButton_minusV   ->  setEnabled(true);
-    ui->pushButton_minusI   ->  setEnabled(true);*/
+
     ui->pushButton_setmain0 ->  setEnabled(true);
     ui->pushButton_setmain  ->  setEnabled(true);
     ui->pushButton_setT2_0  ->  setEnabled(true);
@@ -1617,25 +1607,25 @@ void MainWindow::on_btSetMain_Tab_clicked()
 
 void MainWindow::on_btSetFAN_MainTab_clicked()
 {
-    emit transmit_to_nng(CMD_SET_FAN_MAIN_TAB);
+    emit transmit_to_nng(CMD_SET_FAN);
 }
 
 
 void MainWindow::on_btSetFAN0_MainTab_clicked()
 {
-    emit transmit_to_nng(CMD_SET_FAN0_MAIN_TAB);
+    emit transmit_to_nng(CMD_SET_FAN0);
 }
 
 
 void MainWindow::on_btSetFAN_ShimTab_clicked()
 {
-    emit transmit_to_nng(CMD_SET_FAN_SHIM_TAB);
+    emit transmit_to_nng(CMD_SET_FAN);
 }
 
 
 void MainWindow::on_btSetFAN0_ShimTab_clicked()
 {
-    emit transmit_to_nng(CMD_SET_FAN0_SHIM_TAB);
+    emit transmit_to_nng(CMD_SET_FAN0);
 }
 
 
