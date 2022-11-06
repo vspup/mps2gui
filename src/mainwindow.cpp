@@ -100,6 +100,7 @@ MainWindow::~MainWindow()
 }
 
 uint8_t exeMode;
+uint8_t userMode;
 double dataArray[6] = {0};
 
 #define CMD_UPDATE_BY_TIMER           1
@@ -119,6 +120,8 @@ double dataArray[6] = {0};
 #define CMD_SET_VOLTAGE0_MAIN         15
 #define CMD_SET_CURRENT_MAIN          16
 #define CMD_SET_CURRENT0_MAIN         17
+#define CMD_SET_MAIN_MODE             18
+#define CMD_SET_SHIM_MODE             19
 
 void MainWindow::nngGetRequest( int cmd)
 {
@@ -268,21 +271,25 @@ void MainWindow::nngGetRequest( int cmd)
       break;
       case CMD_SET_ON_OFF:
 
-           if(exeMode == MAIN_MODE)
+           if(mode == MAIN_MODE)
            {
-            data =  1;
+            dataU32 =  1;
+           }
+           else  if(mode == SHIM_MODE)
+           {
+             dataU32 =  2;
            }
            else
            {
-             data =  2;
+             writeLog("ERROR SET MODE");
+             return;
            }
 
-           if(mode_status == 0)
+           if(mode_status)
            {
-
-             data =  0;
+             dataU32 =  0;
              #ifdef SENT_ZERO
-             if(exeMode == MAIN_MODE)
+             if(mode == MAIN_MODE)
              {
                 float data1[2] = {0};
                 data1[1] = 0;
@@ -302,7 +309,7 @@ void MainWindow::nngGetRequest( int cmd)
 
            }
 
-           data_elements_p[0].value_p = &data;
+           data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = SET_ON_OFF_STATUS;
            dp_write.array_length = 0;
            dp_write.type = EB_TYPE_UINT32;
@@ -335,6 +342,18 @@ void MainWindow::nngGetRequest( int cmd)
             dp_write.data_point_id = SET_I_MAIN;
             dp_write.type = EB_TYPE_DOUBLE;
             writeLog("USER CLICKED: SET MAIN CURRENT VALUE: 0;");
+       break;
+       case CMD_SET_MAIN_MODE:
+            //data =  0;
+            //dp_write.data_point_id = SET_I_MAIN;
+            //dp_write.type = EB_TYPE_DOUBLE;
+            //writeLog("USER CLICKED: SET MAIN CURRENT VALUE: 0;");
+       break;
+       case CMD_SET_SHIM_MODE:
+           // data =  0;
+            //dp_write.data_point_id = SET_I_MAIN;
+           //dp_write.type = EB_TYPE_DOUBLE;
+           // writeLog("USER CLICKED: SET MAIN CURRENT VALUE: 0;");
        break;
    }
 
@@ -396,9 +415,9 @@ void MainWindow::updateGeneralGUI(void)
     }
 
     //GET_ON_OFF_STATUS;
-    if(mode == MODE_SELECTING)
+    //if(mode == MODE_SELECTING)
     {
-        switch(mode_status)
+       /* switch(mode_status)
         {
            case 0: ui->gbStatus->setTitle("STATUS: DISABLED");
                    ui->btSetSHIM_Tab->setEnabled(true);
@@ -416,6 +435,70 @@ void MainWindow::updateGeneralGUI(void)
                    ui->btSetSHIM_Tab->setDisabled(true);
                    ui->btSetMain_Tab->setDisabled(true);
            break;
+        }*/
+
+        switch(mode_status)
+        {
+           case 0:
+                ui->gbRampUp_status->setTitle("Status: Disabled");
+                ui->gbStatus->setTitle("STATUS: DISABLED");
+                ui->btSetMain_Tab->setEnabled(true);
+                ui->btSetSHIM_Tab->setEnabled(true);
+
+           break;
+           case 1: ui->gbRampUp_status->setTitle("Status: Main Coil");
+                   ui->gbStatus->setTitle("STATUS: Main Coil");
+                   ui->btSetMain_Tab->setEnabled(true);
+                   ui->btSetSHIM_Tab->setDisabled(true);
+                   ui->stackedWidget->setCurrentIndex(2);
+                   mode = MAIN_MODE;
+           break;
+
+
+           case 2: ui->gbRampUp_status->setTitle("Status: Shim Coils");
+                   ui->gbStatus->setTitle("STATUS: Shim Coils");
+                   ui->btSetSHIM_Tab->setEnabled(true);
+                   ui->btSetMain_Tab->setDisabled(true);
+                   ui->stackedWidget->setCurrentIndex(1);
+                   mode = SHIM_MODE;
+           break;
+           case 3: ui->gbRampUp_status->setTitle("Status: PWM_Test Shim");
+
+            break;
+           case 100:
+                  ui->gbRampUp_status->setTitle("Status: ERROR");
+                  ui->gbStatus->setTitle("STATUS: ERROR");
+            break;
+        }
+
+        if(mode_status)
+        {
+            //ui->lbStatusSHIM->setText("ON");
+            ui->gbStatusSHIM->setTitle("Status: ON");
+            ui->btShimOnOff->setText("OFF");
+            switch(pshModeSHIM)
+            {
+               case 1: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T2->setDisabled(true); break;
+               case 2: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
+               case 3: ui->pushButton_T2->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
+            }
+        }
+        else
+        {
+           ui->gbStatusSHIM->setTitle("Status: OFF");
+           ui->btShimOnOff->setText("ON");
+           ui->pushButtonAX->setEnabled(true);
+           ui->pushButton_T1->setEnabled(true);
+           ui->pushButton_T2 ->setEnabled(true);
+        }
+
+        if(mode_status)
+        {
+          ui->btMainOnOff->setText("OFF");
+        }
+        else
+        {
+          ui->btMainOnOff->setText("ON");
         }
     }
 
@@ -664,11 +747,23 @@ void MainWindow::updateRampUpGUI(void)
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();
 
-    switch(mode_status)
+  /*  switch(mode_status)
     {
-       case 0: ui->gbRampUp_status->setTitle("Status: Disabled"); break;
-       case 1: ui->gbRampUp_status->setTitle("Status: Main Coil"); break;
-       case 2: ui->gbRampUp_status->setTitle("Status: Shim Coils"); break;
+       case 0: ui->gbRampUp_status->setTitle("Status: Disabled");
+            ui->btSetMain_Tab->setEnabled(true);
+            ui->btSetSHIM_Tab->setEnabled(true);
+
+       break;
+       case 1: ui->gbRampUp_status->setTitle("Status: Main Coil");
+            ui->btSetMain_Tab->setEnabled(true);
+            ui->btSetSHIM_Tab->setDisabled(true);
+       break;
+
+
+       case 2: ui->gbRampUp_status->setTitle("Status: Shim Coils");
+            ui->btSetSHIM_Tab->setEnabled(true);
+            ui->btSetMain_Tab->setDisabled(true);
+       break;
        case 3: ui->gbRampUp_status->setTitle("Status: PWM_Test Shim"); break;
        case 100: ui->gbRampUp_status->setTitle("Status: ERROR"); break;
     }
@@ -680,7 +775,7 @@ void MainWindow::updateRampUpGUI(void)
     else
     {
       ui->btMainOnOff->setText("ON");
-    }
+    }*/
 
     if(pshModeRampUP)
     {
@@ -783,7 +878,7 @@ void MainWindow::updateGUI(void)
        case 100: ui->lbStatusSHIM->setText("Status: ERROR"); break;*/
     }
 
-    if(mode_status)
+ /*   if(mode_status)
     {
         //ui->lbStatusSHIM->setText("ON");
         ui->gbStatusSHIM->setTitle("Status: ON");
@@ -802,7 +897,7 @@ void MainWindow::updateGUI(void)
        ui->pushButtonAX->setEnabled(true);
        ui->pushButton_T1->setEnabled(true);
        ui->pushButton_T2 ->setEnabled(true);
-    }
+    }*/
 
     if(pshModeSHIM)
     {
@@ -1598,7 +1693,9 @@ void MainWindow::on_btSetMain_Tab_clicked()
     dp_write.type = EB_TYPE_UINT32;
     dp_write.elements_p = data_elements_p;
     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+
     pshModeRampUP = 3;
+
     tempStr.setNum((setpointCurrPSH[0] * 1000), 'f', 0);
     ui->plTextMainPSH->setPlainText(tempStr);
 
