@@ -37,7 +37,7 @@ QGroupBox::title {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="stackedWidgetSelect"/>
     <widget class="QWidget" name="stackedWidgetSHIM">
