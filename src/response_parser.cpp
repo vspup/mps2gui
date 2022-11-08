@@ -324,6 +324,7 @@ int ReadData (void)
        if ((rv = nng_recv(nng_sock, &buffer_p, &buffer_size, NNG_FLAG_ALLOC)) != 0)
        {
           printf("%s: nng_recv failed: %s", __func__, nng_strerror(rv));
+
               return -1;
             }
            eb_client_process_incoming(buffer_p, buffer_size);

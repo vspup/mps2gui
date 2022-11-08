@@ -45,6 +45,8 @@ extern double fan_speed;
 extern float currentPSH[2];
 extern float setpointCurrPSH[2];
 extern uint8_t mode;
+extern uint8_t oldMode;
+
 extern uint8_t pshModeRampUP;
 extern uint8_t pshModeSHIM;
 extern uint8_t channel;
@@ -60,3 +62,4 @@ extern nng_socket nng_sock;
 extern char dataBuff[256];
 extern int connectionStatus;
 extern eb_data_id_t data_id;
+extern double dataArray[6];

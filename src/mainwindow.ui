@@ -37,7 +37,7 @@ QGroupBox::title {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="stackedWidgetSelect"/>
     <widget class="QWidget" name="stackedWidgetSHIM">
@@ -983,9 +983,9 @@ QGroupBox::title {
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>0</y>
           <width>71</width>
-          <height>21</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -1227,7 +1227,7 @@ QGroupBox::title {
       <property name="title">
        <string>PSH, mA</string>
       </property>
-      <widget class="QPushButton" name="pushButton_setmain0">
+      <widget class="QPushButton" name="btPSH_Main_SetI0">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -1240,7 +1240,7 @@ QGroupBox::title {
         <string>Set main 0</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_setmain">
+      <widget class="QPushButton" name="btPSH_Main_SetI">
        <property name="geometry">
         <rect>
          <x>190</x>
@@ -1266,7 +1266,7 @@ QGroupBox::title {
         <number>1</number>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_setT2_0">
+      <widget class="QPushButton" name="btPSH_AX_SetI0">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -1279,7 +1279,7 @@ QGroupBox::title {
         <string>SET0</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_setT2">
+      <widget class="QPushButton" name="btPSH_AX_SetI">
        <property name="geometry">
         <rect>
          <x>190</x>
@@ -1295,7 +1295,7 @@ QGroupBox::title {
       <widget class="QPlainTextEdit" name="plTextChPSH">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>306</x>
          <y>100</y>
          <width>101</width>
          <height>41</height>
@@ -1725,9 +1725,9 @@ QGroupBox::title {
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>3</y>
           <width>71</width>
-          <height>21</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -3144,11 +3144,11 @@ QGroupBox::title {
   <tabstop>pushButton_setI</tabstop>
   <tabstop>pushButton_V_set0</tabstop>
   <tabstop>pushButton_set_I_zero</tabstop>
-  <tabstop>pushButton_setmain0</tabstop>
-  <tabstop>pushButton_setmain</tabstop>
+  <tabstop>btPSH_Main_SetI0</tabstop>
+  <tabstop>btPSH_Main_SetI</tabstop>
   <tabstop>plTextMainPSH</tabstop>
-  <tabstop>pushButton_setT2_0</tabstop>
-  <tabstop>pushButton_setT2</tabstop>
+  <tabstop>btPSH_AX_SetI0</tabstop>
+  <tabstop>btPSH_AX_SetI</tabstop>
   <tabstop>plTextChPSH</tabstop>
   <tabstop>btSetFAN0_ShimTab</tabstop>
   <tabstop>btSetFAN_ShimTab</tabstop>

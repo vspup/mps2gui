@@ -37,6 +37,31 @@
 #define  GET_SET_CURRENT_HEATERS      0x0101
 #define  GET_SET_I_SETPOINT_HEATERS   0x0100
 
+
+
+
+#define CMD_UPDATE_BY_TIMER           1
+#define CMD_SET_FAN                   2
+#define CMD_SET_FAN0                  3
+#define CMD_SET_AX                    4
+#define CMD_SET_T1                    5
+#define CMD_SET_T2                    6
+#define CMD_SET_VOLTAGE_SHIM          7
+#define CMD_SET_VOLTAGE0_SHIM         8
+#define CMD_SET_CURRENT_SHIM          9
+#define CMD_SET_CURRENT0_SHIM         10
+#define CMD_SET_SHIM_PSH_CURRENT      11
+#define CMD_SET_SHIM_PSH_CURRENT0     12
+#define CMD_SET_ON_OFF                13
+#define CMD_SET_VOLTAGE_MAIN          14
+#define CMD_SET_VOLTAGE0_MAIN         15
+#define CMD_SET_CURRENT_MAIN          16
+#define CMD_SET_CURRENT0_MAIN         17
+#define CMD_SET_PSH_MAIN_I_0          18
+#define CMD_SET_PSH_MAIN_I            19
+#define CMD_SET_PSH_AX_I_0            20
+#define CMD_SET_PSH_AX_I              21
+
 #define MODE_SELECTING   0
 #define SHIM_MODE        1
 #define MAIN_MODE        2

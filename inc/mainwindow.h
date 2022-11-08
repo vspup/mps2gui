@@ -22,7 +22,7 @@ public:
     void updateRampUpGUI(void);
     void ClearTable (void);
     void writeLog(QString logstr);
-
+    void HandleReceivedData(void);
     //void nngGetRequest( int cmd);
     //QFile filelog;
     ~MainWindow();
@@ -41,10 +41,6 @@ private slots:
     void on_pushButton_SetV_clicked();
 
     void on_pushButton_SetV_0_clicked();
-
-    void on_pushButton_Refresh_clicked();
-
-    void on_pushButton_ON_clicked();
 
     void on_pushButton_SetCurr_clicked();
 
@@ -70,23 +66,7 @@ private slots:
 
     void on_pushButton_minusI_clicked();
 
-    void on_pushButton_OnOffRampUp_clicked();
-
-    void on_pushButton_setax0_clicked();
-
-    void on_pushButton_setT1_0_clicked();
-
-    void on_pushButton_setT1_clicked();
-
-    void on_pushButton_setT2_0_clicked();
-
-    void on_pushButton_setT2_clicked();
-
-    void on_pushButton_setmain0_clicked();
-
     void on_pushButton_setmain_clicked();
-
-    void on_pushButton_SetFAN_0_clicked();
 
     void on_btConnect_clicked();
 
@@ -109,6 +89,14 @@ private slots:
     void on_btShimOnOff_clicked();
 
     void on_btMainOnOff_clicked();
+
+    void on_btPSH_Main_SetI0_clicked();
+
+    void on_btPSH_Main_SetI_clicked();
+
+    void on_btPSH_AX_SetI0_clicked();
+
+    void on_btPSH_AX_SetI_clicked();
 
 private:
     Ui::MainWindow *ui;
