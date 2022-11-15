@@ -34,6 +34,8 @@
 #include "inc/variables_list.h"
 #include "inc/response_parser.h"
 #include <QDateTime>
+#include <QTime>
+#include <QThread>
 QFile filelog;
 
 
@@ -90,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
-    timer->start(100);
+    timer->start(80);
     connect(this,SIGNAL(transmit_to_nng(int)),this,SLOT(nngGetRequest(int)));
 }
 
@@ -106,6 +108,11 @@ float dataFloatArray[2] = {0};
 
 void MainWindow::nngGetRequest( int cmd)
 {
+    if(connectionStatusLost)
+    {
+       ClearTable ();
+       connectionStatusLost = 0;
+    }
 
    if(connectionStatus == 0)
    {
@@ -115,9 +122,9 @@ void MainWindow::nngGetRequest( int cmd)
    if(cmd == CMD_UPDATE_BY_TIMER)
    {
 
-
+      // return;
        updateGeneralGUI();
-       exeMode =  mode;
+       //exeMode =  mode;
        if(exeMode == SHIM_MODE)
        {
           updateGUI();
@@ -161,21 +168,21 @@ void MainWindow::nngGetRequest( int cmd)
            data =  tempData.toDouble()/100;
            dp_write.data_point_id = GET_SET_FAN_PWM;
            dp_write.type = EB_TYPE_DOUBLE;
-           writeLog("USER CLICKED: SET FAN VALUE");
+           writeLog("USER: SET FAN VALUE"  + tempData);
       break;
 
       case CMD_SET_FAN0:
            data =  0;
            dp_write.data_point_id = GET_SET_FAN_PWM;
            dp_write.type = EB_TYPE_DOUBLE;
-           writeLog("USER CLICKED: SET FAN 0");
+           writeLog("USER: SET FAN 0");
       break;
       case CMD_SET_AX:
            dataU32 = 0;// ax mode
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
-           writeLog("USER CLICKED: SET AX MODE");
+           writeLog("USER: SET AX MODE");
       break;
 
       case CMD_SET_T1:
@@ -183,7 +190,7 @@ void MainWindow::nngGetRequest( int cmd)
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
-           writeLog("USER CLICKED: SET T1 MODE");
+           writeLog("USER: SET T1 MODE");
       break;
 
       case CMD_SET_T2:
@@ -191,7 +198,7 @@ void MainWindow::nngGetRequest( int cmd)
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
-           writeLog("USER CLICKED: SET T2 MODE");
+           writeLog("USER: SET T2 MODE");
       break;
 
       case CMD_SET_VOLTAGE_SHIM:
@@ -199,7 +206,7 @@ void MainWindow::nngGetRequest( int cmd)
            data =  tempData.toDouble();
            dp_write.data_point_id = SET_VOLTAGE;
            dp_write.type = EB_TYPE_DOUBLE;
-           writeLog("USER CLICKED: SET SHIM VOLTAGE VALUE");
+           writeLog("USER: SET SHIM VOLTAGE VALUE" + tempData);
       break;
 
       case CMD_SET_VOLTAGE0_SHIM:
@@ -207,7 +214,7 @@ void MainWindow::nngGetRequest( int cmd)
            data =  0.1;
            dp_write.data_point_id = SET_VOLTAGE;
            dp_write.type = EB_TYPE_DOUBLE;
-           writeLog("USER CLICKED: SET SHIM VOLTAGE 0");
+           writeLog("USER: SET SHIM VOLTAGE 0.1");
       break;
 
       case CMD_SET_CURRENT_SHIM:
@@ -220,7 +227,12 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_CURRENT;
            dp_write.array_length = 6;
            dp_write.type = EB_TYPE_DOUBLE;
-           writeLog("USER CLICKED: SET SHIM CURRENT");
+           writeLog("USER: SET SHIM CURRENT " + tempData.number(dataArray[0]) + ", "
+                                              + tempData.number(dataArray[1]) + ", "
+                                              + tempData.number(dataArray[2]) + ", "
+                                              + tempData.number(dataArray[3]) + ", "
+                                              + tempData.number(dataArray[4]) + ", "
+                                              + tempData.number(dataArray[5]) );
 
       break;
 
@@ -233,7 +245,7 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_CURRENT;
            dp_write.array_length = 6;
            dp_write.type = EB_TYPE_DOUBLE;
-           writeLog("USER CLICKED: SET SHIM CURRENT 0");
+           writeLog("USER: SET SHIM CURRENT 0, 0, 0, 0, 0, 0");
       break;
 
       case CMD_SET_SHIM_PSH_CURRENT:
@@ -242,7 +254,7 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
            dp_write.array_length = 2;
            dp_write.type = EB_TYPE_FLOAT;
-           writeLog("USER CLICKED: SET SHIM PSH CURRENT");
+           writeLog("USER: SET SHIM PSH CURRENT " + tempData.number(dataArray[0]) + ", " + tempData.number(dataArray[1]) );
       break;
 
       case CMD_SET_SHIM_PSH_CURRENT0:
@@ -253,23 +265,26 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
            dp_write.array_length = 2;
            dp_write.type = EB_TYPE_FLOAT;
-           writeLog("USER CLICKED: SET SHIM PSH CURRENT 0");
+           writeLog("USER: SET SHIM PSH CURRENT 0, 0");
       break;
       case CMD_SET_ON_OFF:
 
            if(exeMode == MAIN_MODE)
            {
-            data =  1;
+             dataU32 =  1;
+             writeLog("USER: ON MAIN MODE");
            }
            else
            {
-             data =  2;
+             dataU32 =  2;
+             writeLog("USER: ON SHIM MODE");
            }
 
-           if(mode_status == 0)
+           if(mode_status)
            {
 
-             data =  0;
+             dataU32 =  0;
+             writeLog("USER: OFF MODE");
              #ifdef SENT_ZERO
              if(exeMode == MAIN_MODE)
              {
@@ -289,7 +304,7 @@ void MainWindow::nngGetRequest( int cmd)
 
            }
 
-           data_elements_p[0].value_p = &data;
+           data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = SET_ON_OFF_STATUS;
            dp_write.array_length = 0;
            dp_write.type = EB_TYPE_UINT32;
@@ -300,13 +315,14 @@ void MainWindow::nngGetRequest( int cmd)
              data =  tempData.toDouble();
              dp_write.data_point_id = SET_U_MAIN;
              dp_write.type = EB_TYPE_DOUBLE;
-             writeLog("USER CLICKED: SET MAIN VOLTAGE VALUE: " + ui->pltextSetV->toPlainText());
+             writeLog("USER: SET MAIN VOLTAGE VALUE: " + tempData);
        break;
        case CMD_SET_VOLTAGE0_MAIN:
 
             data = 0;
             dp_write.data_point_id = SET_U_MAIN;
             dp_write.type = EB_TYPE_DOUBLE;
+            ui->pltextSetV->setPlainText("0");
             writeLog("USER CLICKED: SET MAIN VOLTAGE VALUE: 0" );
 
        break;
@@ -321,7 +337,9 @@ void MainWindow::nngGetRequest( int cmd)
             data =  0;
             dp_write.data_point_id = SET_I_MAIN;
             dp_write.type = EB_TYPE_DOUBLE;
+            ui->pltextSetI->setPlainText("0");
             writeLog("USER CLICKED: SET MAIN CURRENT VALUE: 0;");
+
        break;
        case CMD_SET_PSH_MAIN_I_0:
             dataFloatArray[0] = 0;
@@ -329,7 +347,7 @@ void MainWindow::nngGetRequest( int cmd)
             dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
             dp_write.array_length = 2;
             dp_write.type = EB_TYPE_FLOAT;
-            writeLog("USER CLICKED: SET PSH MAIN CURRENT VALUE: 0;");
+            writeLog("USER: SET PSH MAIN CURRENT VALUE: 0, " + tempData.number(dataFloatArray[1]));
        break;
        case CMD_SET_PSH_MAIN_I:
             dataFloatArray[0] = dataFloatArray[0]/ 1000;
@@ -339,7 +357,7 @@ void MainWindow::nngGetRequest( int cmd)
             data_point_id = GET_SET_I_SETPOINT_HEATERS;
             dp_write.array_length = 2;
             dp_write.type = EB_TYPE_FLOAT;
-            writeLog("USER CLICKED: SET PSH MAIN CURRENT VALUES: ");
+            writeLog("USER: SET PSH MAIN CURRENT VALUES " +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
        break;
        case CMD_SET_PSH_AX_I_0:
             dataFloatArray[1] =  0;
@@ -349,6 +367,7 @@ void MainWindow::nngGetRequest( int cmd)
             dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
             dp_write.array_length = 2;
             dp_write.type = EB_TYPE_FLOAT;
+            writeLog("USER: SET PSH AX CURRENT VALUES to 0" +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
        break;
        case CMD_SET_PSH_AX_I:
             dataFloatArray[1] =  dataFloatArray[1] /1000;
@@ -358,14 +377,20 @@ void MainWindow::nngGetRequest( int cmd)
             dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
             dp_write.array_length = 2;
             dp_write.type = EB_TYPE_FLOAT;
+            writeLog("USER: SET PSH AX CURRENT VALUES " +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
        break;
    }
 
 
    dp_write.elements_p = data_elements_p;
    eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
-   ReadData();
+   HandleReceivedData();
    writeLog(logTransaction);
+   logTransaction = "";
+   if(data_elements_p != NULL)
+   {
+       free(data_elements_p);
+   }
 }
 
 void MainWindow::slotTimerAlarm()
@@ -410,7 +435,7 @@ void MainWindow::updateGeneralGUI(void)
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     HandleReceivedData();//ReadData();
     writeLog(logTransaction);
-
+    logTransaction = "";
     cmdCounter++;
 
     if(cmdCounter >= 12)
@@ -876,9 +901,24 @@ void MainWindow::HandleReceivedData(void)
    if(ReadData() == -1)
    {
       connectionStatus = 0;
+      connectionStatusLost = 1;
       nng_close(nng_sock);
       writeLog("ERROR CONNECTION: CONNECTION LOST");
+      filelog.close();
       QMessageBox::critical(this,"ERROR", "CONNECTION LOST");
+      //QThread::msleep(100);
+
+      //ClearTable ();
+
+      ui->btConnect->setText("CONNECT");
+      ui->gbConnection->setTitle("CONNECTION: DISCONNECTED");
+      ui->gbStatus->setTitle("STATUS: ");
+      ui->gbStatus->setDisabled(true);
+
+      ui->btSetSHIM_Tab->setDisabled(true);
+      ui->btSetMain_Tab->setDisabled(true);
+      ui->stackedWidget->setCurrentIndex(0);
+
    }
 }
 void MainWindow::receive_from_gui(bool value)
@@ -893,6 +933,7 @@ void MainWindow::writeLog(QString logstr)
     QTextStream stream(&filelog);
 
     //QString tmpStr;
+    //int mSec = QDateTime::m
     QDateTime dt = QDateTime::currentDateTime();
     stream << (dt.toString() + "\r\n");
     stream << (logstr + "\r\n");
@@ -943,7 +984,7 @@ void MainWindow::on_btConnect_clicked()
    QString tempStr =ui->comboBox->currentText();
 
    QByteArray ba=tempStr.toLatin1();
-   sprintf((char*)&tempBuff[0], "Ftcp://%s:5555", ba.data());
+   sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
    ui->gbConnection->setTitle("CONNECTION: CONNECTING...");
    ui->gbConnection->repaint();
    if(prepare_nng(tempBuff))
@@ -1096,6 +1137,7 @@ void MainWindow::on_btSetSHIM_Tab_clicked()
     ui->btPSH_ShimSetCurrent  ->  setDisabled(true);
     ui->btShimOnOff -> setDisabled(true);
     ui->stackedWidget->setCurrentIndex(1);
+    exeMode = SHIM_MODE;
 }
 
 
@@ -1123,6 +1165,7 @@ void MainWindow::on_btSetMain_Tab_clicked()
 
     tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 0);
     ui->plTextChPSH->setPlainText(tempStr);
+    exeMode = MAIN_MODE;
 }
 
 

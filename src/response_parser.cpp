@@ -71,7 +71,7 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
         printf("Client: Read Response Handler:\n");
         printf("  transaction id: 0x%04x\n", (unsigned int)read_result_p->transaction_id);
         sprintf(tempBuff, "  transaction id: %d\n", (unsigned int)read_result_p->transaction_id);
-        logTransaction = tempBuff;
+        logTransaction += tempBuff;
         printf("  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id);
         sprintf(tempBuff, "  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id);
         logTransaction += tempBuff;
@@ -83,7 +83,11 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
 
         printf("  data type: 0x%02x (%s)\n", (unsigned int)read_result_p->data_type, get_type_str(read_result_p->data_type));
         printf("  number of elements: %u\n", (unsigned int)read_result_p->num_elements);
+        sprintf(tempBuff, " number of elements: %u\n", (unsigned int)read_result_p->num_elements);
+        logTransaction += tempBuff;
         printf("  element index: %u\n", (unsigned int)read_result_p->element_index);
+        sprintf(tempBuff, "  element index: %u\n", (unsigned int)read_result_p->element_index);
+        logTransaction += tempBuff;
         printf("  value: ");
         logTransaction += ("  value: ");
 
@@ -328,8 +332,8 @@ int ReadData (void)
               return -1;
             }
            eb_client_process_incoming(buffer_p, buffer_size);
-            nng_free(buffer_p, buffer_size);
-
+           nng_free(buffer_p, buffer_size);
+           printf("%s: free allocated buffer at %p, size %" PRIi32"\n", __func__, buffer_p, buffer_cnt);
             // TODO: Timeout
        } while (!response_complete);
     return 1;

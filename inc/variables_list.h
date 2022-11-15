@@ -63,3 +63,4 @@ extern char dataBuff[256];
 extern int connectionStatus;
 extern eb_data_id_t data_id;
 extern double dataArray[6];
+extern int connectionStatusLost;

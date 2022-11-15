@@ -35,6 +35,7 @@ int serial_port_fd = -1;
 nng_socket nng_sock;
 char dataBuff[256];
 int connectionStatus = 0;
+int connectionStatusLost = 0;
 eb_data_id_t data_id;
 
 
