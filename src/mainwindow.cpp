@@ -104,7 +104,7 @@ MainWindow::~MainWindow()
 uint8_t exeMode;
 //double dataArray[6] = {0};
 
-float dataFloatArray[2] = {0};
+
 
 void MainWindow::nngGetRequest( int cmd)
 {
@@ -178,26 +178,59 @@ void MainWindow::nngGetRequest( int cmd)
            writeLog("USER: SET FAN 0");
       break;
       case CMD_SET_AX:
+
+        dataU32 =3;
+       data_elements_p[0].value_p = &dataU32;
+       data_point_id = GET_SET_MODE;
+       dp_write.data_point_id = data_point_id;
+       dp_write.array_length = 0;
+       dp_write.type = EB_TYPE_UINT32;
+       dp_write.elements_p = data_elements_p;
+       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+
            dataU32 = 0;// ax mode
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
+           dp_write.array_length = 0;
            writeLog("USER: SET AX MODE");
       break;
 
       case CMD_SET_T1:
+
+          dataU32 =1;
+          data_elements_p[0].value_p = &dataU32;
+          data_point_id = GET_SET_MODE;
+          dp_write.data_point_id = data_point_id;
+          dp_write.array_length = 0;
+          dp_write.type = EB_TYPE_UINT32;
+          dp_write.elements_p = data_elements_p;
+          eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+
            dataU32 = 1;// T1 mode
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
+           dp_write.array_length = 0;
            writeLog("USER: SET T1 MODE");
       break;
 
       case CMD_SET_T2:
+
+       dataU32 =2;
+       data_elements_p[0].value_p = &dataU32;
+       data_point_id = GET_SET_MODE;
+       dp_write.data_point_id = data_point_id;
+       dp_write.array_length = 0;
+       dp_write.type = EB_TYPE_UINT32;
+       dp_write.elements_p = data_elements_p;
+       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+
            dataU32 = 2;// T2 mode
            data_elements_p[0].value_p = &dataU32;
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
+           dp_write.array_length = 0;
            writeLog("USER: SET T2 MODE");
       break;
 
@@ -249,20 +282,35 @@ void MainWindow::nngGetRequest( int cmd)
       break;
 
       case CMD_SET_SHIM_PSH_CURRENT:
-           data_elements_p[0].value_p = &dataArray[0];
+           /*data_elements_p[0].value_p = &dataArray[0];
            data_elements_p[1].value_p = &dataArray[1];
            dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
            dp_write.array_length = 2;
-           dp_write.type = EB_TYPE_FLOAT;
-           writeLog("USER: SET SHIM PSH CURRENT " + tempData.number(dataArray[0]) + ", " + tempData.number(dataArray[1]) );
+           dp_write.type = EB_TYPE_FLOAT;*/
+             dataFloatArray[1] = dataFloatArray[1]/ 1000;
+             dataFloatArray[0] = 0;
+             dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
+             data_elements_p[0].value_p = &dataFloatArray[0];
+             data_elements_p[1].value_p = &dataFloatArray[1];
+             dp_write.array_length = 2;
+             dp_write.type = EB_TYPE_FLOAT;
+             writeLog("USER: SET SHIM PSH CURRENT " + tempData.number(dataArray[0]) + ", " + tempData.number(dataArray[1]) );
       break;
 
       case CMD_SET_SHIM_PSH_CURRENT0:
-           dataArray[0] = 0;
-           dataArray[1] = 0;
-           data_elements_p[0].value_p = &dataArray[0];
+           ui->pTextEditCurrent_SHIM->setPlainText("0");
+           dataFloatArray[0] = 0;
+           dataFloatArray[1] = 0;
+           /*data_elements_p[0].value_p = &dataArray[0];
            data_elements_p[1].value_p = &dataArray[1];
            dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
+           dp_write.array_length = 2;
+           dp_write.type = EB_TYPE_FLOAT;*/
+
+
+           dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
+           data_elements_p[0].value_p = &dataFloatArray[0];
+           data_elements_p[1].value_p = &dataFloatArray[1];
            dp_write.array_length = 2;
            dp_write.type = EB_TYPE_FLOAT;
            writeLog("USER: SET SHIM PSH CURRENT 0, 0");
@@ -345,19 +393,30 @@ void MainWindow::nngGetRequest( int cmd)
             dataFloatArray[0] = 0;
             dataFloatArray[1] = setpointCurrPSH[1];
             dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
+            data_elements_p[0].value_p = &dataFloatArray[0];
+            data_elements_p[1].value_p = &dataFloatArray[1];
             dp_write.array_length = 2;
             dp_write.type = EB_TYPE_FLOAT;
             writeLog("USER: SET PSH MAIN CURRENT VALUE: 0, " + tempData.number(dataFloatArray[1]));
        break;
        case CMD_SET_PSH_MAIN_I:
-            dataFloatArray[0] = dataFloatArray[0]/ 1000;
-            dataFloatArray[1] = setpointCurrPSH[1];
+            /*dataFloatArray[0] =  0;//dataFloatArray[0]/ 1000;
+            dataFloatArray[1] = 0;//setpointCurrPSH[1];
             data_elements_p[0].value_p = &dataFloatArray[0];
             data_elements_p[1].value_p = &dataFloatArray[1];
             data_point_id = GET_SET_I_SETPOINT_HEATERS;
             dp_write.array_length = 2;
-            dp_write.type = EB_TYPE_FLOAT;
-            writeLog("USER: SET PSH MAIN CURRENT VALUES " +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
+            dp_write.type = EB_TYPE_FLOAT;*/
+            //writeLog("USER: SET PSH MAIN CURRENT VALUES " +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
+       dataFloatArray[0] = dataFloatArray[0]/ 1000;
+       dataFloatArray[1] = setpointCurrPSH[1];
+       dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
+       data_elements_p[0].value_p = &dataFloatArray[0];
+       data_elements_p[1].value_p = &dataFloatArray[1];
+       dp_write.array_length = 2;
+       dp_write.type = EB_TYPE_FLOAT;
+       writeLog("USER: SET PSH MAIN CURRENT VALUES " +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
+
        break;
        case CMD_SET_PSH_AX_I_0:
             dataFloatArray[1] =  0;
@@ -1196,6 +1255,7 @@ void MainWindow::on_btPSH_Main_SetI_clicked()
 {
    QString tempData = ui->plTextMainPSH->toPlainText();
    dataFloatArray[0] = tempData.toFloat();
+
 
     if((dataFloatArray[0] < 0) || (dataFloatArray[0] > 1000))
     {

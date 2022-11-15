@@ -178,7 +178,7 @@ void MainWindow::on_btPSH_ShimSetCurrent0_clicked()
 void MainWindow::on_btPSH_ShimSetCurrent_clicked()
 {
     QString tempData = ui->pTextEditCurrent_SHIM->toPlainText();
-    dataArray[1] =  tempData.toFloat();
+    dataFloatArray[1] =  tempData.toFloat();
 
 
     if((dataArray[1] < 0) || (dataArray[1] > 1000))
@@ -187,8 +187,8 @@ void MainWindow::on_btPSH_ShimSetCurrent_clicked()
       return;
     }
 
-    dataArray[1] =   dataArray[1]/1000;
-    dataArray[0] = 0;
+    //dataArray[1] =   dataArray[1]/1000;
+   // dataArray[0] = 0;
 
     emit transmit_to_nng(CMD_SET_SHIM_PSH_CURRENT);
 }

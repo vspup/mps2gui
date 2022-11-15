@@ -73,3 +73,4 @@ uint8_t pshModeRampUP =0;
 uint8_t pshModeSHIM =0;
 uint8_t channel = 0;
 double dataArray[6] = {0};
+float dataFloatArray[2] = {0};
