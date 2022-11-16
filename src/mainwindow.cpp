@@ -71,20 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem(line);
     }
 
-/*    QDate date = QDate::currentDate();
-    QTime time = QTime::currentTime();
-    QString log_name  = time.toString() + " " + date.toString() +"_Log.txt";
 
-    log_name.replace(":", "_");
-    log_name.replace(" ", "_");
-
-
-    filelog.setFileName(log_name);
-    if(!filelog.open(QIODevice::ReadWrite))
-    {
-       qCritical() << "Could not open file";
-       qCritical() << file.errorString();
-    }*/
 
     ui->btSetMain_Tab->setDisabled(true);
     ui->btSetSHIM_Tab->setDisabled(true);
@@ -989,14 +976,11 @@ void MainWindow::receive_from_gui(bool value)
 
 void MainWindow::writeLog(QString logstr)
 {
-    QTextStream stream(&filelog);
-
-    //QString tmpStr;
-    //int mSec = QDateTime::m
+    /*QTextStream stream(&filelog);
     QDateTime dt = QDateTime::currentDateTime();
     stream << (dt.toString() + "\r\n");
     stream << (logstr + "\r\n");
-    filelog.flush();
+    filelog.flush();*/
 }
 
 void MainWindow::on_btConnect_clicked()
@@ -1031,12 +1015,12 @@ void MainWindow::on_btConnect_clicked()
    log_name.replace(" ", "_");
 
 
-   filelog.setFileName(log_name);
+  /* filelog.setFileName(log_name);
    if(!filelog.open(QIODevice::ReadWrite))
    {
       qCritical() << "Could not open file";
    }
-   writeLog("USER: CLICED \"CONNECT\"");
+   writeLog("USER: CLICED \"CONNECT\"");*/
 
 
    char tempBuff[64] = {0};
