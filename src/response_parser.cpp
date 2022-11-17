@@ -43,7 +43,7 @@ bool prepare_nng(const char* url)
         printf("zero tier transport is not supported\n");
         return false;
     } else {
-        nng_socket_set_ms(nng_sock, NNG_OPT_REQ_RESENDTIME, 0); //nng_socket_set_ms(nng_sock, NNG_OPT_REQ_RESENDTIME, 500);//*YS*
+        nng_socket_set_ms(nng_sock, NNG_OPT_REQ_RESENDTIME, 500); //nng_socket_set_ms(nng_sock, NNG_OPT_REQ_RESENDTIME, 500);//*YS*
     }
 
     if((rv =nng_dialer_start(dialer,NNG_FLAG_ALLOC)) != 0)//nng_dialer_start(dialer, NNG_FLAG_NONBLOCK);

@@ -65,3 +65,4 @@ extern eb_data_id_t data_id;
 extern double dataArray[6];
 extern int connectionStatusLost;
 extern float dataFloatArray[2];
+extern int connectionAttempts;

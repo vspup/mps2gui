@@ -79,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
-    timer->start(80);
+    timer->start(50);
     connect(this,SIGNAL(transmit_to_nng(int)),this,SLOT(nngGetRequest(int)));
 }
 
@@ -946,26 +946,44 @@ void MainWindow::HandleReceivedData(void)
 {
    if(ReadData() == -1)
    {
+       //if(connectionAttempts == 0)
+       {
+           nng_close(nng_sock);
+           char tempBuff[64] = {0};
+           QByteArray ba=tempStr.toLatin1();
+           sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
+           //ui->gbConnection->setTitle("CONNECTION: CONNECTING...");
+           //ui->gbConnection->repaint();
+           if(prepare_nng(tempBuff))
+           {
+               writeLog("ERROR CONNECTION:RECONNECTED");
+              return;
+           }
+
+
+       }
       connectionStatus = 0;
       connectionStatusLost = 1;
-      nng_close(nng_sock);
+      //nng_close(nng_sock);
       writeLog("ERROR CONNECTION: CONNECTION LOST");
       filelog.close();
-      QMessageBox::critical(this,"ERROR", "CONNECTION LOST");
+      //QMessageBox::critical(this,"ERROR", "CONNECTION LOST");
       //QThread::msleep(100);
 
       //ClearTable ();
 
       ui->btConnect->setText("CONNECT");
       ui->gbConnection->setTitle("CONNECTION: DISCONNECTED");
-      ui->gbStatus->setTitle("STATUS: ");
+      ui->gbStatus->setTitle("STATUS: CONNECTION LOST");
       ui->gbStatus->setDisabled(true);
 
       ui->btSetSHIM_Tab->setDisabled(true);
       ui->btSetMain_Tab->setDisabled(true);
       ui->stackedWidget->setCurrentIndex(0);
+      return;
 
    }
+   connectionAttempts = 0;
 }
 void MainWindow::receive_from_gui(bool value)
 {
@@ -976,11 +994,11 @@ void MainWindow::receive_from_gui(bool value)
 
 void MainWindow::writeLog(QString logstr)
 {
-    /*QTextStream stream(&filelog);
+    QTextStream stream(&filelog);
     QDateTime dt = QDateTime::currentDateTime();
     stream << (dt.toString() + "\r\n");
     stream << (logstr + "\r\n");
-    filelog.flush();*/
+    filelog.flush();
 }
 
 void MainWindow::on_btConnect_clicked()
@@ -1009,18 +1027,18 @@ void MainWindow::on_btConnect_clicked()
 
    QDate date = QDate::currentDate();
    QTime time = QTime::currentTime();
-   QString log_name  = time.toString() + " " + date.toString() +"_Log.txt";
+   QString log_name  = "Logs/" + time.toString() + " " + date.toString() +"_Log.txt";
 
    log_name.replace(":", "_");
    log_name.replace(" ", "_");
 
 
-  /* filelog.setFileName(log_name);
+   filelog.setFileName(log_name);
    if(!filelog.open(QIODevice::ReadWrite))
    {
       qCritical() << "Could not open file";
    }
-   writeLog("USER: CLICED \"CONNECT\"");*/
+   writeLog("USER: CLICED \"CONNECT\"");
 
 
    char tempBuff[64] = {0};
@@ -1032,7 +1050,7 @@ void MainWindow::on_btConnect_clicked()
    ui->gbConnection->repaint();
    if(prepare_nng(tempBuff))
    {     
-       double data = 0.15;
+       /*double data = 0.15;
        struct eb_write_data_point_info_s dp_write = {0};
        struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
@@ -1043,12 +1061,11 @@ void MainWindow::on_btConnect_clicked()
        dp_write.array_length = 0;
        dp_write.type = EB_TYPE_DOUBLE;
        dp_write.elements_p = data_elements_p;
-       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);*/
        ui->btConnect->setText("DISCONNECT");
        ui->gbConnection->setTitle("CONNECTION: CONNECTED");
        ui->btSetMain_Tab->setEnabled(true);
        ui->btSetSHIM_Tab->setEnabled(true);
-       //ui->pushButton_19->setEnabled(true);
        ui->gbStatus->setEnabled(true);
 
 
