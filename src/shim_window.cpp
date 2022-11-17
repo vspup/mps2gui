@@ -160,9 +160,9 @@ void MainWindow::on_pushButton_SetCurr_clicked()
 
      for(int i = 0; i < 6; i++)
      {
-         if((dataArray[i]<0) || (dataArray[i]>30))
+         if((dataArray[i]< (-30) ) || (dataArray[i]>30))
          {
-             QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 30A");
+             QMessageBox::warning(this, "Error set current", "Value must be in reange from -30A to 30A");
              return;
          }
 
