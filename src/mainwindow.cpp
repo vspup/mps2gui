@@ -36,6 +36,7 @@
 #include <QDateTime>
 #include <QTime>
 #include <QThread>
+#include <QDir>
 QFile filelog;
 
 
@@ -1024,6 +1025,11 @@ void MainWindow::on_btConnect_clicked()
      filelog.close();
      return;
    }
+
+  if(!QDir("Logs").exists())
+  {
+     QDir().mkdir("Logs");
+  }
 
    QDate date = QDate::currentDate();
    QTime time = QTime::currentTime();

@@ -84,9 +84,9 @@ void MainWindow::on_pushButton_SetV_clicked()
 void MainWindow::on_pushButton_SetCurr0_clicked()
 {
 
-    double data[6] = {0};//{0.17, 0.18, 0.19, 0.20, 0.21, 0.22};
-    struct eb_write_data_point_info_s dp_write = {0};
-    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*6);
+    //double data[6] = {0};//{0.17, 0.18, 0.19, 0.20, 0.21, 0.22};
+    //struct eb_write_data_point_info_s dp_write = {0};
+    //struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*6);
 
 
      ui->pTextCurrCH1_set->setPlainText("0");
@@ -102,12 +102,12 @@ void MainWindow::on_pushButton_SetCurr0_clicked()
      ui->pTextCurrCH6_set->setPlainText("0");
 
 
-     data_elements_p[0].value_p = &data[0];
+    /* data_elements_p[0].value_p = &data[0];
      data_elements_p[1].value_p = &data[1];
      data_elements_p[2].value_p = &data[2];
      data_elements_p[3].value_p = &data[3];
      data_elements_p[4].value_p = &data[4];
-     data_elements_p[5].value_p = &data[5];
+     data_elements_p[5].value_p = &data[5];*/
 
 
      /*data_point_id = GET_SET_CURRENT;
@@ -118,6 +118,7 @@ void MainWindow::on_pushButton_SetCurr0_clicked()
      eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
      ReadData();*/
 
+     emit transmit_to_nng(CMD_SET_CURRENT0_SHIM);
 }
 
 
