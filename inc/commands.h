@@ -61,6 +61,8 @@
 #define CMD_SET_PSH_MAIN_I            19
 #define CMD_SET_PSH_AX_I_0            20
 #define CMD_SET_PSH_AX_I              21
+#define CMD_MAIN_TAB                  22
+#define CMD_SHIM_TAB                  23
 
 #define MODE_SELECTING   0
 #define SHIM_MODE        1

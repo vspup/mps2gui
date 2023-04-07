@@ -30,7 +30,7 @@ bool verbose = true;//false;
 bool use_nng = true;//false;
 uint16_t transaction_id = 0;
 int32_t buffer_cnt = 0;
-int32_t data_point_id = 0x1000;
+//int32_t data_point_id = 0x1000;
 int serial_port_fd = -1;
 nng_socket nng_sock;
 char dataBuff[256];

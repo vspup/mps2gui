@@ -56,7 +56,7 @@ extern bool verbose;
 extern bool use_nng;
 extern uint16_t transaction_id;
 extern int32_t buffer_cnt;
-extern int32_t data_point_id;
+//extern int32_t data_point_id;
 extern int serial_port_fd;
 extern nng_socket nng_sock;
 extern char dataBuff[256];

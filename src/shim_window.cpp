@@ -182,7 +182,7 @@ void MainWindow::on_btPSH_ShimSetCurrent_clicked()
     dataFloatArray[1] =  tempData.toFloat();
 
 
-    if((dataArray[1] < 0) || (dataArray[1] > 1000))
+    if((dataFloatArray[1] < 0) || (dataFloatArray[1] > 1000)) // if((dataArray[1] < 0) || (dataArray[1] > 1000))
     {
       QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
       return;

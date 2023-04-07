@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QTimer>
 #include <QDateTime>
-
+#include "inc/electabuzz_common.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -23,6 +23,20 @@ public:
     void ClearTable (void);
     void writeLog(QString logstr);
     void HandleReceivedData(void);
+    void sendReadRequest( eb_data_id_t data_id_in, size_t num_id_codes_in, uint16_t transaction_id_in );
+    void sendWriteRequest(size_t num_id_codes_in);
+    void setCurrentData(void);
+    void setOnOffStatus(void);
+    void setVA(void);
+    void setVB(void);
+    void setTempA(void);
+    void setTempB(void);
+    void setVin(void);
+    void setVout(void);
+    void setIin(void);
+    void setIout(void);
+    void setBCM_Temp(void);
+    void setFanValue(void);
     //void nngGetRequest( int cmd);
     //QFile filelog;
     ~MainWindow();

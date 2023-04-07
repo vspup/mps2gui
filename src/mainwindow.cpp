@@ -38,7 +38,7 @@
 #include <QThread>
 #include <QDir>
 QFile filelog;
-
+char ConnectionLink[64] = {0};
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -91,9 +91,40 @@ MainWindow::~MainWindow()
 
 uint8_t exeMode;
 //double dataArray[6] = {0};
+struct eb_write_data_point_info_s dp_write = {0};
+QString tempStr;
 
+void MainWindow::sendReadRequest( eb_data_id_t data_id_in, size_t num_id_codes_in, uint16_t transaction_id_in )
+{
+    if(prepare_nng(ConnectionLink) == 0)
+    {
+      return;
+    }
 
+    eb_send_read_request(&data_id, num_id_codes_in, &transaction_id, &eb_read_data_response_handler, NULL);
+    HandleReceivedData();
+    nng_close(nng_sock);
+    writeLog(logTransaction);
+    logTransaction = "";
 
+}
+
+void MainWindow::sendWriteRequest(size_t num_id_codes_in)
+{
+    writeLog("Try to connect");
+    if(prepare_nng(ConnectionLink) == 0)
+    {
+        writeLog("Error connection");
+      return;
+    }
+    writeLog("Connected!");
+
+    eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+    HandleReceivedData();
+    nng_close(nng_sock);
+    //writeLog(logTransaction);
+    //logTransaction = "";
+}
 void MainWindow::nngGetRequest( int cmd)
 {
     if(connectionStatusLost)
@@ -106,6 +137,13 @@ void MainWindow::nngGetRequest( int cmd)
    {
      return;
    }
+
+  /* if(prepare_nng(ConnectionLink) == 0)
+   {
+     nng_close(nng_sock);
+     connectionStatus = 0;
+     connectionStatusLost = 1;
+   }*/
 
    if(cmd == CMD_UPDATE_BY_TIMER)
    {
@@ -134,7 +172,7 @@ void MainWindow::nngGetRequest( int cmd)
 
    double data;
    uint32_t dataU32 =0;
-   struct eb_write_data_point_info_s dp_write = {0};
+  // struct eb_write_data_point_info_s dp_write = {0};
    struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*6);
 
    data_elements_p[0].value_p = &data;
@@ -142,7 +180,24 @@ void MainWindow::nngGetRequest( int cmd)
 
    switch(cmd)
    {
+      case CMD_MAIN_TAB:
+       mode = MAIN_MODE;
+       dataU32 = 3;
+       data_elements_p[0].value_p = &dataU32;
+       dp_write.data_point_id = GET_SET_MODE;
+       dp_write.array_length = 0;
+       dp_write.type = EB_TYPE_UINT32;
+       dp_write.elements_p = data_elements_p;
+       //sendWriteRequest(1);
+       pshModeRampUP = 3;
+       ui->stackedWidget->setCurrentIndex(2);
+       tempStr.setNum((setpointCurrPSH[0] * 1000), 'f', 0);
+       ui->plTextMainPSH->setPlainText(tempStr);
 
+       tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 0);
+       ui->plTextChPSH->setPlainText(tempStr);
+       exeMode = MAIN_MODE;
+      break;
       case CMD_SET_FAN:
            if(exeMode == SHIM_MODE)
            {
@@ -167,14 +222,15 @@ void MainWindow::nngGetRequest( int cmd)
       break;
       case CMD_SET_AX:
 
-        dataU32 =3;
+       dataU32 =3;
        data_elements_p[0].value_p = &dataU32;
-       data_point_id = GET_SET_MODE;
-       dp_write.data_point_id = data_point_id;
+      // data_point_id = GET_SET_MODE;
+       dp_write.data_point_id =GET_SET_MODE;// psh
        dp_write.array_length = 0;
        dp_write.type = EB_TYPE_UINT32;
        dp_write.elements_p = data_elements_p;
-       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+       //eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+       sendWriteRequest(1);
 
            dataU32 = 0;// ax mode
            data_elements_p[0].value_p = &dataU32;
@@ -188,12 +244,13 @@ void MainWindow::nngGetRequest( int cmd)
 
           dataU32 =1;
           data_elements_p[0].value_p = &dataU32;
-          data_point_id = GET_SET_MODE;
-          dp_write.data_point_id = data_point_id;
+          //data_point_id = GET_SET_MODE;
+          dp_write.data_point_id = GET_SET_MODE;//data_point_id;
           dp_write.array_length = 0;
           dp_write.type = EB_TYPE_UINT32;
           dp_write.elements_p = data_elements_p;
-          eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+          //eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+          sendWriteRequest(1);
 
            dataU32 = 1;// T1 mode
            data_elements_p[0].value_p = &dataU32;
@@ -207,12 +264,13 @@ void MainWindow::nngGetRequest( int cmd)
 
        dataU32 =2;
        data_elements_p[0].value_p = &dataU32;
-       data_point_id = GET_SET_MODE;
-       dp_write.data_point_id = data_point_id;
+       //data_point_id = GET_SET_MODE;
+       dp_write.data_point_id = GET_SET_MODE;//data_point_id;
        dp_write.array_length = 0;
        dp_write.type = EB_TYPE_UINT32;
        dp_write.elements_p = data_elements_p;
-       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+       //eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+       sendWriteRequest(1);
 
            dataU32 = 2;// T2 mode
            data_elements_p[0].value_p = &dataU32;
@@ -270,11 +328,6 @@ void MainWindow::nngGetRequest( int cmd)
       break;
 
       case CMD_SET_SHIM_PSH_CURRENT:
-           /*data_elements_p[0].value_p = &dataArray[0];
-           data_elements_p[1].value_p = &dataArray[1];
-           dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
-           dp_write.array_length = 2;
-           dp_write.type = EB_TYPE_FLOAT;*/
              dataFloatArray[1] = dataFloatArray[1]/ 1000;
              dataFloatArray[0] = 0;
              dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
@@ -289,11 +342,6 @@ void MainWindow::nngGetRequest( int cmd)
            ui->pTextEditCurrent_SHIM->setPlainText("0");
            dataFloatArray[0] = 0;
            dataFloatArray[1] = 0;
-           /*data_elements_p[0].value_p = &dataArray[0];
-           data_elements_p[1].value_p = &dataArray[1];
-           dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
-           dp_write.array_length = 2;
-           dp_write.type = EB_TYPE_FLOAT;*/
 
 
            dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
@@ -333,7 +381,8 @@ void MainWindow::nngGetRequest( int cmd)
                 dp_write.array_length = 2;
                 dp_write.type = EB_TYPE_FLOAT;
                 dp_write.elements_p = data_elements_p;
-                eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+               // eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+                sendWriteRequest(1);
                 ui->pTextEditCurrent_SHIM->setPlainText("0");
              }
              #endif
@@ -388,14 +437,7 @@ void MainWindow::nngGetRequest( int cmd)
             writeLog("USER: SET PSH MAIN CURRENT VALUE: 0, " + tempData.number(dataFloatArray[1]));
        break;
        case CMD_SET_PSH_MAIN_I:
-            /*dataFloatArray[0] =  0;//dataFloatArray[0]/ 1000;
-            dataFloatArray[1] = 0;//setpointCurrPSH[1];
-            data_elements_p[0].value_p = &dataFloatArray[0];
-            data_elements_p[1].value_p = &dataFloatArray[1];
-            data_point_id = GET_SET_I_SETPOINT_HEATERS;
-            dp_write.array_length = 2;
-            dp_write.type = EB_TYPE_FLOAT;*/
-            //writeLog("USER: SET PSH MAIN CURRENT VALUES " +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
+
        dataFloatArray[0] = dataFloatArray[0]/ 1000;
        dataFloatArray[1] = setpointCurrPSH[1];
        dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS;
@@ -430,10 +472,11 @@ void MainWindow::nngGetRequest( int cmd)
 
 
    dp_write.elements_p = data_elements_p;
-   eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+ /*  eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
    HandleReceivedData();
    writeLog(logTransaction);
-   logTransaction = "";
+   logTransaction = "";*/
+   sendWriteRequest(1);
    if(data_elements_p != NULL)
    {
        free(data_elements_p);
@@ -445,7 +488,7 @@ void MainWindow::slotTimerAlarm()
   emit transmit_to_nng(CMD_UPDATE_BY_TIMER);
 }
 
-QString tempStr;
+
 QByteArray tempVal;
 
 int cmdList[] =
@@ -464,25 +507,27 @@ int cmdList[] =
    GET_SET_FAN_PWM
 };
 
+#define DELAY_CMD_COUNTER  10
 void MainWindow::updateGeneralGUI(void)
 {
   static int cmdCounter =0;
-//ReadCurrentData
-//ReadVA
-//ReadVB
-//tempA
-//tempB
-//ReadVIN
-//ReadIIN
-//ReadVOUT
-//ReadIOUT
-//BCMtemp
+  static int cmdDelayCounter =0;
 
-    data_id = cmdList [cmdCounter];
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+  cmdDelayCounter++;
+
+ /* if(cmdDelayCounter < DELAY_CMD_COUNTER)
+  {
+      return;
+  }*/
+  cmdDelayCounter = 0;
+
+  data_id = cmdList [cmdCounter];
+    sendReadRequest( data_id, 1, transaction_id);
+   /* eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     HandleReceivedData();//ReadData();
     writeLog(logTransaction);
-    logTransaction = "";
+    logTransaction = "";*/
+
     cmdCounter++;
 
     if(cmdCounter >= 12)
@@ -493,273 +538,72 @@ void MainWindow::updateGeneralGUI(void)
     //GET_ON_OFF_STATUS;
 switch(data_id)
 {
-
-case GET_ON_OFF_STATUS:
-
-if(mode == MODE_SELECTING)
-{
-  switch(mode_status)
-  {
-    case 0: ui->gbStatus->setTitle("STATUS: DISABLED");
-            ui->btSetSHIM_Tab->setEnabled(true);
-            ui->btSetMain_Tab->setEnabled(true);
-    break;
-    case 1: ui->gbStatus->setTitle("STATUS: Main Coil");
-            ui->btSetSHIM_Tab->setDisabled(true);
-            ui->btSetMain_Tab->setEnabled(true);
-    break;
-    case 2: ui->gbStatus->setTitle("STATUS: Shim Coils");
-            ui->btSetSHIM_Tab->setEnabled(true);
-            ui->btSetMain_Tab->setDisabled(true);
+    case GET_ON_OFF_STATUS:
+         setOnOffStatus();
     break;
 
-    case 100:
-           ui->gbStatus->setTitle("STATUS: ERROR");
-           ui->btSetSHIM_Tab->setDisabled(true);
-           ui->btSetMain_Tab->setDisabled(true);
+    case GET_CURRENT:
+         setCurrentData();
     break;
-  }
-}
-break;
 
-case GET_CURRENT:
-    tempStr.setNum(ReadCurrentData[0], 'f', 5);
-    ui->txtIm0->setPlainText(tempStr);
-    tempStr.setNum(ReadCurrentData[1], 'f', 5);
-    ui->txtIm1->setPlainText(tempStr);
-    tempStr.setNum(ReadCurrentData[2], 'f', 5);
-    ui->txtIm2->setPlainText(tempStr);
-    tempStr.setNum(ReadCurrentData[3], 'f', 5);
-    ui->txtIm3->setPlainText(tempStr);
-    tempStr.setNum(ReadCurrentData[4], 'f', 5);
-    ui->txtIm4->setPlainText(tempStr);
-    tempStr.setNum(ReadCurrentData[5], 'f', 5);
-    ui->txtIm5->setPlainText(tempStr);
-    tempStr.setNum(ReadCurrentData[6], 'f', 5);
-    ui->txtIm6->setPlainText(tempStr);
-    tempStr.setNum(ReadCurrentData[7], 'f', 5);
-    ui->txtIm7->setPlainText(tempStr);
-break;
+    case GET_VA:
+         setVA();
+    break;
 
-case GET_VA:
-    //ReadVA
-    tempStr.setNum(ReadVA[0], 'f', 4);
-    ui->txtUa0->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[1], 'f', 4);
-    ui->txtUa1->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[2], 'f', 4);
-    ui->txtUa2->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[3], 'f', 4);
-    ui->txtUa3->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[4], 'f', 4);
-    ui->txtUa4->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[5], 'f', 4);
-    ui->txtUa5->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[6], 'f', 4);
-    ui->txtUa6->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[7], 'f', 4);
-    ui->txtUa7->setPlainText(tempStr);
-break;
+    case GET_VB:
+         setVB();
+    break;
 
-case GET_VB:
-    //ReadVB
-    tempStr.setNum(ReadVB[0], 'f', 4);
-    ui->txtUb0->setPlainText(tempStr);
-    tempStr.setNum(ReadVB[1], 'f', 4);
-    ui->txtUb1->setPlainText(tempStr);
-    tempStr.setNum(ReadVB[2], 'f', 4);
-    ui->txtUb2->setPlainText(tempStr);
-    tempStr.setNum(ReadVB[3], 'f', 4);
-    ui->txtUb3->setPlainText(tempStr);
-    tempStr.setNum(ReadVB[4], 'f', 4);
-    ui->txtUb4->setPlainText(tempStr);
-    tempStr.setNum(ReadVB[5], 'f', 4);
-    ui->txtUb5->setPlainText(tempStr);
-    tempStr.setNum(ReadVB[6], 'f', 4);
-    ui->txtUb6->setPlainText(tempStr);
-    tempStr.setNum(ReadVB[7], 'f', 4);
-    ui->txtUb7->setPlainText(tempStr);
+    case GET_TEMP_A:
+         setTempA();
+    break;
 
-    tempStr.setNum(ReadVA[0] - ReadVB[0], 'f', 4);
-    ui->txtUab0->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[1] - ReadVB[1], 'f', 4);
-    ui->txtUab1->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[2] - ReadVB[2], 'f', 4);
-    ui->txtUab2->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[3] - ReadVB[3], 'f', 4);
-    ui->txtUab3->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[4] - ReadVB[4], 'f', 4);
-    ui->txtUab4->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[5] - ReadVB[5], 'f', 4);
-    ui->txtUab5->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[6] - ReadVB[6], 'f', 4);
-    ui->txtUab6->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[7] - ReadVB[7], 'f', 4);
-    ui->txtUab7->setPlainText(tempStr);
-break;
+    case GET_TEMP_B:
+         setTempB();
+    break;
 
-case GET_TEMP_A:
-    //tempA
-    tempStr.setNum(tempA[0], 'f', 1);
-    ui->txtTa0->setPlainText(tempStr);
-    tempStr.setNum(tempA[1], 'f', 1);
-    ui->txtTa1->setPlainText(tempStr);
-    tempStr.setNum(tempA[2], 'f', 1);
-    ui->txtTa2->setPlainText(tempStr);
-    tempStr.setNum(tempA[3], 'f', 1);
-    ui->txtTa3->setPlainText(tempStr);
-    tempStr.setNum(tempA[4], 'f', 1);
-    ui->txtTa4->setPlainText(tempStr);
-    tempStr.setNum(tempA[5], 'f', 1);
-    ui->txtTa5->setPlainText(tempStr);
-    tempStr.setNum(tempA[6], 'f', 1);
-    ui->txtTa6->setPlainText(tempStr);
-    tempStr.setNum(tempA[7], 'f', 1);
-    ui->txtTa7->setPlainText(tempStr);
-break;
+    case GET_VIN:
+         setVin();
+    break;
 
-case GET_TEMP_B:
-    //tempB
-    tempStr.setNum(tempB[0], 'f', 1);
-    ui->txtTb0->setPlainText(tempStr);
-    tempStr.setNum(tempB[1], 'f', 1);
-    ui->txtTb1->setPlainText(tempStr);
-    tempStr.setNum(tempB[2], 'f', 1);
-    ui->txtTb2->setPlainText(tempStr);
-    tempStr.setNum(tempB[3], 'f', 1);
-    ui->txtTb3->setPlainText(tempStr);
-    tempStr.setNum(tempB[4], 'f', 1);
-    ui->txtTb4->setPlainText(tempStr);
-    tempStr.setNum(tempB[5], 'f', 1);
-    ui->txtTb5->setPlainText(tempStr);
-    tempStr.setNum(tempB[6], 'f', 1);
-    ui->txtTb6->setPlainText(tempStr);
-    tempStr.setNum(tempB[7], 'f', 1);
-    ui->txtTb7->setPlainText(tempStr);
-break;
+    case GET_VOUT:
+         setVout();
+    break;
 
-case GET_VIN:
-    //ReadVIN
-    tempStr.setNum(ReadVIN[0],'f', 1);
-    ui->txtVin0->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[1],'f', 1);
-    ui->txtVin1->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[2],'f', 1);
-    ui->txtVin2->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[3],'f', 1);
-    ui->txtVin3->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[4],'f', 1);
-    ui->txtVin4->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[5],'f', 1);
-    ui->txtVin5->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[6],'f', 1);
-    ui->txtVin6->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[7],'f', 1);
-    ui->txtVin7->setPlainText(tempStr);
-break;
+    case GET_IIN:
+         setIin();
+    break;
 
-case GET_VOUT:
-    //ReadVOUT
-    tempStr.setNum(ReadVOUT[0], 'f', 4);
-    ui->txtVout0->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[1], 'f', 4);
-    ui->txtVout1->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[2], 'f', 4);
-    ui->txtVout2->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[3], 'f', 4);
-    ui->txtVout3->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[4], 'f', 4);
-    ui->txtVout4->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[5], 'f', 4);
-    ui->txtVout5->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[6], 'f', 4);
-    ui->txtVout6->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[7], 'f', 4);
-    ui->txtVout7->setPlainText(tempStr);
-break;
+    case GET_IOUT:
+         setIout();
+    break;
 
-case GET_IIN:
-    //ReadIIN
-    tempStr.setNum(ReadIIN[0], 'f', 4);
-    ui->txtIin0->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[1], 'f', 4);
-    ui->txtIin1->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[2], 'f', 4);
-    ui->txtIin2->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[3], 'f', 4);
-    ui->txtIin3->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[4], 'f', 4);
-    ui->txtIin4->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[5], 'f', 4);
-    ui->txtIin5->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[6], 'f', 4);
-    ui->txtIin6->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[7], 'f', 4);
-    ui->txtIin7->setPlainText(tempStr);
-break;
+    case GET_BCM_TEMP:
+         setBCM_Temp();
+    break;
 
-case GET_IOUT:
-    //
-    tempStr.setNum(ReadIOUT[0], 'f', 4);
-    ui->txtIout0->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[1], 'f', 4);
-    ui->txtIout1->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[2], 'f', 4);
-    ui->txtIout2->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[3], 'f', 4);
-    ui->txtIout3->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[4], 'f', 4);
-    ui->txtIout4->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[5], 'f', 4);
-    ui->txtIout5->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[6], 'f', 4);
-    ui->txtIout6->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[7], 'f', 4);
-    ui->txtIout7->setPlainText(tempStr);
-break;
-
-
-case GET_BCM_TEMP:
-    //GET_BCM_TEMP;
-    tempStr.setNum(BCMtemp[0], 'f', 1);
-    ui->txtTemp0->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[1], 'f', 1);
-    ui->txtTemp1->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[2], 'f', 1);
-    ui->txtTemp2->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[3], 'f', 1);
-    ui->txtTemp3->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[4], 'f', 1);
-    ui->txtTemp4->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[5], 'f', 1);
-    ui->txtTemp5->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[6], 'f', 1);
-    ui->txtTemp6->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[7], 'f', 1);
-    ui->txtTemp7->setPlainText(tempStr);
-break;
-
-  /*  data_id = GET_M_FAN_SPEED;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    ReadData();
-    tempStr.setNum(fan_speed, 'f', 1);
-    ui->pwmFANlb->setText("FAN SPEED: " + tempStr);*/
-
-    //GET_SET_FAN_PWM;
-case GET_SET_FAN_PWM:
-    tempStr.setNum((pwmFAN * 100), 'f', 0);
-    ui->lbFAN_value->setText(tempStr);
-    ui->lbFAN_value_2->setText(tempStr);
-break;
+    case GET_SET_FAN_PWM:
+         setFanValue();
+    break;
  }
 
 }
 
+int cmdListMainGUI[] =
+{
+    GET_TERMINAL_VOLTAGE,
+    GET_LINE_VOLTAGE,
+    GET_MAIN_VOLTAGE,
+    GET_SET_CURRENT_HEATERS,
+    GET_SET_I_SETPOINT_HEATERS
+};
+
 void MainWindow::updateRampUpGUI(void)
 {
     data_id = GET_TERMINAL_VOLTAGE;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();
     tempStr.setNum(terminalVoltage, 'f', 4);
     ui->lbVrampUP->setText(tempStr);
     double current = 0;
@@ -771,22 +615,25 @@ void MainWindow::updateRampUpGUI(void)
 
     ui->lbIrampUP->setText(tempStr);
     data_id = GET_LINE_VOLTAGE;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();//ReadData();
 
     tempStr.setNum(lineVoltage, 'f', 9);
 
     ui->lbVlead->setText(tempStr);
     data_id = GET_MAIN_VOLTAGE;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();//ReadData();
 
     tempStr.setNum(mainVoltage, 'f', 9);
 
     ui->lbVmagnet->setText(tempStr);
     data_id = GET_RAMP_UP_STATUS;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();//ReadData();
 
     switch(mode_status)
     {
@@ -809,8 +656,9 @@ void MainWindow::updateRampUpGUI(void)
     if(pshModeRampUP)
     {
        data_id = GET_SET_CURRENT_HEATERS;
-       eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-       HandleReceivedData();//ReadData();
+      // eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+      // HandleReceivedData();//ReadData();
+       sendReadRequest( data_id, 1, transaction_id);
        tempStr.setNum((currentPSH[0] * 1000), 'f', 0);
        ui->lbReadMain->setText(tempStr);
        tempStr.setNum((currentPSH[1] * 1000), 'f', 0);
@@ -818,8 +666,9 @@ void MainWindow::updateRampUpGUI(void)
     }
 
     data_id = GET_SET_I_SETPOINT_HEATERS;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
 }
 
 void MainWindow::updateGUI(void)
@@ -828,8 +677,9 @@ void MainWindow::updateGUI(void)
 
     memset(dataBuff, 0x00, sizeof(dataBuff));
     data_id = GET_CURRENT;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();
+    sendReadRequest( data_id, 1, transaction_id);
 
     if(channel == CHANNEL_AX)
     {
@@ -865,16 +715,49 @@ void MainWindow::updateGUI(void)
 
     data_id = GET_CHANNEL;
     memset(dataBuff, 0x00, sizeof(dataBuff));
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+   // eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+   // HandleReceivedData();//ReadData();
+   sendReadRequest( data_id, 1, transaction_id);
 
-    if(pshModeSHIM)
+   if(mode_status == 2)// if(pshModeSHIM)
     {
         switch (channelVal)
         {
-            case 0: tempStr = "AX";  break;
-            case 1: tempStr = "T1";  break;
-            case 2: tempStr = "T2";  break;
+            case 0:
+            tempStr = "AX";
+            ui->btShimOnOff->setEnabled(true);
+            ui->pushButtonAX->setEnabled(true);ui->pushButton_T1->setDisabled(true);ui->pushButton_T2->setDisabled(true);
+            channel = CHANNEL_AX;
+             ui->lnCh1->setText("AX1");
+             ui->lnCh2->setText("AX2");
+             ui->lnCh3->setText("AX3");
+             ui->lnCh4->setText("AX4");
+             ui->lnCh5->setText("AX5");
+             ui->lnCh6->setText("AX6");
+            break;
+            case 1: tempStr = "T1";
+                 ui->btShimOnOff->setEnabled(true);
+                 ui->pushButton_T1->setEnabled(true);ui->pushButtonAX->setDisabled(true);ui->pushButton_T2->setDisabled(true);
+                 channel = CHANNEL_T1;
+                 ui->lnCh1->setText("T1 1");
+                 ui->lnCh2->setText("T1 2");
+                 ui->lnCh3->setText("T1 3");
+                 ui->lnCh4->setText("T1 4");
+                 ui->lnCh5->setText("T1 5");
+                 ui->lnCh6->setText("T1 6");
+
+            break;
+            case 2: tempStr = "T2";
+                 ui->btShimOnOff->setEnabled(true);
+                 ui->pushButton_T2 ->setEnabled(true);ui->pushButtonAX->setDisabled(true);ui->pushButton_T1->setDisabled(true);
+                 channel = CHANNEL_T2;
+                 ui->lnCh1->setText("T2 1");
+                 ui->lnCh2->setText("T2 2");
+                 ui->lnCh3->setText("T2 3");
+                 ui->lnCh4->setText("T2 4");
+                 ui->lnCh5->setText("T2 5");
+                 ui->lnCh6->setText("T2 6");
+            break;
             default:tempStr = "ERROR MODE";break;
         }
 
@@ -884,12 +767,14 @@ void MainWindow::updateGUI(void)
 
 
     data_id = GET_SET_CURRENT;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
 
     data_id = GET_VOLTAGE;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
 
     tempStr.setNum(getVoltage);
     ui->lbV_get->setText(tempStr + " V");
@@ -898,26 +783,18 @@ void MainWindow::updateGUI(void)
     eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
     ReadData();*/
 
-    switch(mode_status)
-    {
-       /*case 0: ui->lbStatusSHIM->setText("Status: Disabled"); break;  ???
-       case 1: ui->lbStatusSHIM->setText("Status: Main Coil"); break;
-       case 2: ui->lbStatusSHIM->setText("Status: Shim Coils"); break;
-       case 3: ui->lbStatusSHIM->setText("Status: PWM_Test Shim"); break;
-       case 100: ui->lbStatusSHIM->setText("Status: ERROR"); break;*/
-    }
 
     if(mode_status)
     {
         //ui->lbStatusSHIM->setText("ON");
         ui->gbStatusSHIM->setTitle("Status: ON");
         ui->btShimOnOff->setText("OFF");
-        switch(pshModeSHIM)
+       /* switch(pshModeSHIM)
         {
            case 1: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T2->setDisabled(true); break;
            case 2: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
            case 3: ui->pushButton_T2->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
-        }
+        }*/
     }
     else
     {
@@ -931,16 +808,17 @@ void MainWindow::updateGUI(void)
     if(pshModeSHIM)
     {
        data_id = GET_SET_CURRENT_HEATERS;
-       eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-       HandleReceivedData();//ReadData();
+       //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+       //HandleReceivedData();//ReadData();
+       sendReadRequest( data_id, 1, transaction_id);
        tempStr.setNum((currentPSH[1]*1000), 'f', 0);
        ui->plabel_Current_SHIM->setText(tempStr);
     }
 
     data_id = GET_SET_I_SETPOINT_HEATERS;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
-
+    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+    //HandleReceivedData();//ReadData();
+    sendReadRequest( data_id, 1, transaction_id);
 }
 
 void MainWindow::HandleReceivedData(void)
@@ -997,7 +875,7 @@ void MainWindow::writeLog(QString logstr)
 {
     QTextStream stream(&filelog);
     QDateTime dt = QDateTime::currentDateTime();
-    stream << (dt.toString() + "\r\n");
+    stream << ("\r\n" + dt.toString() + "\r\n");
     stream << (logstr + "\r\n");
     filelog.flush();
 }
@@ -1047,36 +925,23 @@ void MainWindow::on_btConnect_clicked()
    writeLog("USER: CLICED \"CONNECT\"");
 
 
-   char tempBuff[64] = {0};
+
    QString tempStr =ui->comboBox->currentText();
 
    QByteArray ba=tempStr.toLatin1();
-   sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
+   sprintf((char*)&ConnectionLink[0], "tcp://%s:5555", ba.data());
    ui->gbConnection->setTitle("CONNECTION: CONNECTING...");
    ui->gbConnection->repaint();
-   if(prepare_nng(tempBuff))
+   if(prepare_nng(ConnectionLink))
    {     
-       /*double data = 0.15;
-       struct eb_write_data_point_info_s dp_write = {0};
-       struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
-
-       data_elements_p[0].value_p = &data;
-
-       data_point_id = GET_SET_FAN_PWM;
-       dp_write.data_point_id = data_point_id;
-       dp_write.array_length = 0;
-       dp_write.type = EB_TYPE_DOUBLE;
-       dp_write.elements_p = data_elements_p;
-       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);*/
        ui->btConnect->setText("DISCONNECT");
        ui->gbConnection->setTitle("CONNECTION: CONNECTED");
        ui->btSetMain_Tab->setEnabled(true);
        ui->btSetSHIM_Tab->setEnabled(true);
        ui->gbStatus->setEnabled(true);
-
-
        connectionStatus = 1;
        writeLog("CONNECTED");
+       nng_close(nng_sock);
    }
    else
    {
@@ -1163,7 +1028,7 @@ void MainWindow::on_pushButton_minusI_clicked()
 void MainWindow::on_pushButton_setmain_clicked()
 {
 
-    float data[2] = {0};
+    /*float data[2] = {0};
 
 
      QString tempData = ui->plTextMainPSH->toPlainText();
@@ -1183,14 +1048,14 @@ void MainWindow::on_pushButton_setmain_clicked()
 
      data_elements_p[0].value_p = &data[0];
      data_elements_p[1].value_p = &data[1];
-
-     data_point_id = GET_SET_I_SETPOINT_HEATERS;
-     dp_write.data_point_id = data_point_id;
+    // data_point_id = GET_SET_I_SETPOINT_HEATERS;
+     dp_write.data_point_id = GET_SET_I_SETPOINT_HEATERS; //data_point_id;
      dp_write.array_length = 2;
      dp_write.type = EB_TYPE_FLOAT;
      dp_write.elements_p = data_elements_p;
-     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
-     HandleReceivedData();//ReadData();
+     //eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+     //HandleReceivedData();//ReadData();
+     sendWriteRequest(1);*/
 }
 
 
@@ -1210,7 +1075,7 @@ void MainWindow::on_btSetSHIM_Tab_clicked()
 
 void MainWindow::on_btSetMain_Tab_clicked()
 {
-    mode = MAIN_MODE;
+    /*mode = MAIN_MODE;
 
     ui->stackedWidget->setCurrentIndex(2);
 
@@ -1219,19 +1084,21 @@ void MainWindow::on_btSetMain_Tab_clicked()
     struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
     data_elements_p[0].value_p = &data;
-    data_point_id = GET_SET_MODE;
-    dp_write.data_point_id = data_point_id;
+    //data_point_id = GET_SET_MODE;
+    dp_write.data_point_id = GET_SET_MODE; //data_point_id;
     dp_write.array_length = 0;
     dp_write.type = EB_TYPE_UINT32;
     dp_write.elements_p = data_elements_p;
-    eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+    //eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+    sendWriteRequest(1);
     pshModeRampUP = 3;
     tempStr.setNum((setpointCurrPSH[0] * 1000), 'f', 0);
     ui->plTextMainPSH->setPlainText(tempStr);
 
     tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 0);
     ui->plTextChPSH->setPlainText(tempStr);
-    exeMode = MAIN_MODE;
+    exeMode = MAIN_MODE;*/
+    emit transmit_to_nng(CMD_MAIN_TAB);
 }
 
 
@@ -1295,7 +1162,250 @@ void MainWindow::on_btPSH_AX_SetI_clicked()
     emit transmit_to_nng(CMD_SET_PSH_AX_I);
 }
 
+void MainWindow::setCurrentData(void)
+{
+    tempStr.setNum(ReadCurrentData[0], 'f', 5);
+    ui->txtIm0->setPlainText(tempStr);
+    tempStr.setNum(ReadCurrentData[1], 'f', 5);
+    ui->txtIm1->setPlainText(tempStr);
+    tempStr.setNum(ReadCurrentData[2], 'f', 5);
+    ui->txtIm2->setPlainText(tempStr);
+    tempStr.setNum(ReadCurrentData[3], 'f', 5);
+    ui->txtIm3->setPlainText(tempStr);
+    tempStr.setNum(ReadCurrentData[4], 'f', 5);
+    ui->txtIm4->setPlainText(tempStr);
+    tempStr.setNum(ReadCurrentData[5], 'f', 5);
+    ui->txtIm5->setPlainText(tempStr);
+    tempStr.setNum(ReadCurrentData[6], 'f', 5);
+    ui->txtIm6->setPlainText(tempStr);
+    tempStr.setNum(ReadCurrentData[7], 'f', 5);
+    ui->txtIm7->setPlainText(tempStr);
+}
 
+
+void MainWindow::setOnOffStatus(void)
+{
+    if(mode == MODE_SELECTING)
+    {
+      switch(mode_status)
+      {
+        case 0: ui->gbStatus->setTitle("STATUS: DISABLED");
+                ui->btSetSHIM_Tab->setEnabled(true);
+                ui->btSetMain_Tab->setEnabled(true);
+        break;
+        case 1: ui->gbStatus->setTitle("STATUS: Main Coil");
+                ui->btSetSHIM_Tab->setDisabled(true);
+                ui->btSetMain_Tab->setEnabled(true);
+        break;
+        case 2: ui->gbStatus->setTitle("STATUS: Shim Coils");
+                ui->btSetSHIM_Tab->setEnabled(true);
+                ui->btSetMain_Tab->setDisabled(true);
+        break;
+
+        case 100:
+               ui->gbStatus->setTitle("STATUS: ERROR");
+               ui->btSetSHIM_Tab->setDisabled(true);
+               ui->btSetMain_Tab->setDisabled(true);
+        break;
+      }
+    }
+}
+
+
+void MainWindow:: setVA(void)
+{
+    tempStr.setNum(ReadVA[0], 'f', 4);
+    ui->txtUa0->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[1], 'f', 4);
+    ui->txtUa1->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[2], 'f', 4);
+    ui->txtUa2->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[3], 'f', 4);
+    ui->txtUa3->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[4], 'f', 4);
+    ui->txtUa4->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[5], 'f', 4);
+    ui->txtUa5->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[6], 'f', 4);
+    ui->txtUa6->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[7], 'f', 4);
+    ui->txtUa7->setPlainText(tempStr);
+}
+void MainWindow::setVB(void)
+{
+    tempStr.setNum(ReadVB[0], 'f', 4);
+    ui->txtUb0->setPlainText(tempStr);
+    tempStr.setNum(ReadVB[1], 'f', 4);
+    ui->txtUb1->setPlainText(tempStr);
+    tempStr.setNum(ReadVB[2], 'f', 4);
+    ui->txtUb2->setPlainText(tempStr);
+    tempStr.setNum(ReadVB[3], 'f', 4);
+    ui->txtUb3->setPlainText(tempStr);
+    tempStr.setNum(ReadVB[4], 'f', 4);
+    ui->txtUb4->setPlainText(tempStr);
+    tempStr.setNum(ReadVB[5], 'f', 4);
+    ui->txtUb5->setPlainText(tempStr);
+    tempStr.setNum(ReadVB[6], 'f', 4);
+    ui->txtUb6->setPlainText(tempStr);
+    tempStr.setNum(ReadVB[7], 'f', 4);
+    ui->txtUb7->setPlainText(tempStr);
+
+    tempStr.setNum(ReadVA[0] - ReadVB[0], 'f', 4);
+    ui->txtUab0->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[1] - ReadVB[1], 'f', 4);
+    ui->txtUab1->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[2] - ReadVB[2], 'f', 4);
+    ui->txtUab2->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[3] - ReadVB[3], 'f', 4);
+    ui->txtUab3->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[4] - ReadVB[4], 'f', 4);
+    ui->txtUab4->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[5] - ReadVB[5], 'f', 4);
+    ui->txtUab5->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[6] - ReadVB[6], 'f', 4);
+    ui->txtUab6->setPlainText(tempStr);
+    tempStr.setNum(ReadVA[7] - ReadVB[7], 'f', 4);
+    ui->txtUab7->setPlainText(tempStr);
+}
+void MainWindow::setTempA(void)
+{
+    tempStr.setNum(tempA[0], 'f', 1);
+    ui->txtTa0->setPlainText(tempStr);
+    tempStr.setNum(tempA[1], 'f', 1);
+    ui->txtTa1->setPlainText(tempStr);
+    tempStr.setNum(tempA[2], 'f', 1);
+    ui->txtTa2->setPlainText(tempStr);
+    tempStr.setNum(tempA[3], 'f', 1);
+    ui->txtTa3->setPlainText(tempStr);
+    tempStr.setNum(tempA[4], 'f', 1);
+    ui->txtTa4->setPlainText(tempStr);
+    tempStr.setNum(tempA[5], 'f', 1);
+    ui->txtTa5->setPlainText(tempStr);
+    tempStr.setNum(tempA[6], 'f', 1);
+    ui->txtTa6->setPlainText(tempStr);
+    tempStr.setNum(tempA[7], 'f', 1);
+    ui->txtTa7->setPlainText(tempStr);
+}
+void MainWindow::setTempB(void)
+{
+    tempStr.setNum(tempB[0], 'f', 1);
+    ui->txtTb0->setPlainText(tempStr);
+    tempStr.setNum(tempB[1], 'f', 1);
+    ui->txtTb1->setPlainText(tempStr);
+    tempStr.setNum(tempB[2], 'f', 1);
+    ui->txtTb2->setPlainText(tempStr);
+    tempStr.setNum(tempB[3], 'f', 1);
+    ui->txtTb3->setPlainText(tempStr);
+    tempStr.setNum(tempB[4], 'f', 1);
+    ui->txtTb4->setPlainText(tempStr);
+    tempStr.setNum(tempB[5], 'f', 1);
+    ui->txtTb5->setPlainText(tempStr);
+    tempStr.setNum(tempB[6], 'f', 1);
+    ui->txtTb6->setPlainText(tempStr);
+    tempStr.setNum(tempB[7], 'f', 1);
+    ui->txtTb7->setPlainText(tempStr);
+}
+void MainWindow::setVin(void)
+{
+    tempStr.setNum(ReadVIN[0],'f', 1);
+    ui->txtVin0->setPlainText(tempStr);
+    tempStr.setNum(ReadVIN[1],'f', 1);
+    ui->txtVin1->setPlainText(tempStr);
+    tempStr.setNum(ReadVIN[2],'f', 1);
+    ui->txtVin2->setPlainText(tempStr);
+    tempStr.setNum(ReadVIN[3],'f', 1);
+    ui->txtVin3->setPlainText(tempStr);
+    tempStr.setNum(ReadVIN[4],'f', 1);
+    ui->txtVin4->setPlainText(tempStr);
+    tempStr.setNum(ReadVIN[5],'f', 1);
+    ui->txtVin5->setPlainText(tempStr);
+    tempStr.setNum(ReadVIN[6],'f', 1);
+    ui->txtVin6->setPlainText(tempStr);
+    tempStr.setNum(ReadVIN[7],'f', 1);
+    ui->txtVin7->setPlainText(tempStr);
+}
+void MainWindow::setVout(void)
+{
+    tempStr.setNum(ReadVOUT[0], 'f', 4);
+    ui->txtVout0->setPlainText(tempStr);
+    tempStr.setNum(ReadVOUT[1], 'f', 4);
+    ui->txtVout1->setPlainText(tempStr);
+    tempStr.setNum(ReadVOUT[2], 'f', 4);
+    ui->txtVout2->setPlainText(tempStr);
+    tempStr.setNum(ReadVOUT[3], 'f', 4);
+    ui->txtVout3->setPlainText(tempStr);
+    tempStr.setNum(ReadVOUT[4], 'f', 4);
+    ui->txtVout4->setPlainText(tempStr);
+    tempStr.setNum(ReadVOUT[5], 'f', 4);
+    ui->txtVout5->setPlainText(tempStr);
+    tempStr.setNum(ReadVOUT[6], 'f', 4);
+    ui->txtVout6->setPlainText(tempStr);
+    tempStr.setNum(ReadVOUT[7], 'f', 4);
+    ui->txtVout7->setPlainText(tempStr);
+}
+void MainWindow::setIin(void)
+{
+    tempStr.setNum(ReadIIN[0], 'f', 4);
+    ui->txtIin0->setPlainText(tempStr);
+    tempStr.setNum(ReadIIN[1], 'f', 4);
+    ui->txtIin1->setPlainText(tempStr);
+    tempStr.setNum(ReadIIN[2], 'f', 4);
+    ui->txtIin2->setPlainText(tempStr);
+    tempStr.setNum(ReadIIN[3], 'f', 4);
+    ui->txtIin3->setPlainText(tempStr);
+    tempStr.setNum(ReadIIN[4], 'f', 4);
+    ui->txtIin4->setPlainText(tempStr);
+    tempStr.setNum(ReadIIN[5], 'f', 4);
+    ui->txtIin5->setPlainText(tempStr);
+    tempStr.setNum(ReadIIN[6], 'f', 4);
+    ui->txtIin6->setPlainText(tempStr);
+    tempStr.setNum(ReadIIN[7], 'f', 4);
+    ui->txtIin7->setPlainText(tempStr);
+}
+void MainWindow::setIout(void)
+{
+    tempStr.setNum(ReadIOUT[0], 'f', 4);
+    ui->txtIout0->setPlainText(tempStr);
+    tempStr.setNum(ReadIOUT[1], 'f', 4);
+    ui->txtIout1->setPlainText(tempStr);
+    tempStr.setNum(ReadIOUT[2], 'f', 4);
+    ui->txtIout2->setPlainText(tempStr);
+    tempStr.setNum(ReadIOUT[3], 'f', 4);
+    ui->txtIout3->setPlainText(tempStr);
+    tempStr.setNum(ReadIOUT[4], 'f', 4);
+    ui->txtIout4->setPlainText(tempStr);
+    tempStr.setNum(ReadIOUT[5], 'f', 4);
+    ui->txtIout5->setPlainText(tempStr);
+    tempStr.setNum(ReadIOUT[6], 'f', 4);
+    ui->txtIout6->setPlainText(tempStr);
+    tempStr.setNum(ReadIOUT[7], 'f', 4);
+    ui->txtIout7->setPlainText(tempStr);
+}
+void MainWindow::setBCM_Temp(void)
+{
+    tempStr.setNum(BCMtemp[0], 'f', 1);
+    ui->txtTemp0->setPlainText(tempStr);
+    tempStr.setNum(BCMtemp[1], 'f', 1);
+    ui->txtTemp1->setPlainText(tempStr);
+    tempStr.setNum(BCMtemp[2], 'f', 1);
+    ui->txtTemp2->setPlainText(tempStr);
+    tempStr.setNum(BCMtemp[3], 'f', 1);
+    ui->txtTemp3->setPlainText(tempStr);
+    tempStr.setNum(BCMtemp[4], 'f', 1);
+    ui->txtTemp4->setPlainText(tempStr);
+    tempStr.setNum(BCMtemp[5], 'f', 1);
+    ui->txtTemp5->setPlainText(tempStr);
+    tempStr.setNum(BCMtemp[6], 'f', 1);
+    ui->txtTemp6->setPlainText(tempStr);
+    tempStr.setNum(BCMtemp[7], 'f', 1);
+    ui->txtTemp7->setPlainText(tempStr);
+}
+void MainWindow::setFanValue(void)
+{
+    tempStr.setNum((pwmFAN * 100), 'f', 0);
+    ui->lbFAN_value->setText(tempStr);
+    ui->lbFAN_value_2->setText(tempStr);
+}
 void MainWindow::ClearTable (void)
 {
 
