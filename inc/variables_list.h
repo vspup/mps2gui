@@ -66,3 +66,4 @@ extern double dataArray[6];
 extern int connectionStatusLost;
 extern float dataFloatArray[2];
 extern int connectionAttempts;
+extern uint64_t shim_heater_ch;

@@ -13,3 +13,6 @@ C:\Windows\System32\cmd.exe /A /Q /K C:\Qt\6.3.2\mingw_64\bin\qtenv2.bat
 
 xcopy %3\libnng.dll "%3/EXE"
 xcopy %2 "%3/EXE"
+rem move %2 "%3/EXE"
+echo BUILD DONE!
+echo APP EXE location: %3\EXE

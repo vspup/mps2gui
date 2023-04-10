@@ -37,7 +37,7 @@ QGroupBox::title {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="stackedWidgetSelect"/>
     <widget class="QWidget" name="stackedWidgetSHIM">
@@ -807,7 +807,7 @@ QGroupBox::title {
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_PSH_SHIM">
+     <widget class="QGroupBox" name="gb_PSH_SHIM">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1022,7 +1022,7 @@ QGroupBox::title {
      <zorder>groupBox_5</zorder>
      <zorder>gbChannel_SHIM</zorder>
      <zorder>groupBox_11</zorder>
-     <zorder>groupBox_PSH_SHIM</zorder>
+     <zorder>gb_PSH_SHIM</zorder>
      <zorder>pushButtonAX</zorder>
      <zorder>pushButton_T1</zorder>
      <zorder>pushButton_T2</zorder>
@@ -3106,7 +3106,7 @@ QGroupBox::title {
      <x>0</x>
      <y>0</y>
      <width>1631</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

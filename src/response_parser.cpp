@@ -59,12 +59,52 @@ bool prepare_nng(const char* url)
     return true;
 }
 
+void encode_register (uint16_t register_id, char *ptData)
+{
+    switch( register_id)
+    {
+      case 0x0000: sprintf (ptData, " FW Version \n"); break;
+      case 0x0002: sprintf (ptData, " FAN Duty Cycle\n"); break;
+      case 0x0003: sprintf (ptData, " Measured FAN Speed\n"); break;
 
+      case 0x0100: sprintf (ptData, " Switch Heater Current Setpoint\n"); break;
+      case 0x0101: sprintf (ptData, " Measured Switch Heater Current\n");break;
+      case 0x0102: sprintf (ptData, " Shim Switch Heater Channel\n");break;
+
+      case 0x0201: sprintf (ptData, " BCM VIN  Meas\n"); break;
+      case 0x0202: sprintf (ptData, " BCM VOUT Meas\n"); break;
+      case 0x0203: sprintf (ptData, " BCM IIN  Meas\n"); break;
+      case 0x0204: sprintf (ptData, " BCM IOUT Meas\n"); break;
+      case 0x0205: sprintf (ptData, " BCM Temp\n"); break;
+
+
+      case 0x1002: sprintf (ptData, " Filtered Terminal Voltage\n"); break;
+      case 0x1003: sprintf (ptData, " Filtered End of Line Voltage\n");break;
+      case 0x1004: sprintf (ptData, " Filtered Main Voltage\n");break;
+
+      case 0x1100: sprintf (ptData, " I Main Set\n");break;
+      case 0x1101: sprintf (ptData, " U Main Set\n");break;
+      case 0x1103: sprintf (ptData, " I Main Ref\n");break;
+      case 0x1000: sprintf (ptData, " Filtered module currents\n"); break;
+      case 0x1200: sprintf (ptData, " I Shim Set\n"); break;
+      case 0x1202: sprintf (ptData, " U Shim Max\n"); break;
+
+      case 0x2000: sprintf (ptData, " Current Operating Mode \n"); break;
+      case 0x2001: sprintf (ptData, " Request Operation Mode\n"); break;
+      case 0x2002: sprintf (ptData, " Request Shim Ch\n"); break;
+
+      case 0x3101: sprintf (ptData, " Voltage at Output A\n"); break;
+      case 0x3102: sprintf (ptData, " Voltage at Output B\n"); break;
+      case 0x3104: sprintf (ptData, " Temperature A\n"); break;
+      case 0x3105: sprintf (ptData, " Temperature B\n"); break;
+    }
+}
 QString logTransaction;
+char tempBuff[1024];
 void eb_read_data_response_handler(const struct eb_read_data_point_result_s* read_result_p, void* parameter_p)
 {
     QString tempStr;
-    char tempBuff[200];
+
     memset((char*)&tempBuff[0], 0x00, sizeof(tempBuff));
     //memset()
     if (verbose) {
@@ -73,21 +113,24 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
           {
             printf("Client: Read Response Handler:\n");
             printf("  transaction id: 0x%04x\n", (unsigned int)read_result_p->transaction_id);
-            sprintf(tempBuff, "  transaction id: %d\n", (unsigned int)read_result_p->transaction_id);
+            sprintf(tempBuff, "  tr id: %d\n", (unsigned int)read_result_p->transaction_id);
             logTransaction += tempBuff;
             printf("  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id);
-            sprintf(tempBuff, "  data point id: 0x%04x\n", (unsigned int)read_result_p->data_point_id);
+            sprintf(tempBuff, "  dp id: 0x%04x", (unsigned int)read_result_p->data_point_id);
+            logTransaction += tempBuff;
+            memset((char*)&tempBuff[0], 0x00, sizeof(tempBuff));
+            encode_register( (uint16_t)read_result_p->data_point_id, (char*)&tempBuff[0]);
             logTransaction += tempBuff;
             printf("  result code: 0x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
-            sprintf(tempBuff, "  result code: 0x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
-            logTransaction += tempBuff;
+            //sprintf(tempBuff, "  result code: 0x%04x (%s)\n", (unsigned int)read_result_p->result_code, get_result_str(read_result_p->result_code));
+            //logTransaction += tempBuff;
             printf("  value length: %u\n", (unsigned int)read_result_p->value_len);
 
 
             printf("  data type: 0x%02x (%s)\n", (unsigned int)read_result_p->data_type, get_type_str(read_result_p->data_type));
             printf("  number of elements: %u\n", (unsigned int)read_result_p->num_elements);
-            sprintf(tempBuff, "  number of elements: %u\n", (unsigned int)read_result_p->num_elements);
-            logTransaction += tempBuff;
+            //sprintf(tempBuff, "  number of elements: %u\n", (unsigned int)read_result_p->num_elements);
+            //logTransaction += tempBuff;
             printf("  element index: %u\n", (unsigned int)read_result_p->element_index);
             //sprintf(tempBuff, "  element index: %u\n", (unsigned int)read_result_p->element_index);
             //logTransaction += tempBuff;
@@ -186,6 +229,10 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
     else if(read_result_p->data_point_id == GET_SET_I_SETPOINT_HEATERS)
     {
         setpointCurrPSH[read_result_p->element_index] = *((float*)(read_result_p->value_p));
+    }
+    else if(read_result_p->data_point_id == GET_SET_MODE)
+    {
+       shim_heater_ch = *((uint64_t*)(read_result_p->value_p));
     }
   /*  else if(read_result_p->data_point_id == GET_RAMP_UP_STATUS)
     {
@@ -307,6 +354,14 @@ void eb_write_data_response_handler(const struct eb_write_data_point_result_s* w
         printf("  transaction id: 0x%04x\n", (unsigned int)write_result_p->transaction_id);
         printf("  data point id: 0x%04x\n", (unsigned int)write_result_p->data_point_id);
         printf("  result code: 0x%04x (%s)\n", (unsigned int)write_result_p->result_code, get_result_str(write_result_p->result_code));
+
+        sprintf(tempBuff, "  tr id: %d\n", (unsigned int)write_result_p->transaction_id);
+        logTransaction += tempBuff;
+        sprintf(tempBuff, "  dp id: 0x%04x", (unsigned int)write_result_p->data_point_id);
+        logTransaction += tempBuff;
+        encode_register( (uint16_t)write_result_p->data_point_id, (char*)&tempBuff[0]);
+        logTransaction += tempBuff;
+        //logTransaction += ("  value: ");
     } else {
         // happy programms don't talk
         if (write_result_p->result_code != EB_OK) {

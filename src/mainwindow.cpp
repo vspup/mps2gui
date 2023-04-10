@@ -111,19 +111,19 @@ void MainWindow::sendReadRequest( eb_data_id_t data_id_in, size_t num_id_codes_i
 
 void MainWindow::sendWriteRequest(size_t num_id_codes_in)
 {
-    writeLog("Try to connect");
+    //writeLog("Try to connect");
     if(prepare_nng(ConnectionLink) == 0)
     {
         writeLog("Error connection");
       return;
     }
-    writeLog("Connected!");
+    //writeLog("Connected!");
 
     eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
     HandleReceivedData();
     nng_close(nng_sock);
-    //writeLog(logTransaction);
-    //logTransaction = "";
+    writeLog(logTransaction);
+    logTransaction = "";
 }
 void MainWindow::nngGetRequest( int cmd)
 {
@@ -221,7 +221,7 @@ void MainWindow::nngGetRequest( int cmd)
            writeLog("USER: SET FAN 0");
       break;
       case CMD_SET_AX:
-
+       writeLog("USER: SET AX MODE");
        dataU32 =3;
        data_elements_p[0].value_p = &dataU32;
       // data_point_id = GET_SET_MODE;
@@ -237,19 +237,17 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
            dp_write.array_length = 0;
-           writeLog("USER: SET AX MODE");
+
       break;
 
       case CMD_SET_T1:
-
+          writeLog("USER: SET T1 MODE");
           dataU32 =1;
           data_elements_p[0].value_p = &dataU32;
-          //data_point_id = GET_SET_MODE;
-          dp_write.data_point_id = GET_SET_MODE;//data_point_id;
+          dp_write.data_point_id = GET_SET_MODE;
           dp_write.array_length = 0;
           dp_write.type = EB_TYPE_UINT32;
           dp_write.elements_p = data_elements_p;
-          //eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
           sendWriteRequest(1);
 
            dataU32 = 1;// T1 mode
@@ -257,27 +255,24 @@ void MainWindow::nngGetRequest( int cmd)
            dp_write.data_point_id = GET_CHANNEL;
            dp_write.type = EB_TYPE_UINT32;
            dp_write.array_length = 0;
-           writeLog("USER: SET T1 MODE");
+
       break;
 
       case CMD_SET_T2:
-
+       writeLog("USER: SET T2 MODE");
        dataU32 =2;
        data_elements_p[0].value_p = &dataU32;
-       //data_point_id = GET_SET_MODE;
-       dp_write.data_point_id = GET_SET_MODE;//data_point_id;
+       dp_write.data_point_id = GET_SET_MODE;
        dp_write.array_length = 0;
        dp_write.type = EB_TYPE_UINT32;
        dp_write.elements_p = data_elements_p;
-       //eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
        sendWriteRequest(1);
+       dataU32 = 2;// T2 mode
+       data_elements_p[0].value_p = &dataU32;
+       dp_write.data_point_id = GET_CHANNEL;
+       dp_write.type = EB_TYPE_UINT32;
+       dp_write.array_length = 0;
 
-           dataU32 = 2;// T2 mode
-           data_elements_p[0].value_p = &dataU32;
-           dp_write.data_point_id = GET_CHANNEL;
-           dp_write.type = EB_TYPE_UINT32;
-           dp_write.array_length = 0;
-           writeLog("USER: SET T2 MODE");
       break;
 
       case CMD_SET_VOLTAGE_SHIM:
@@ -352,6 +347,14 @@ void MainWindow::nngGetRequest( int cmd)
            writeLog("USER: SET SHIM PSH CURRENT 0, 0");
       break;
       case CMD_SET_ON_OFF:
+
+
+
+         /*  writeLog("AUTO: SET FAN 15");
+           data =  15;
+           dp_write.data_point_id = GET_SET_FAN_PWM;
+           dp_write.type = EB_TYPE_DOUBLE;
+           sendWriteRequest(1);*/
 
            if(exeMode == MAIN_MODE)
            {
@@ -472,11 +475,9 @@ void MainWindow::nngGetRequest( int cmd)
 
 
    dp_write.elements_p = data_elements_p;
- /*  eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
-   HandleReceivedData();
-   writeLog(logTransaction);
-   logTransaction = "";*/
+
    sendWriteRequest(1);
+   writeLog("USER: END CMD");
    if(data_elements_p != NULL)
    {
        free(data_elements_p);
@@ -507,26 +508,12 @@ int cmdList[] =
    GET_SET_FAN_PWM
 };
 
-#define DELAY_CMD_COUNTER  10
+
 void MainWindow::updateGeneralGUI(void)
 {
-  static int cmdCounter =0;
-  static int cmdDelayCounter =0;
-
-  cmdDelayCounter++;
-
- /* if(cmdDelayCounter < DELAY_CMD_COUNTER)
-  {
-      return;
-  }*/
-  cmdDelayCounter = 0;
-
-  data_id = cmdList [cmdCounter];
+    static int cmdCounter =0;
+    data_id = cmdList [cmdCounter];
     sendReadRequest( data_id, 1, transaction_id);
-   /* eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    HandleReceivedData();//ReadData();
-    writeLog(logTransaction);
-    logTransaction = "";*/
 
     cmdCounter++;
 
@@ -602,8 +589,6 @@ void MainWindow::updateRampUpGUI(void)
 {
     data_id = GET_TERMINAL_VOLTAGE;
     sendReadRequest( data_id, 1, transaction_id);
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();
     tempStr.setNum(terminalVoltage, 'f', 4);
     ui->lbVrampUP->setText(tempStr);
     double current = 0;
@@ -616,24 +601,21 @@ void MainWindow::updateRampUpGUI(void)
     ui->lbIrampUP->setText(tempStr);
     data_id = GET_LINE_VOLTAGE;
     sendReadRequest( data_id, 1, transaction_id);
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();//ReadData();
+
 
     tempStr.setNum(lineVoltage, 'f', 9);
 
     ui->lbVlead->setText(tempStr);
     data_id = GET_MAIN_VOLTAGE;
     sendReadRequest( data_id, 1, transaction_id);
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();//ReadData();
+
 
     tempStr.setNum(mainVoltage, 'f', 9);
 
     ui->lbVmagnet->setText(tempStr);
     data_id = GET_RAMP_UP_STATUS;
     sendReadRequest( data_id, 1, transaction_id);
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();//ReadData();
+
 
     switch(mode_status)
     {
@@ -656,8 +638,7 @@ void MainWindow::updateRampUpGUI(void)
     if(pshModeRampUP)
     {
        data_id = GET_SET_CURRENT_HEATERS;
-      // eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-      // HandleReceivedData();//ReadData();
+
        sendReadRequest( data_id, 1, transaction_id);
        tempStr.setNum((currentPSH[0] * 1000), 'f', 0);
        ui->lbReadMain->setText(tempStr);
@@ -666,8 +647,6 @@ void MainWindow::updateRampUpGUI(void)
     }
 
     data_id = GET_SET_I_SETPOINT_HEATERS;
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();//ReadData();
     sendReadRequest( data_id, 1, transaction_id);
 }
 
@@ -677,8 +656,6 @@ void MainWindow::updateGUI(void)
 
     memset(dataBuff, 0x00, sizeof(dataBuff));
     data_id = GET_CURRENT;
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();
     sendReadRequest( data_id, 1, transaction_id);
 
     if(channel == CHANNEL_AX)
@@ -712,12 +689,12 @@ void MainWindow::updateGUI(void)
         ui->lbCurrCH6_get->setText(tempStr);
     }
 
+    data_id = GET_SET_MODE;
+    sendReadRequest( data_id, 1, transaction_id);
 
     data_id = GET_CHANNEL;
     memset(dataBuff, 0x00, sizeof(dataBuff));
-   // eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-   // HandleReceivedData();//ReadData();
-   sendReadRequest( data_id, 1, transaction_id);
+    sendReadRequest( data_id, 1, transaction_id);
 
    if(mode_status == 2)// if(pshModeSHIM)
     {
@@ -726,7 +703,9 @@ void MainWindow::updateGUI(void)
             case 0:
             tempStr = "AX";
             ui->btShimOnOff->setEnabled(true);
-            ui->pushButtonAX->setEnabled(true);ui->pushButton_T1->setDisabled(true);ui->pushButton_T2->setDisabled(true);
+            ui->pushButtonAX->setEnabled(true);
+            ui->pushButton_T1->setDisabled(true);
+            ui->pushButton_T2->setDisabled(true);
             channel = CHANNEL_AX;
              ui->lnCh1->setText("AX1");
              ui->lnCh2->setText("AX2");
@@ -734,10 +713,13 @@ void MainWindow::updateGUI(void)
              ui->lnCh4->setText("AX4");
              ui->lnCh5->setText("AX5");
              ui->lnCh6->setText("AX6");
+             ui->gbChannel_SHIM->setTitle("CHANNEL: AX");
             break;
             case 1: tempStr = "T1";
                  ui->btShimOnOff->setEnabled(true);
-                 ui->pushButton_T1->setEnabled(true);ui->pushButtonAX->setDisabled(true);ui->pushButton_T2->setDisabled(true);
+                 ui->pushButton_T1->setEnabled(true);
+                 ui->pushButtonAX->setDisabled(true);
+                 ui->pushButton_T2->setDisabled(true);
                  channel = CHANNEL_T1;
                  ui->lnCh1->setText("T1 1");
                  ui->lnCh2->setText("T1 2");
@@ -745,6 +727,7 @@ void MainWindow::updateGUI(void)
                  ui->lnCh4->setText("T1 4");
                  ui->lnCh5->setText("T1 5");
                  ui->lnCh6->setText("T1 6");
+                 ui->gbChannel_SHIM->setTitle("CHANNEL: T1");
 
             break;
             case 2: tempStr = "T2";
@@ -757,44 +740,52 @@ void MainWindow::updateGUI(void)
                  ui->lnCh4->setText("T2 4");
                  ui->lnCh5->setText("T2 5");
                  ui->lnCh6->setText("T2 6");
+                 ui->gbChannel_SHIM->setTitle("CHANNEL: T2");
             break;
             default:tempStr = "ERROR MODE";break;
         }
 
         ui->gbChannel_SHIM->setTitle("CHANNEL: " + tempStr);
+
+        switch(shim_heater_ch)
+        {
+          case 0:  ui->gb_PSH_SHIM->setTitle("PSH, mA"); break;
+          case 1:
+            ui->gb_PSH_SHIM->setTitle("PSH  T1, mA");
+            ui->btPSH_ShimSetCurrent0 ->  setEnabled(true);
+            ui->btPSH_ShimSetCurrent  ->  setEnabled(true);
+          break;
+          case 2:
+            ui->gb_PSH_SHIM->setTitle("PSH  T2, mA");
+            ui->btPSH_ShimSetCurrent0 ->  setEnabled(true);
+            ui->btPSH_ShimSetCurrent  ->  setEnabled(true);
+          break;
+          case 3:
+            ui->gb_PSH_SHIM->setTitle("PSH  AX, mA");
+            ui->btPSH_ShimSetCurrent0 ->  setEnabled(true);
+            ui->btPSH_ShimSetCurrent  ->  setEnabled(true);
+          break;
+        }
     }
 
 
 
     data_id = GET_SET_CURRENT;
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();//ReadData();
     sendReadRequest( data_id, 1, transaction_id);
 
     data_id = GET_VOLTAGE;
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();//ReadData();
     sendReadRequest( data_id, 1, transaction_id);
 
     tempStr.setNum(getVoltage);
     ui->lbV_get->setText(tempStr + " V");
 
-    /*data_id = GET_ON_OFF_STATUS;
-    eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    ReadData();*/
 
 
     if(mode_status)
     {
-        //ui->lbStatusSHIM->setText("ON");
+
         ui->gbStatusSHIM->setTitle("Status: ON");
         ui->btShimOnOff->setText("OFF");
-       /* switch(pshModeSHIM)
-        {
-           case 1: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T2->setDisabled(true); break;
-           case 2: ui->pushButtonAX->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
-           case 3: ui->pushButton_T2->setDisabled(true);   ui->pushButton_T1->setDisabled(true); break;
-        }*/
     }
     else
     {
@@ -808,16 +799,12 @@ void MainWindow::updateGUI(void)
     if(pshModeSHIM)
     {
        data_id = GET_SET_CURRENT_HEATERS;
-       //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-       //HandleReceivedData();//ReadData();
        sendReadRequest( data_id, 1, transaction_id);
        tempStr.setNum((currentPSH[1]*1000), 'f', 0);
        ui->plabel_Current_SHIM->setText(tempStr);
     }
 
     data_id = GET_SET_I_SETPOINT_HEATERS;
-    //eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
-    //HandleReceivedData();//ReadData();
     sendReadRequest( data_id, 1, transaction_id);
 }
 
@@ -825,41 +812,33 @@ void MainWindow::HandleReceivedData(void)
 {
    if(ReadData() == -1)
    {
-       //if(connectionAttempts == 0)
+
+       nng_close(nng_sock);
+       char tempBuff[64] = {0};
+       QByteArray ba=tempStr.toLatin1();
+       sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
+
+       if(prepare_nng(tempBuff))
        {
-           nng_close(nng_sock);
-           char tempBuff[64] = {0};
-           QByteArray ba=tempStr.toLatin1();
-           sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
-           //ui->gbConnection->setTitle("CONNECTION: CONNECTING...");
-           //ui->gbConnection->repaint();
-           if(prepare_nng(tempBuff))
-           {
-               writeLog("ERROR CONNECTION:RECONNECTED");
-              return;
-           }
-
-
+           writeLog("ERROR CONNECTION:RECONNECTED");
+           return;
        }
-      connectionStatus = 0;
-      connectionStatusLost = 1;
-      //nng_close(nng_sock);
-      writeLog("ERROR CONNECTION: CONNECTION LOST");
-      filelog.close();
-      //QMessageBox::critical(this,"ERROR", "CONNECTION LOST");
-      //QThread::msleep(100);
 
-      //ClearTable ();
+        connectionStatus = 0;
+        connectionStatusLost = 1;
 
-      ui->btConnect->setText("CONNECT");
-      ui->gbConnection->setTitle("CONNECTION: DISCONNECTED");
-      ui->gbStatus->setTitle("STATUS: CONNECTION LOST");
-      ui->gbStatus->setDisabled(true);
+        writeLog("ERROR CONNECTION: CONNECTION LOST");
+        filelog.close();
 
-      ui->btSetSHIM_Tab->setDisabled(true);
-      ui->btSetMain_Tab->setDisabled(true);
-      ui->stackedWidget->setCurrentIndex(0);
-      return;
+        ui->btConnect->setText("CONNECT");
+        ui->gbConnection->setTitle("CONNECTION: DISCONNECTED");
+        ui->gbStatus->setTitle("STATUS: CONNECTION LOST");
+        ui->gbStatus->setDisabled(true);
+        ui->btSetSHIM_Tab->setDisabled(true);
+        ui->btSetMain_Tab->setDisabled(true);
+        ui->stackedWidget->setCurrentIndex(0);
+
+        return;
 
    }
    connectionAttempts = 0;
@@ -874,8 +853,9 @@ void MainWindow::receive_from_gui(bool value)
 void MainWindow::writeLog(QString logstr)
 {
     QTextStream stream(&filelog);
-    QDateTime dt = QDateTime::currentDateTime();
-    stream << ("\r\n" + dt.toString() + "\r\n");
+    //QDateTime dt = QDateTime::currentDateTime();
+    QTime time = QTime::currentTime();
+    stream << ("\r\n" + time.toString() + "\r\n");
     stream << (logstr + "\r\n");
     filelog.flush();
 }

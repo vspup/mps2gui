@@ -14,6 +14,7 @@ void MainWindow::on_pushButtonAX_clicked()
      ui->lnCh4->setText("AX4");
      ui->lnCh5->setText("AX5");
      ui->lnCh6->setText("AX6");
+     //ui->gbChannel_SHIM->setTitle("CHANNEL: AX");
      pshModeSHIM = 3;
      ui->btShimOnOff->setEnabled(true);
      ui->btPSH_ShimSetCurrent0->setEnabled(true);
@@ -33,7 +34,7 @@ void MainWindow::on_pushButton_T1_clicked()
      ui->lnCh4->setText("T1 4");
      ui->lnCh5->setText("T1 5");
      ui->lnCh6->setText("T1 6");
-
+     //ui->gbChannel_SHIM->setTitle("CHANNEL: T1");
      pshModeSHIM = 1;
      ui->btShimOnOff->setEnabled(true);
      ui->btPSH_ShimSetCurrent->setEnabled(true);
@@ -51,6 +52,7 @@ void MainWindow::on_pushButton_T2_clicked()
      ui->lnCh4->setText("T2 4");
      ui->lnCh5->setText("T2 5");
      ui->lnCh6->setText("T2 6");
+     //ui->gbChannel_SHIM->setTitle("CHANNEL: T2");
      pshModeSHIM = 2;
      ui->btShimOnOff->setEnabled(true);
      ui->btPSH_ShimSetCurrent->setEnabled(true);
