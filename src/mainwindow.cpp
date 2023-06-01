@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     QFile file("ip_config.txt");
+
     if(!file.open(QIODevice::ReadWrite))
     {
         qCritical() << "Could not open file";
