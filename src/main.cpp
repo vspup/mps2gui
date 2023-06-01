@@ -3,6 +3,7 @@
 // git v 0.3s
 
 #include "inc/mainwindow.h"
+#include "inc/selectwindow.h"
 
 #include <QApplication>
 
@@ -26,7 +27,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    //MainWindow w;
+    SelectWindow w;
     w.show();
 
     return a.exec();
