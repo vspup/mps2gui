@@ -18,7 +18,7 @@
 #include <unistd.h>
 #include <getopt.h>
 #include <ctype.h>
-
+#include <QTextStream>
 
 #include <QFile>
 #include <QTextStream>

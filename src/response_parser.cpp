@@ -325,17 +325,16 @@ int ReadData (void)
 
     do
     {
-       if ((rv = nng_recv(nng_sock, &buffer_p, &buffer_size, NNG_FLAG_ALLOC)) != 0)
-       {
-          printf("%s: nng_recv failed: %s", __func__, nng_strerror(rv));
-
-              return -1;
-            }
-           eb_client_process_incoming(buffer_p, buffer_size);
-           nng_free(buffer_p, buffer_size);
-           printf("%s: free allocated buffer at %p, size %" PRIi32"\n", __func__, buffer_p, buffer_cnt);
-            // TODO: Timeout
-       } while (!response_complete);
+        if ((rv = nng_recv(nng_sock, &buffer_p, &buffer_size, NNG_FLAG_ALLOC)) != 0)
+        {
+            printf("%s: nng_recv failed: %s", __func__, nng_strerror(rv));
+            return -1;
+        }
+        eb_client_process_incoming(buffer_p, buffer_size);
+        nng_free(buffer_p, buffer_size);
+        printf("%s: free allocated buffer at %p, size %" PRIi32"\n", __func__, buffer_p, buffer_cnt);
+        // TODO: Timeout
+    } while (!response_complete);
     return 1;
 }
 

@@ -73,8 +73,6 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem(line);
     }
 
-
-
     ui->btSetMain_Tab->setDisabled(true);
     ui->btSetSHIM_Tab->setDisabled(true);
     ui->gbStatus->setDisabled(true);
@@ -94,7 +92,6 @@ uint8_t exeMode;
 //double dataArray[6] = {0};
 
 
-
 void MainWindow::nngGetRequest( int cmd)
 {
     if(connectionStatusLost)
@@ -105,34 +102,31 @@ void MainWindow::nngGetRequest( int cmd)
 
     if(connectionStatus == 0)
     {
-     return;
+        return;
     }
 
     if(cmd == CMD_UPDATE_BY_TIMER)
     {
+        // return;
+        updateGeneralGUI();
+        //exeMode =  mode;
+        if(exeMode == SHIM_MODE)
+        {
+            updateGUI();
+        }
+        else if(exeMode == MAIN_MODE)
+        {
+            updateRampUpGUI();
+        }
 
-      // return;
-       updateGeneralGUI();
-       //exeMode =  mode;
-       if(exeMode == SHIM_MODE)
-       {
-          updateGUI();
-       }
-       else if(exeMode == MAIN_MODE)
-       {
-          updateRampUpGUI();
-       }
-
-       if(mode != oldMode)
-       {
-           mode = oldMode;
-       }
-       return;
+        if(mode != oldMode)
+        {
+            mode = oldMode;
+        }
+            return;
     }
 
     QString tempData;
-
-
     double data;
     uint32_t dataU32 =0;
     struct eb_write_data_point_info_s dp_write = {0};
