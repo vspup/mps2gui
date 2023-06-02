@@ -13,7 +13,6 @@ class SelectWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    void writeLog(QString logstr);
     explicit SelectWindow(QWidget *parent = nullptr);
     ~SelectWindow();
 

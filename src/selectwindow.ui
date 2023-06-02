@@ -17,10 +17,10 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>791</width>
-      <height>381</height>
+      <x>0</x>
+      <y>0</y>
+      <width>800</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -30,9 +30,9 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
-    <widget class="QWidget" name="stwg_reserved">
+    <widget class="QWidget" name="stwg_pg0_reserved">
      <widget class="QLabel" name="label_reserverd">
       <property name="geometry">
        <rect>
@@ -52,7 +52,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="stwg_connect">
+    <widget class="QWidget" name="stwg_pg1_connect">
      <widget class="QGroupBox" name="gbConnection">
       <property name="geometry">
        <rect>
@@ -119,7 +119,7 @@ QGroupBox::title {
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="stwg_select_tomopraph">
+    <widget class="QWidget" name="stwg_pg2_sel_tomopraph">
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
@@ -199,7 +199,7 @@ QGroupBox::title {
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="stwg_process">
+    <widget class="QWidget" name="stwg_pg3_process">
      <widget class="QLabel" name="label_process">
       <property name="geometry">
        <rect>
@@ -218,6 +218,19 @@ QGroupBox::title {
        <string>PROCESS HERE...</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>350</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -230,12 +243,6 @@ QGroupBox::title {
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuMPS">
-    <property name="title">
-     <string>MPS</string>
-    </property>
-   </widget>
-   <addaction name="menuMPS"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

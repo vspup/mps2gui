@@ -22,15 +22,15 @@ find_package(nng REQUIRED)
 
 set(PROJECT_SOURCES
         src/main.cpp
- #       src/mainwindow.cpp
+        src/mainwindow.cpp
         src/shim_window.cpp
         inc/shim_window.h
         src/variables_list.cpp
         inc/variables_list.h
         src/response_parser.cpp
         inc/response_parser.h
-#        inc/mainwindow.h
-#        src/mainwindow.ui
+        inc/mainwindow.h
+        src/mainwindow.ui
         lib/uart-escape.c
         inc/uart-escape.h
         lib/cwpack_utils.c
