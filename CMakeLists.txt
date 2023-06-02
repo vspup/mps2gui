@@ -46,10 +46,8 @@ set(PROJECT_SOURCES
         lib/electabuzz_client_helpers.c
         inc/electabuzz_client_helpers.h
         inc/commands.h
-        inc/selectwindow.h
-        src/selectwindow.cpp
-        src/selectwindow.ui
-        inc/menu.h
+        #inc/wizardmps.h
+        #src/wizardmps.cpp
 )
 
 message(STATUS "PROJECT_SOURCES=" ${PROJECT_SOURCES})
