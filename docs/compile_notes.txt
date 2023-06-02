@@ -1,0 +1,8 @@
+Linux:
+- setup OpenGL
+	sudo apt-get install libgl1-mesa-dev
+- select QT 6.5.1 GCC 64bit in build
+
+Windows:
+- use build-in CMake in QT Creator
+- QT Designer not necessary?
