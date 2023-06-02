@@ -54,12 +54,13 @@ class ConnectPage : public QWizardPage
 
 public:
     ConnectPage(QWidget *parent = nullptr);
-
+    void handleButtonClicked();
     int nextId() const override;
 
 private:
     QLabel *connectLabel;
-    QLineEdit *ipLineEdit;
+    QComboBox *ipComBox;
+    QPushButton* connectButton;
 };
 
 class SelectTomoPage : public QWizardPage
@@ -83,7 +84,8 @@ public:
     };
 
     SelectTomoPage(QWidget *parent = nullptr);
-
+    void handlePrintButtonClicked();
+    void updatePicture();
     int nextId() const override;
 
 private:
@@ -92,55 +94,7 @@ private:
     QComboBox *manufComBox;
     QComboBox *modelComBox;
     QLabel *pictureLabel;
-
-    void updatePicture() {
-        QString picturePath;
-        switch (manufComBox->currentIndex()) {
-        case MANUF_1:
-            switch (modelComBox->currentIndex()) {
-            case MODEL_1:
-                picturePath = ":/images/tomograph/01_cardiographe.jpg";
-                break;
-            case MODEL_2:
-                picturePath = ":/images/tomograph/02_trgen_3.jpg";
-                break;
-            default:
-                break;
-            }
-            break;
-        case MANUF_2:
-            switch (modelComBox->currentIndex()) {
-            case MODEL_1:
-                picturePath = ":/images/tomograph/03_revolution_frontier.jpg";
-                break;
-            case MODEL_2:
-                picturePath = ":/images/tomograph/04_apex";
-                break;
-            default:
-                break;
-            }
-            break;
-        case MANUF_3:
-            switch (modelComBox->currentIndex()) {
-            case MODEL_1:
-                picturePath = ":/images/tomograph/05_ascend";
-                break;
-            case MODEL_2:
-                picturePath = ":/images/tomograph/06_maxima";
-                break;
-            default:
-                break;
-            }
-            break;
-        }
-
-        if (!picturePath.isEmpty()) {
-            pictureLabel->setPixmap(QPixmap(picturePath));
-            pictureLabel->setFixedSize(pictureLabel->pixmap().size());
-        } else {
-            pictureLabel->clear();
-        }
-    }
+    QPushButton* printButton;
 };
 
 class ProcessPage : public QWizardPage
@@ -149,6 +103,7 @@ class ProcessPage : public QWizardPage
 
 public:
     ProcessPage(QWidget *parent = nullptr);
+    void handleRunOldUIButtonClicked();
     int nextId() const override;
 
 private:
