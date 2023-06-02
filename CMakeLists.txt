@@ -93,6 +93,12 @@ file(COPY ${nng_LIBRARY} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 set(RESOURCE_FILES
     images/logo.png
     images/watermark.png
+    images/tomograph/01_cardiographe.jpg
+    images/tomograph/02_trgen_3.jpg
+    images/tomograph/03_revolution_frontier.jpg
+    images/tomograph/04_apex.jpg
+    images/tomograph/05_ascend.jpg
+    images/tomograph/06_maxima.jpg
 )
 
 qt_add_resources(mps2gui "mps2gui"

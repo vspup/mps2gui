@@ -4,6 +4,8 @@
 #ifndef LICENSEWIZARD_H
 #define LICENSEWIZARD_H
 
+#include "qcombobox.h"
+#include "qlabel.h"
 #include <QWizard>
 
 QT_BEGIN_NAMESPACE
@@ -12,7 +14,7 @@ class QLabel;
 class QLineEdit;
 class QRadioButton;
 class QPropertyAnimation;
-//class QComboBox;
+class QComboBox;
 QT_END_NAMESPACE
 
 class MPSWizard : public QWizard
@@ -65,6 +67,21 @@ class SelectTomoPage : public QWizardPage
     Q_OBJECT
 
 public:
+    enum { MANUF_1,
+           MANUF_2,
+           MANUF_3,
+           MANUF_MAX,
+    };
+
+    enum { MODEL_1,
+           MODEL_2,
+           MODEL_3,
+           MODEL_4,
+           MODEL_5,
+           MODEL_6,
+           MODEL_MAX,
+    };
+
     SelectTomoPage(QWidget *parent = nullptr);
 
     int nextId() const override;
@@ -72,8 +89,58 @@ public:
 private:
     QLabel *manufLabel;
     QLabel *modelLabel;
-    QLineEdit *manufLineEdit;
-    QLineEdit *modelLineEdit;
+    QComboBox *manufComBox;
+    QComboBox *modelComBox;
+    QLabel *pictureLabel;
+
+    void updatePicture() {
+        QString picturePath;
+        switch (manufComBox->currentIndex()) {
+        case MANUF_1:
+            switch (modelComBox->currentIndex()) {
+            case MODEL_1:
+                picturePath = ":/images/tomograph/01_cardiographe.jpg";
+                break;
+            case MODEL_2:
+                picturePath = ":/images/tomograph/02_trgen_3.jpg";
+                break;
+            default:
+                break;
+            }
+            break;
+        case MANUF_2:
+            switch (modelComBox->currentIndex()) {
+            case MODEL_1:
+                picturePath = ":/images/tomograph/03_revolution_frontier.jpg";
+                break;
+            case MODEL_2:
+                picturePath = ":/images/tomograph/04_apex";
+                break;
+            default:
+                break;
+            }
+            break;
+        case MANUF_3:
+            switch (modelComBox->currentIndex()) {
+            case MODEL_1:
+                picturePath = ":/images/tomograph/05_ascend";
+                break;
+            case MODEL_2:
+                picturePath = ":/images/tomograph/06_maxima";
+                break;
+            default:
+                break;
+            }
+            break;
+        }
+
+        if (!picturePath.isEmpty()) {
+            pictureLabel->setPixmap(QPixmap(picturePath));
+            pictureLabel->setFixedSize(pictureLabel->pixmap().size());
+        } else {
+            pictureLabel->clear();
+        }
+    }
 };
 
 class ProcessPage : public QWizardPage

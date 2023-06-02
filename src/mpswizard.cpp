@@ -95,6 +95,7 @@ ConnectPage::ConnectPage(QWidget *parent)
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(ipLineEdit, 1, 1);
     layout->addWidget(connectLabel, 1, 0);
+    layout->setAlignment(Qt::AlignCenter);
     setLayout(layout);
 }
 
@@ -110,33 +111,34 @@ SelectTomoPage::SelectTomoPage(QWidget *parent)
     setSubTitle(tr("Here you can select manufacturer and model of tomograph"));
 
     manufLabel = new QLabel(tr("Manufacturer:"));
-    manufLineEdit = new QLineEdit;
-    manufLabel->setBuddy(manufLineEdit);
+    manufComBox = new QComboBox;
+    manufComBox->addItem("Manufacturer 1");
+    manufComBox->addItem("Manufacturer 2");
+    manufComBox->addItem("Manufacturer 3");
 
     modelLabel = new QLabel(tr("Model:"));
-    modelLineEdit = new QLineEdit;
-    modelLabel->setBuddy(modelLineEdit);
+    modelComBox = new QComboBox;
+    modelComBox->addItem("Model 1");
+    modelComBox->addItem("Model 2");
 
-    //registerField("register.name*", manufLineEdit);
-    //registerField("register.upgradeKey", modelLineEdit);
+    pictureLabel = new QLabel;
+    updatePicture();
+    pictureLabel->setAlignment(Qt::AlignCenter);
+
+    connect(manufComBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SelectTomoPage::updatePicture);
+    connect(modelComBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SelectTomoPage::updatePicture);
 
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(manufLabel, 0, 0);
-    layout->addWidget(manufLineEdit, 0, 1);
+    layout->addWidget(manufComBox, 0, 1);
     layout->addWidget(modelLabel, 1, 0);
-    layout->addWidget(modelLineEdit, 1, 1);
+    layout->addWidget(modelComBox, 1, 1);
+    layout->addWidget(pictureLabel, 2, 0, 1, 2);
     setLayout(layout);
 }
 
 int SelectTomoPage::nextId() const
 {
-    if (modelLineEdit->text().isEmpty()) {
-        qInfo("Model not selected!");
-    } else if(manufLineEdit->text().isEmpty()) {
-        qInfo("Manufacturer not selected!");
-    } else {
-        //return MPSWizard::PAGE_PROCESS_E;
-    }
     return MPSWizard::PAGE_PROCESS_E;
 }
 
