@@ -46,6 +46,8 @@ set(PROJECT_SOURCES
         lib/electabuzz_client_helpers.c
         inc/electabuzz_client_helpers.h
         inc/commands.h
+        src/mpswizard.cpp
+        inc/mpswizard.h
 )
 
 message(STATUS "PROJECT_SOURCES=" ${PROJECT_SOURCES})
@@ -86,6 +88,19 @@ endif()
 
 target_link_libraries(mps2gui PRIVATE ${nng_LIBRARIES})
 file(COPY ${nng_LIBRARY} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+# Resource files
+set(RESOURCE_FILES
+    images/logo.png
+    images/watermark.png
+)
+
+qt_add_resources(mps2gui "mps2gui"
+#    PREFIX
+#        "/"
+    FILES
+        ${RESOURCE_FILES}
+)
 
 set_target_properties(mps2gui PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
