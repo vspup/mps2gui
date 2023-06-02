@@ -6,813 +6,1141 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1631</width>
-    <height>859</height>
+    <width>1680</width>
+    <height>850</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QStackedWidget" name="stackedWidget">
+   <widget class="QStackedWidget" name="stackedWidget_ALL">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>-10</y>
-      <width>941</width>
-      <height>621</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1680</width>
+      <height>850</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QGroupBox {
-    font: bold; 
-    border: 1px solid silver;
-    border-radius: 6px;
-    margin-top: 6px;
-}
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 7px;
-    padding: 0px 5px 0px 5px;
-}</string>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="stackedWidgetSelect"/>
-    <widget class="QWidget" name="stackedWidgetSHIM">
-     <widget class="QPushButton" name="pushButtonAX">
+    <widget class="QWidget" name="page_0">
+     <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>81</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>AX</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_T1">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>40</y>
-        <width>81</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>T1</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_T2">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>40</y>
-        <width>81</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>T2</string>
-      </property>
-     </widget>
-     <widget class="QGroupBox" name="gbChannel_SHIM">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>331</width>
-        <height>91</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QGroupBox {
-    font: bold; 
-    border: 1px solid silver;
-    border-radius: 6px;
-    margin-top: 6px;
-}
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 7px;
-    padding: 0px 5px 0px 5px;
-}</string>
-      </property>
-      <property name="title">
-       <string>CHANNEL: NOT SELECTED</string>
-      </property>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_4">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>120</y>
-        <width>921</width>
-        <height>171</height>
+        <x>1550</x>
+        <y>0</y>
+        <width>41</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <italic>false</italic>
-        <bold>true</bold>
-        <kerning>false</kerning>
+        <pointsize>18</pointsize>
        </font>
       </property>
-      <property name="title">
-       <string>CURRENT, A</string>
+      <property name="text">
+       <string>tB</string>
       </property>
-      <widget class="QPushButton" name="pushButton_SetCurr">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>50</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_SetCurr0">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>50</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET 0</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextCurrCH6_set">
-       <property name="geometry">
-        <rect>
-         <x>800</x>
-         <y>50</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lnCh6">
-       <property name="geometry">
-        <rect>
-         <x>820</x>
-         <y>0</y>
-         <width>71</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>CH6</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextCurrCH5_set">
-       <property name="geometry">
-        <rect>
-         <x>690</x>
-         <y>50</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextCurrCH4_set">
-       <property name="geometry">
-        <rect>
-         <x>580</x>
-         <y>50</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lnCh5">
-       <property name="geometry">
-        <rect>
-         <x>700</x>
-         <y>0</y>
-         <width>71</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>CH5</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lnCh4">
-       <property name="geometry">
-        <rect>
-         <x>600</x>
-         <y>0</y>
-         <width>71</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>CH4</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextCurrCH3_set">
-       <property name="geometry">
-        <rect>
-         <x>470</x>
-         <y>50</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lnCh3">
-       <property name="geometry">
-        <rect>
-         <x>490</x>
-         <y>0</y>
-         <width>71</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>CH3</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextCurrCH2_set">
-       <property name="geometry">
-        <rect>
-         <x>360</x>
-         <y>50</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lnCh2">
-       <property name="geometry">
-        <rect>
-         <x>390</x>
-         <y>0</y>
-         <width>71</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>CH2</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextCurrCH1_set">
-       <property name="geometry">
-        <rect>
-         <x>250</x>
-         <y>50</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhNone</set>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lnCh1">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>0</y>
-         <width>71</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-         <kerning>false</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>CH1</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbCurrCH6_get">
-       <property name="geometry">
-        <rect>
-         <x>796</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-         <bold>false</bold>
-         <strikeout>false</strikeout>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="text">
-        <string>I6</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbCurrCH5_get">
-       <property name="geometry">
-        <rect>
-         <x>688</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-         <bold>false</bold>
-         <strikeout>false</strikeout>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>I5</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbCurrCH4_get">
-       <property name="geometry">
-        <rect>
-         <x>574</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-         <bold>false</bold>
-         <strikeout>false</strikeout>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>I4</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbCurrCH3_get">
-       <property name="geometry">
-        <rect>
-         <x>466</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-         <bold>false</bold>
-         <strikeout>false</strikeout>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>I3</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbCurrCH2_get">
-       <property name="geometry">
-        <rect>
-         <x>357</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-         <bold>false</bold>
-         <strikeout>false</strikeout>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>I2</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_13">
-       <property name="geometry">
-        <rect>
-         <x>250</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbCurrCH1_get">
-        <property name="geometry">
-         <rect>
-          <x>-4</x>
-          <y>0</y>
-          <width>101</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-          <bold>false</bold>
-          <strikeout>false</strikeout>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>I1</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QFrame" name="frame_14">
-       <property name="geometry">
-        <rect>
-         <x>360</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_15">
-       <property name="geometry">
-        <rect>
-         <x>470</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_16">
-       <property name="geometry">
-        <rect>
-         <x>580</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_17">
-       <property name="geometry">
-        <rect>
-         <x>690</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_18">
-       <property name="geometry">
-        <rect>
-         <x>800</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <zorder>lbCurrCH6_get</zorder>
-      <zorder>lbCurrCH5_get</zorder>
-      <zorder>lbCurrCH4_get</zorder>
-      <zorder>lbCurrCH3_get</zorder>
-      <zorder>lbCurrCH2_get</zorder>
-      <zorder>frame_18</zorder>
-      <zorder>frame_17</zorder>
-      <zorder>frame_16</zorder>
-      <zorder>frame_15</zorder>
-      <zorder>frame_14</zorder>
-      <zorder>frame_13</zorder>
-      <zorder>pushButton_SetCurr</zorder>
-      <zorder>pushButton_SetCurr0</zorder>
-      <zorder>pTextCurrCH6_set</zorder>
-      <zorder>lnCh6</zorder>
-      <zorder>pTextCurrCH5_set</zorder>
-      <zorder>pTextCurrCH4_set</zorder>
-      <zorder>lnCh5</zorder>
-      <zorder>lnCh4</zorder>
-      <zorder>pTextCurrCH3_set</zorder>
-      <zorder>lnCh3</zorder>
-      <zorder>pTextCurrCH2_set</zorder>
-      <zorder>lnCh2</zorder>
-      <zorder>pTextCurrCH1_set</zorder>
-      <zorder>lnCh1</zorder>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
      </widget>
-     <widget class="QPushButton" name="btShimOnOff">
+     <widget class="QLabel" name="label_31">
+      <property name="geometry">
+       <rect>
+        <x>1420</x>
+        <y>360</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Temp</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_25">
+      <property name="geometry">
+       <rect>
+        <x>1440</x>
+        <y>0</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>tA</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_30">
+      <property name="geometry">
+       <rect>
+        <x>1320</x>
+        <y>360</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Iout</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_24">
+      <property name="geometry">
+       <rect>
+        <x>1220</x>
+        <y>0</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ub</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_29">
+      <property name="geometry">
+       <rect>
+        <x>1210</x>
+        <y>360</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Vout</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>1110</x>
+        <y>0</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ua</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_28">
+      <property name="geometry">
+       <rect>
+        <x>1110</x>
+        <y>360</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Iin</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>990</x>
+        <y>0</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Im</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_27">
+      <property name="geometry">
+       <rect>
+        <x>1000</x>
+        <y>360</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Vin</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm0">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>30</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa0">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>30</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb0">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>30</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab0">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>30</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa0">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>30</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb0">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>30</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_38">
+      <property name="geometry">
+       <rect>
+        <x>1320</x>
+        <y>0</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ua-b</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm1">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>70</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm2">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>110</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm3">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>150</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm4">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>190</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm5">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>230</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm6">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>270</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa1">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>70</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa6">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>270</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa2">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>110</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa3">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>150</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa4">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>190</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa5">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>230</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb6">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>270</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab5">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>230</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab4">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>190</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb4">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>190</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb3">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>150</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab2">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>110</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab6">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>270</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab1">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>70</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb1">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>70</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab3">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>150</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb2">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>110</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb5">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>230</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa6">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>270</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb5">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>230</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb4">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>190</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa4">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>190</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa3">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>150</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb2">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>110</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb6">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>270</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb1">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>70</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa1">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>70</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb3">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>150</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa2">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>110</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa5">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>230</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin6">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>630</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin1">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>430</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin0">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>390</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin2">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>470</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin3">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>510</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin4">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>550</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin5">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>590</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin0">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>390</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin3">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>510</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin4">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>550</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin5">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>590</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin2">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>470</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin6">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>630</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin1">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>430</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout2">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>470</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout4">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>550</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout1">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>430</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout3">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>510</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout0">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>390</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout1">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>430</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout2">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>470</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout3">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>510</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout5">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>590</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout6">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>630</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout5">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>590</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout0">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>390</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout4">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>550</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout6">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>630</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp2">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>470</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp4">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>550</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp1">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>430</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp3">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>510</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp0">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>390</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp5">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>590</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp6">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>630</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIm7">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>310</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTb7">
+      <property name="geometry">
+       <rect>
+        <x>1520</x>
+        <y>310</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUb7">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>310</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUab7">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>310</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTa7">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>310</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtUa7">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>310</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVout7">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>670</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIout7">
+      <property name="geometry">
+       <rect>
+        <x>1300</x>
+        <y>670</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtTemp7">
+      <property name="geometry">
+       <rect>
+        <x>1410</x>
+        <y>670</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtIin7">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>670</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="txtVin7">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>670</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="gbStatus">
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>560</y>
-        <width>121</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>ON</string>
-      </property>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_5">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>10</y>
-        <width>581</width>
-        <height>91</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>VOLTAGE, V</string>
-      </property>
-      <widget class="QFrame" name="frame_3">
-       <property name="geometry">
-        <rect>
-         <x>400</x>
-         <y>31</y>
-         <width>161</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbV_get">
-        <property name="geometry">
-         <rect>
-          <x>4</x>
-          <y>0</y>
-          <width>151</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-          <kerning>false</kerning>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="text">
-         <string>0</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextV_set">
-       <property name="geometry">
-        <rect>
-         <x>270</x>
-         <y>31</y>
-         <width>121</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhFormattedNumbersOnly</set>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_SetV_0">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>31</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET 0.1</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_SetV">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>31</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_PSH_SHIM">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>300</y>
-        <width>471</width>
+        <y>730</y>
+        <width>361</width>
         <height>81</height>
        </rect>
       </property>
@@ -830,2287 +1158,1946 @@ QGroupBox::title {
 }</string>
       </property>
       <property name="title">
-       <string>PSH, mA</string>
+       <string>STATUS:</string>
       </property>
-      <widget class="QPushButton" name="btPSH_ShimSetCurrent0">
+      <widget class="QPushButton" name="btSetMain_Tab">
        <property name="geometry">
         <rect>
-         <x>19</x>
-         <y>25</y>
-         <width>89</width>
-         <height>41</height>
+         <x>20</x>
+         <y>30</y>
+         <width>151</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>SET0</string>
+        <string>MAIN</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btPSH_ShimSetCurrent">
+      <widget class="QPushButton" name="btSetSHIM_Tab">
        <property name="geometry">
         <rect>
-         <x>123</x>
-         <y>24</y>
-         <width>89</width>
-         <height>41</height>
+         <x>190</x>
+         <y>30</y>
+         <width>151</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>SetI</string>
+        <string>SHIM</string>
        </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pTextEditCurrent_SHIM">
-       <property name="geometry">
-        <rect>
-         <x>230</x>
-         <y>24</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_19">
-       <property name="geometry">
-        <rect>
-         <x>349</x>
-         <y>24</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="plabel_Current_SHIM">
-        <property name="geometry">
-         <rect>
-          <x>2</x>
-          <y>6</y>
-          <width>81</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>0.0</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-       </widget>
-      </widget>
-      <zorder>frame_19</zorder>
-      <zorder>btPSH_ShimSetCurrent0</zorder>
-      <zorder>btPSH_ShimSetCurrent</zorder>
-      <zorder>pTextEditCurrent_SHIM</zorder>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_11">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>300</y>
-        <width>421</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>FAN, %</string>
-      </property>
-      <widget class="QPushButton" name="btSetFAN0_MainTab">
-       <property name="geometry">
-        <rect>
-         <x>15</x>
-         <y>24</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>FAN 0</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btSetFAN_MainTab">
-       <property name="geometry">
-        <rect>
-         <x>112</x>
-         <y>24</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>FAN SET</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="plainTextSetFAN">
-       <property name="geometry">
-        <rect>
-         <x>211</x>
-         <y>24</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_20">
-       <property name="geometry">
-        <rect>
-         <x>314</x>
-         <y>23</y>
-         <width>91</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbFAN_value">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>71</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>0</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="gbStatusSHIM">
+     <widget class="QStackedWidget" name="stackedWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>530</y>
-        <width>161</width>
-        <height>91</height>
+        <y>-10</y>
+        <width>941</width>
+        <height>621</height>
        </rect>
       </property>
-      <property name="title">
-       <string>STATUS:</string>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
       </property>
-     </widget>
-     <zorder>gbStatusSHIM</zorder>
-     <zorder>groupBox_5</zorder>
-     <zorder>gbChannel_SHIM</zorder>
-     <zorder>groupBox_11</zorder>
-     <zorder>groupBox_PSH_SHIM</zorder>
-     <zorder>pushButtonAX</zorder>
-     <zorder>pushButton_T1</zorder>
-     <zorder>pushButton_T2</zorder>
-     <zorder>groupBox_4</zorder>
-     <zorder>btShimOnOff</zorder>
-    </widget>
-    <widget class="QWidget" name="stackedWidgetMain">
-     <widget class="QGroupBox" name="groupBox_8">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>160</y>
-        <width>691</width>
-        <height>161</height>
-       </rect>
+      <property name="currentIndex">
+       <number>2</number>
       </property>
-      <property name="title">
-       <string>MAIN COIL</string>
-      </property>
-      <widget class="QPushButton" name="pushButton_minusV">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>29</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_minusI">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>100</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_pllusI">
-       <property name="geometry">
-        <rect>
-         <x>480</x>
-         <y>100</y>
-         <width>91</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_PlusV">
-       <property name="geometry">
-        <rect>
-         <x>480</x>
-         <y>29</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pltextSetI">
-       <property name="geometry">
-        <rect>
-         <x>360</x>
-         <y>100</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="pltextSetV">
-       <property name="geometry">
-        <rect>
-         <x>360</x>
-         <y>29</y>
-         <width>104</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_V_set">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>29</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_setI">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_32">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>33</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>U, V</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_33">
-       <property name="geometry">
-        <rect>
-         <x>25</x>
-         <y>100</y>
-         <width>61</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>I, A</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_V_set0">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>29</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET 0</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_set_I_zero">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET0</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_10">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>340</y>
-        <width>591</width>
-        <height>161</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>PSH, mA</string>
-      </property>
-      <widget class="QPushButton" name="btPSH_Main_SetI0">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>30</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Set main 0</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btPSH_Main_SetI">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>30</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Set main</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="plTextMainPSH">
-       <property name="geometry">
-        <rect>
-         <x>306</x>
-         <y>30</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btPSH_AX_SetI0">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>100</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET0</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btPSH_AX_SetI">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SetI</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="plTextChPSH">
-       <property name="geometry">
-        <rect>
-         <x>306</x>
-         <y>100</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_41">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>61</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>17</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>main</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_42">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>100</y>
-         <width>61</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>17</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>AX</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_22">
-       <property name="geometry">
-        <rect>
-         <x>423</x>
-         <y>30</y>
-         <width>120</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbReadMain">
+      <widget class="QWidget" name="stackedWidgetSelect"/>
+      <widget class="QWidget" name="stackedWidgetSHIM">
+       <widget class="QPushButton" name="pushButtonAX">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>AX</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_T1">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>40</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>T1</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_T2">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>40</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>T2</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="gbChannel_SHIM">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>5</y>
+          <y>10</y>
+          <width>331</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
+        </property>
+        <property name="title">
+         <string>CHANNEL: NOT SELECTED</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_4">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>921</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <italic>false</italic>
+          <bold>true</bold>
+          <kerning>false</kerning>
+         </font>
+        </property>
+        <property name="title">
+         <string>CURRENT, A</string>
+        </property>
+        <widget class="QPushButton" name="pushButton_SetCurr">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>50</y>
+           <width>111</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_SetCurr0">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>50</y>
+           <width>111</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET 0</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextCurrCH6_set">
+         <property name="geometry">
+          <rect>
+           <x>800</x>
+           <y>50</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lnCh6">
+         <property name="geometry">
+          <rect>
+           <x>820</x>
+           <y>0</y>
+           <width>71</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>CH6</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextCurrCH5_set">
+         <property name="geometry">
+          <rect>
+           <x>690</x>
+           <y>50</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextCurrCH4_set">
+         <property name="geometry">
+          <rect>
+           <x>580</x>
+           <y>50</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lnCh5">
+         <property name="geometry">
+          <rect>
+           <x>700</x>
+           <y>0</y>
+           <width>71</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>CH5</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lnCh4">
+         <property name="geometry">
+          <rect>
+           <x>600</x>
+           <y>0</y>
+           <width>71</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>CH4</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextCurrCH3_set">
+         <property name="geometry">
+          <rect>
+           <x>470</x>
+           <y>50</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lnCh3">
+         <property name="geometry">
+          <rect>
+           <x>490</x>
+           <y>0</y>
+           <width>71</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>CH3</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextCurrCH2_set">
+         <property name="geometry">
+          <rect>
+           <x>360</x>
+           <y>50</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lnCh2">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>0</y>
+           <width>71</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>CH2</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextCurrCH1_set">
+         <property name="geometry">
+          <rect>
+           <x>250</x>
+           <y>50</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lnCh1">
+         <property name="geometry">
+          <rect>
+           <x>280</x>
+           <y>0</y>
+           <width>71</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+           <kerning>false</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>CH1</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbCurrCH6_get">
+         <property name="geometry">
+          <rect>
+           <x>796</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <bold>false</bold>
+           <strikeout>false</strikeout>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>I6</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbCurrCH5_get">
+         <property name="geometry">
+          <rect>
+           <x>688</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <bold>false</bold>
+           <strikeout>false</strikeout>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>I5</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbCurrCH4_get">
+         <property name="geometry">
+          <rect>
+           <x>574</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <bold>false</bold>
+           <strikeout>false</strikeout>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>I4</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbCurrCH3_get">
+         <property name="geometry">
+          <rect>
+           <x>466</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <bold>false</bold>
+           <strikeout>false</strikeout>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>I3</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbCurrCH2_get">
+         <property name="geometry">
+          <rect>
+           <x>357</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <bold>false</bold>
+           <strikeout>false</strikeout>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>I2</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_13">
+         <property name="geometry">
+          <rect>
+           <x>250</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbCurrCH1_get">
+          <property name="geometry">
+           <rect>
+            <x>-4</x>
+            <y>0</y>
+            <width>101</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+            <bold>false</bold>
+            <strikeout>false</strikeout>
+            <kerning>true</kerning>
+           </font>
+          </property>
+          <property name="text">
+           <string>I1</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QFrame" name="frame_14">
+         <property name="geometry">
+          <rect>
+           <x>360</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_15">
+         <property name="geometry">
+          <rect>
+           <x>470</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_16">
+         <property name="geometry">
+          <rect>
+           <x>580</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_17">
+         <property name="geometry">
+          <rect>
+           <x>690</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_18">
+         <property name="geometry">
+          <rect>
+           <x>800</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <zorder>lbCurrCH6_get</zorder>
+        <zorder>lbCurrCH5_get</zorder>
+        <zorder>lbCurrCH4_get</zorder>
+        <zorder>lbCurrCH3_get</zorder>
+        <zorder>lbCurrCH2_get</zorder>
+        <zorder>frame_18</zorder>
+        <zorder>frame_17</zorder>
+        <zorder>frame_16</zorder>
+        <zorder>frame_15</zorder>
+        <zorder>frame_14</zorder>
+        <zorder>frame_13</zorder>
+        <zorder>pushButton_SetCurr</zorder>
+        <zorder>pushButton_SetCurr0</zorder>
+        <zorder>pTextCurrCH6_set</zorder>
+        <zorder>lnCh6</zorder>
+        <zorder>pTextCurrCH5_set</zorder>
+        <zorder>pTextCurrCH4_set</zorder>
+        <zorder>lnCh5</zorder>
+        <zorder>lnCh4</zorder>
+        <zorder>pTextCurrCH3_set</zorder>
+        <zorder>lnCh3</zorder>
+        <zorder>pTextCurrCH2_set</zorder>
+        <zorder>lnCh2</zorder>
+        <zorder>pTextCurrCH1_set</zorder>
+        <zorder>lnCh1</zorder>
+       </widget>
+       <widget class="QPushButton" name="btShimOnOff">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>560</y>
+          <width>121</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ON</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>10</y>
+          <width>581</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>VOLTAGE, V</string>
+        </property>
+        <widget class="QFrame" name="frame_3">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>31</y>
+           <width>161</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbV_get">
+          <property name="geometry">
+           <rect>
+            <x>4</x>
+            <y>0</y>
+            <width>151</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+            <kerning>false</kerning>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextV_set">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>31</y>
+           <width>121</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhFormattedNumbersOnly</set>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_SetV_0">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>31</y>
+           <width>111</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET 0.1</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_SetV">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>31</y>
+           <width>111</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_PSH_SHIM">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>300</y>
+          <width>471</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
+        </property>
+        <property name="title">
+         <string>PSH, mA</string>
+        </property>
+        <widget class="QPushButton" name="btPSH_ShimSetCurrent0">
+         <property name="geometry">
+          <rect>
+           <x>19</x>
+           <y>25</y>
+           <width>89</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET0</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btPSH_ShimSetCurrent">
+         <property name="geometry">
+          <rect>
+           <x>123</x>
+           <y>24</y>
+           <width>89</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SetI</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pTextEditCurrent_SHIM">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>24</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_19">
+         <property name="geometry">
+          <rect>
+           <x>349</x>
+           <y>24</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="plabel_Current_SHIM">
+          <property name="geometry">
+           <rect>
+            <x>2</x>
+            <y>6</y>
+            <width>81</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>0.0</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+         </widget>
+        </widget>
+        <zorder>frame_19</zorder>
+        <zorder>btPSH_ShimSetCurrent0</zorder>
+        <zorder>btPSH_ShimSetCurrent</zorder>
+        <zorder>pTextEditCurrent_SHIM</zorder>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_11">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>300</y>
+          <width>421</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>FAN, %</string>
+        </property>
+        <widget class="QPushButton" name="btSetFAN0_MainTab">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>24</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FAN 0</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btSetFAN_MainTab">
+         <property name="geometry">
+          <rect>
+           <x>112</x>
+           <y>24</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FAN SET</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="plainTextSetFAN">
+         <property name="geometry">
+          <rect>
+           <x>211</x>
+           <y>24</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_20">
+         <property name="geometry">
+          <rect>
+           <x>314</x>
+           <y>23</y>
+           <width>91</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbFAN_value">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>71</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="gbStatusSHIM">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>530</y>
+          <width>161</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>STATUS:</string>
+        </property>
+       </widget>
+       <zorder>gbStatusSHIM</zorder>
+       <zorder>groupBox_5</zorder>
+       <zorder>gbChannel_SHIM</zorder>
+       <zorder>groupBox_11</zorder>
+       <zorder>groupBox_PSH_SHIM</zorder>
+       <zorder>pushButtonAX</zorder>
+       <zorder>pushButton_T1</zorder>
+       <zorder>pushButton_T2</zorder>
+       <zorder>groupBox_4</zorder>
+       <zorder>btShimOnOff</zorder>
+      </widget>
+      <widget class="QWidget" name="stackedWidgetMain">
+       <widget class="QGroupBox" name="groupBox_8">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>160</y>
+          <width>691</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>MAIN COIL</string>
+        </property>
+        <widget class="QPushButton" name="pushButton_minusV">
+         <property name="geometry">
+          <rect>
+           <x>590</x>
+           <y>29</y>
+           <width>89</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_minusI">
+         <property name="geometry">
+          <rect>
+           <x>590</x>
+           <y>100</y>
+           <width>89</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_pllusI">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>100</y>
+           <width>91</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_PlusV">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>29</y>
+           <width>89</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pltextSetI">
+         <property name="geometry">
+          <rect>
+           <x>360</x>
+           <y>100</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="pltextSetV">
+         <property name="geometry">
+          <rect>
+           <x>360</x>
+           <y>29</y>
+           <width>104</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_V_set">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>29</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_setI">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_32">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>33</y>
+           <width>71</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>U, V</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_33">
+         <property name="geometry">
+          <rect>
+           <x>25</x>
+           <y>100</y>
+           <width>61</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>I, A</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_V_set0">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>29</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET 0</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_set_I_zero">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET0</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_10">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>340</y>
+          <width>591</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>PSH, mA</string>
+        </property>
+        <widget class="QPushButton" name="btPSH_Main_SetI0">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>30</y>
+           <width>89</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Set main 0</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btPSH_Main_SetI">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>30</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Set main</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="plTextMainPSH">
+         <property name="geometry">
+          <rect>
+           <x>306</x>
+           <y>30</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btPSH_AX_SetI0">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>100</y>
+           <width>89</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SET0</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btPSH_AX_SetI">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>SetI</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="plTextChPSH">
+         <property name="geometry">
+          <rect>
+           <x>306</x>
+           <y>100</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_41">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>30</y>
+           <width>61</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>17</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>main</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_42">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>100</y>
+           <width>61</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>17</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>AX</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_22">
+         <property name="geometry">
+          <rect>
+           <x>423</x>
+           <y>30</y>
+           <width>120</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbReadMain">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>5</y>
+            <width>91</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>17</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>0.0</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QFrame" name="frame_23">
+         <property name="geometry">
+          <rect>
+           <x>422</x>
+           <y>100</y>
+           <width>120</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbReadCh">
+          <property name="geometry">
+           <rect>
+            <x>12</x>
+            <y>7</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>17</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>0.0</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="label_36">
+        <property name="geometry">
+         <rect>
+          <x>334</x>
+          <y>35</y>
+          <width>161</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>U lead, V</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbVrampUP">
+        <property name="geometry">
+         <rect>
+          <x>86</x>
+          <y>94</y>
           <width>91</width>
           <height>31</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>17</pointsize>
+          <pointsize>18</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>0.0</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
+         <string>0.0000</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QFrame" name="frame_23">
-       <property name="geometry">
-        <rect>
-         <x>422</x>
-         <y>100</y>
-         <width>120</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbReadCh">
+       <widget class="QLabel" name="lbIrampUP">
         <property name="geometry">
          <rect>
-          <x>12</x>
-          <y>7</y>
+          <x>216</x>
+          <y>94</y>
           <width>101</width>
           <height>31</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>17</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>0.0</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-     <widget class="QLabel" name="label_36">
-      <property name="geometry">
-       <rect>
-        <x>334</x>
-        <y>35</y>
-        <width>161</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>24</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>U lead, V</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbVrampUP">
-      <property name="geometry">
-       <rect>
-        <x>86</x>
-        <y>94</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>0.0000</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbIrampUP">
-      <property name="geometry">
-       <rect>
-        <x>216</x>
-        <y>94</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>18</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>0.0000</string>
-      </property>
-     </widget>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>20</y>
-        <width>691</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>MAIN</string>
-      </property>
-      <widget class="QFrame" name="frame_6">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>70</y>
-         <width>120</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_7">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>70</y>
-         <width>120</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_35">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>20</y>
-         <width>61</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>I, A</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_9">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>70</y>
-         <width>171</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbVlead">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>3</y>
-          <width>151</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
           <pointsize>18</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>0.00000000</string>
+         <string>0.0000</string>
         </property>
        </widget>
-      </widget>
-      <widget class="QFrame" name="frame_21">
-       <property name="geometry">
-        <rect>
-         <x>470</x>
-         <y>70</y>
-         <width>181</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbVmagnet">
+       <widget class="QGroupBox" name="groupBox">
         <property name="geometry">
          <rect>
-          <x>13</x>
-          <y>4</y>
-          <width>151</width>
-          <height>31</height>
+          <x>40</x>
+          <y>20</y>
+          <width>691</width>
+          <height>121</height>
          </rect>
         </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-         </font>
+        <property name="title">
+         <string>MAIN</string>
         </property>
-        <property name="text">
-         <string>0.00000000</string>
-        </property>
+        <widget class="QFrame" name="frame_6">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>70</y>
+           <width>120</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_7">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>70</y>
+           <width>120</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_35">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>20</y>
+           <width>61</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>I, A</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_9">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>70</y>
+           <width>171</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbVlead">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>3</y>
+            <width>151</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>0.00000000</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QFrame" name="frame_21">
+         <property name="geometry">
+          <rect>
+           <x>470</x>
+           <y>70</y>
+           <width>181</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbVmagnet">
+          <property name="geometry">
+           <rect>
+            <x>13</x>
+            <y>4</y>
+            <width>151</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>0.00000000</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QLabel" name="label_37">
+         <property name="geometry">
+          <rect>
+           <x>476</x>
+           <y>10</y>
+           <width>181</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>U mag, V</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_34">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>20</y>
+           <width>71</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>U, V</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+        </widget>
        </widget>
-      </widget>
-      <widget class="QLabel" name="label_37">
-       <property name="geometry">
-        <rect>
-         <x>476</x>
-         <y>10</y>
-         <width>181</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>U mag, V</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_34">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>20</y>
-         <width>71</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>U, V</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
+       <widget class="QGroupBox" name="groupBox_24">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>540</y>
+          <width>391</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>FAN, %</string>
+        </property>
+        <widget class="QPushButton" name="btSetFAN0_ShimTab">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>20</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FAN 0</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btSetFAN_ShimTab">
+         <property name="geometry">
+          <rect>
+           <x>107</x>
+           <y>20</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>FAN SET</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="plainTextSetFAN_2">
+         <property name="geometry">
+          <rect>
+           <x>197</x>
+           <y>20</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="maximumBlockCount">
+          <number>1</number>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame_25">
+         <property name="geometry">
+          <rect>
+           <x>287</x>
+           <y>20</y>
+           <width>91</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lbFAN_value_2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>3</y>
+            <width>71</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="gbRampUp_status">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>540</y>
+          <width>161</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>STATUS:</string>
+        </property>
+        <widget class="QPushButton" name="btMainOnOff">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>20</y>
+           <width>101</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>ON</string>
+         </property>
+        </widget>
+       </widget>
+       <zorder>gbRampUp_status</zorder>
+       <zorder>groupBox</zorder>
+       <zorder>groupBox_8</zorder>
+       <zorder>groupBox_10</zorder>
+       <zorder>label_36</zorder>
+       <zorder>lbVrampUP</zorder>
+       <zorder>lbIrampUP</zorder>
+       <zorder>groupBox_24</zorder>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_24">
+    </widget>
+    <widget class="QWidget" name="page_1_connect">
+     <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>540</y>
+        <x>460</x>
+        <y>760</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btConnect">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>760</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CONNECT</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="gbConnection">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>729</y>
         <width>391</width>
-        <height>71</height>
+        <height>81</height>
        </rect>
       </property>
-      <property name="title">
-       <string>FAN, %</string>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
       </property>
-      <widget class="QPushButton" name="btSetFAN0_ShimTab">
-       <property name="geometry">
-        <rect>
-         <x>17</x>
-         <y>20</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>FAN 0</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btSetFAN_ShimTab">
-       <property name="geometry">
-        <rect>
-         <x>107</x>
-         <y>20</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>FAN SET</string>
-       </property>
-      </widget>
-      <widget class="QPlainTextEdit" name="plainTextSetFAN_2">
-       <property name="geometry">
-        <rect>
-         <x>197</x>
-         <y>20</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="maximumBlockCount">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame_25">
-       <property name="geometry">
-        <rect>
-         <x>287</x>
-         <y>20</y>
-         <width>91</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QLabel" name="lbFAN_value_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>3</y>
-          <width>71</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>0</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-       </widget>
-      </widget>
+      <property name="title">
+       <string>CONNECTION:</string>
+      </property>
      </widget>
-     <widget class="QGroupBox" name="gbRampUp_status">
+    </widget>
+    <widget class="QWidget" name="page_2_select_tomo">
+     <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>540</y>
-        <width>161</width>
-        <height>71</height>
+        <x>330</x>
+        <y>370</y>
+        <width>101</width>
+        <height>21</height>
        </rect>
       </property>
-      <property name="title">
-       <string>STATUS:</string>
+      <property name="text">
+       <string>MANUFACTURER</string>
       </property>
-      <widget class="QPushButton" name="btMainOnOff">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>20</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ON</string>
-       </property>
-      </widget>
      </widget>
-     <zorder>gbRampUp_status</zorder>
-     <zorder>groupBox</zorder>
-     <zorder>groupBox_8</zorder>
-     <zorder>groupBox_10</zorder>
-     <zorder>label_36</zorder>
-     <zorder>lbVrampUP</zorder>
-     <zorder>lbIrampUP</zorder>
-     <zorder>groupBox_24</zorder>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>410</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MODEL</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_manuf">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>370</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_model">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>410</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_chose">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>530</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Chose</string>
+      </property>
+     </widget>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_26">
-    <property name="geometry">
-     <rect>
-      <x>1550</x>
-      <y>0</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>tB</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_31">
-    <property name="geometry">
-     <rect>
-      <x>1420</x>
-      <y>360</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Temp</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_25">
-    <property name="geometry">
-     <rect>
-      <x>1440</x>
-      <y>0</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>tA</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_30">
-    <property name="geometry">
-     <rect>
-      <x>1320</x>
-      <y>360</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Iout</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_24">
-    <property name="geometry">
-     <rect>
-      <x>1220</x>
-      <y>0</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Ub</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_29">
-    <property name="geometry">
-     <rect>
-      <x>1210</x>
-      <y>360</y>
-      <width>61</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Vout</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_23">
-    <property name="geometry">
-     <rect>
-      <x>1110</x>
-      <y>0</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Ua</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_28">
-    <property name="geometry">
-     <rect>
-      <x>1110</x>
-      <y>360</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Iin</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_22">
-    <property name="geometry">
-     <rect>
-      <x>990</x>
-      <y>0</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Im</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_27">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>360</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Vin</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm0">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>30</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa0">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>30</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb0">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>30</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab0">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>30</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa0">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>30</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb0">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>30</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_38">
-    <property name="geometry">
-     <rect>
-      <x>1320</x>
-      <y>0</y>
-      <width>51</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Ua-b</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm1">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm2">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm3">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>150</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm4">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>190</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm5">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>230</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm6">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>270</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa1">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa6">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>270</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa2">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa3">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>150</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa4">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>190</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa5">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>230</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb6">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>270</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab5">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>230</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab4">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>190</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb4">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>190</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb3">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>150</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab2">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab6">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>270</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab1">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb1">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab3">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>150</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb2">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb5">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>230</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa6">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>270</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb5">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>230</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb4">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>190</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa4">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>190</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa3">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>150</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb2">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb6">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>270</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb1">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa1">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb3">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>150</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa2">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa5">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>230</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin6">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>630</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin1">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>430</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin0">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin2">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin3">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin4">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin5">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>590</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin0">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin3">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin4">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin5">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>590</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin2">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin6">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>630</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin1">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>430</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout2">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout4">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout1">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>430</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout3">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout0">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout1">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>430</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout2">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout3">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout5">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>590</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout6">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>630</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout5">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>590</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout0">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout4">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout6">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>630</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp2">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp4">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp1">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>430</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp3">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp0">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp5">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>590</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp6">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>630</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIm7">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>310</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTb7">
-    <property name="geometry">
-     <rect>
-      <x>1520</x>
-      <y>310</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUb7">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>310</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab7">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>310</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTa7">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>310</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUa7">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>310</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout7">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout7">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp7">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin7">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin7">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>760</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="editable">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btConnect">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>760</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CONNECT</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="gbStatus">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>730</y>
-      <width>361</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QGroupBox {
-    font: bold; 
-    border: 1px solid silver;
-    border-radius: 6px;
-    margin-top: 6px;
-}
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 7px;
-    padding: 0px 5px 0px 5px;
-}</string>
-    </property>
-    <property name="title">
-     <string>STATUS:</string>
-    </property>
-    <widget class="QPushButton" name="btSetMain_Tab">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>30</y>
-       <width>151</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>MAIN</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btSetSHIM_Tab">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>30</y>
-       <width>151</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>SHIM</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="gbConnection">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>729</y>
-      <width>391</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QGroupBox {
-    font: bold; 
-    border: 1px solid silver;
-    border-radius: 6px;
-    margin-top: 6px;
-}
-QGroupBox::title {
-    subcontrol-origin: margin;
-    left: 7px;
-    padding: 0px 5px 0px 5px;
-}</string>
-    </property>
-    <property name="title">
-     <string>CONNECTION:</string>
-    </property>
-   </widget>
-   <zorder>gbConnection</zorder>
-   <zorder>gbStatus</zorder>
-   <zorder>label_26</zorder>
-   <zorder>label_31</zorder>
-   <zorder>label_25</zorder>
-   <zorder>label_30</zorder>
-   <zorder>label_24</zorder>
-   <zorder>label_29</zorder>
-   <zorder>label_23</zorder>
-   <zorder>label_28</zorder>
-   <zorder>label_22</zorder>
-   <zorder>label_27</zorder>
-   <zorder>txtIm0</zorder>
-   <zorder>txtUa0</zorder>
-   <zorder>txtUb0</zorder>
-   <zorder>txtUab0</zorder>
-   <zorder>txtTa0</zorder>
-   <zorder>txtTb0</zorder>
-   <zorder>label_38</zorder>
-   <zorder>txtIm1</zorder>
-   <zorder>txtIm2</zorder>
-   <zorder>txtIm3</zorder>
-   <zorder>txtIm4</zorder>
-   <zorder>txtIm5</zorder>
-   <zorder>txtIm6</zorder>
-   <zorder>txtUa1</zorder>
-   <zorder>txtUa6</zorder>
-   <zorder>txtUa2</zorder>
-   <zorder>txtUa3</zorder>
-   <zorder>txtUa4</zorder>
-   <zorder>txtUa5</zorder>
-   <zorder>txtUb6</zorder>
-   <zorder>txtUab5</zorder>
-   <zorder>txtUab4</zorder>
-   <zorder>txtUb4</zorder>
-   <zorder>txtUb3</zorder>
-   <zorder>txtUab2</zorder>
-   <zorder>txtUab6</zorder>
-   <zorder>txtUab1</zorder>
-   <zorder>txtUb1</zorder>
-   <zorder>txtUab3</zorder>
-   <zorder>txtUb2</zorder>
-   <zorder>txtUb5</zorder>
-   <zorder>txtTa6</zorder>
-   <zorder>txtTb5</zorder>
-   <zorder>txtTb4</zorder>
-   <zorder>txtTa4</zorder>
-   <zorder>txtTa3</zorder>
-   <zorder>txtTb2</zorder>
-   <zorder>txtTb6</zorder>
-   <zorder>txtTb1</zorder>
-   <zorder>txtTa1</zorder>
-   <zorder>txtTb3</zorder>
-   <zorder>txtTa2</zorder>
-   <zorder>txtTa5</zorder>
-   <zorder>txtVin6</zorder>
-   <zorder>txtVin1</zorder>
-   <zorder>txtVin0</zorder>
-   <zorder>txtVin2</zorder>
-   <zorder>txtVin3</zorder>
-   <zorder>txtVin4</zorder>
-   <zorder>txtVin5</zorder>
-   <zorder>txtIin0</zorder>
-   <zorder>txtIin3</zorder>
-   <zorder>txtIin4</zorder>
-   <zorder>txtIin5</zorder>
-   <zorder>txtIin2</zorder>
-   <zorder>txtIin6</zorder>
-   <zorder>txtIin1</zorder>
-   <zorder>txtVout2</zorder>
-   <zorder>txtVout4</zorder>
-   <zorder>txtVout1</zorder>
-   <zorder>txtVout3</zorder>
-   <zorder>txtVout0</zorder>
-   <zorder>txtIout1</zorder>
-   <zorder>txtIout2</zorder>
-   <zorder>txtIout3</zorder>
-   <zorder>txtVout5</zorder>
-   <zorder>txtIout6</zorder>
-   <zorder>txtIout5</zorder>
-   <zorder>txtIout0</zorder>
-   <zorder>txtIout4</zorder>
-   <zorder>txtVout6</zorder>
-   <zorder>txtTemp2</zorder>
-   <zorder>txtTemp4</zorder>
-   <zorder>txtTemp1</zorder>
-   <zorder>txtTemp3</zorder>
-   <zorder>txtTemp0</zorder>
-   <zorder>txtTemp5</zorder>
-   <zorder>txtTemp6</zorder>
-   <zorder>txtIm7</zorder>
-   <zorder>txtTb7</zorder>
-   <zorder>txtUb7</zorder>
-   <zorder>txtUab7</zorder>
-   <zorder>txtTa7</zorder>
-   <zorder>txtUa7</zorder>
-   <zorder>txtVout7</zorder>
-   <zorder>txtIout7</zorder>
-   <zorder>txtTemp7</zorder>
-   <zorder>txtIin7</zorder>
-   <zorder>txtVin7</zorder>
-   <zorder>comboBox</zorder>
-   <zorder>btConnect</zorder>
-   <zorder>stackedWidget</zorder>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1631</width>
+     <width>1680</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>pushButton_T1</tabstop>
