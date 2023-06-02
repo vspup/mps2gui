@@ -11,6 +11,8 @@ class QCheckBox;
 class QLabel;
 class QLineEdit;
 class QRadioButton;
+class QPropertyAnimation;
+//class QComboBox;
 QT_END_NAMESPACE
 
 class MPSWizard : public QWizard
@@ -18,8 +20,12 @@ class MPSWizard : public QWizard
     Q_OBJECT
 
 public:
-    enum { Page_Intro, Page_Evaluate, Page_Register, Page_Details,
-           Page_Conclusion };
+    enum { PAGE_INIT_E,
+           PAGE_CONNECT_E,
+           PAGE_SEL_TOMO_E,
+           PAGE_PROCESS_E,
+           PAGE_FINAL_E
+    };
     
     MPSWizard(QWidget *parent = nullptr);
 
@@ -27,77 +33,67 @@ private slots:
     void showHelp();
 };
 
-class IntroPage : public QWizardPage
+class InitPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
-    IntroPage(QWidget *parent = nullptr);
+    InitPage(QWidget *parent = nullptr);
 
     int nextId() const override;
 
 private:
     QLabel *topLabel;
-    QRadioButton *registerRadioButton;
-    QRadioButton *evaluateRadioButton;
 };
 
-class EvaluatePage : public QWizardPage
+class ConnectPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
-    EvaluatePage(QWidget *parent = nullptr);
+    ConnectPage(QWidget *parent = nullptr);
 
     int nextId() const override;
 
 private:
-    QLabel *nameLabel;
-    QLabel *emailLabel;
-    QLineEdit *nameLineEdit;
-    QLineEdit *emailLineEdit;
+    QLabel *connectLabel;
+    QLineEdit *ipLineEdit;
 };
 
-class RegisterPage : public QWizardPage
+class SelectTomoPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
-    RegisterPage(QWidget *parent = nullptr);
+    SelectTomoPage(QWidget *parent = nullptr);
 
     int nextId() const override;
 
 private:
-    QLabel *nameLabel;
-    QLabel *upgradeKeyLabel;
-    QLineEdit *nameLineEdit;
-    QLineEdit *upgradeKeyLineEdit;
+    QLabel *manufLabel;
+    QLabel *modelLabel;
+    QLineEdit *manufLineEdit;
+    QLineEdit *modelLineEdit;
 };
 
-class DetailsPage : public QWizardPage
+class ProcessPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
-    DetailsPage(QWidget *parent = nullptr);
-
+    ProcessPage(QWidget *parent = nullptr);
     int nextId() const override;
 
 private:
-    QLabel *companyLabel;
-    QLabel *emailLabel;
-    QLabel *postalLabel;
-    QLineEdit *companyLineEdit;
-    QLineEdit *emailLineEdit;
-    QLineEdit *postalLineEdit;
+    QPushButton *workButton;
 };
 
-class ConclusionPage : public QWizardPage
+class FinalPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
-    ConclusionPage(QWidget *parent = nullptr);
+    FinalPage(QWidget *parent = nullptr);
 
     void initializePage() override;
     int nextId() const override;

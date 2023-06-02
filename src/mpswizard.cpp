@@ -10,13 +10,13 @@ QString emailRegExp = QStringLiteral(".+@.+");
 MPSWizard::MPSWizard(QWidget *parent)
     : QWizard(parent)
 {
-    setPage(Page_Intro, new IntroPage);
-    setPage(Page_Evaluate, new EvaluatePage);
-    setPage(Page_Register, new RegisterPage);
-    setPage(Page_Details, new DetailsPage);
-    setPage(Page_Conclusion, new ConclusionPage);
+    setPage(PAGE_INIT_E, new InitPage);
+    setPage(PAGE_CONNECT_E, new ConnectPage);
+    setPage(PAGE_SEL_TOMO_E, new SelectTomoPage);
+    setPage(PAGE_PROCESS_E, new ProcessPage);
+    setPage(PAGE_FINAL_E, new FinalPage);
 
-    setStartId(Page_Intro);
+    setStartId(PAGE_INIT_E);
 
     setWizardStyle(ModernStyle);
 
@@ -25,7 +25,7 @@ MPSWizard::MPSWizard(QWidget *parent)
 
     connect(this, &QWizard::helpRequested, this, &MPSWizard::showHelp);
 
-    setWindowTitle(tr("License Wizard"));
+    setWindowTitle(tr("MPS"));
 }
 
 void MPSWizard::showHelp()
@@ -35,190 +35,144 @@ void MPSWizard::showHelp()
     QString message;
 
     switch (currentId()) {
-    case Page_Intro:
-        message = tr("The decision you make here will affect which page you "
-                     "get to see next.");
+    case PAGE_INIT_E:
+        message = tr("Init page.");
         break;
 
-    case Page_Evaluate:
-        message = tr("Make sure to provide a valid email address, such as "
-                     "toni.buddenbrook@example.de.");
+    case PAGE_CONNECT_E:
+        message = tr("Connect here");
         break;
-    case Page_Register:
-        message = tr("If you don't provide an upgrade key, you will be "
-                     "asked to fill in your details.");
+    case PAGE_SEL_TOMO_E:
+        message = tr("Select tomograpth here");
         break;
-    case Page_Details:
-        message = tr("Make sure to provide a valid email address, such as "
-                     "thomas.gradgrind@example.co.uk.");
+    case PAGE_PROCESS_E:
+        message = tr("Main process of soft is here");
         break;
-    case Page_Conclusion:
-        message = tr("You must accept the terms and conditions of the "
-                     "license to proceed.");
+    case PAGE_FINAL_E:
+        message = tr("Last page in sequence");
         break;
 
     default:
-        message = tr("This help is likely not to be of any help.");
+        message = tr("Default");
     }
 
-
     if (lastHelpMessage == message)
-        message = tr("Sorry, I already gave what help I could. "
-                     "Maybe you should try asking a human?");
+        message = tr("Help pressed twice");
 
-    QMessageBox::information(this, tr("License Wizard Help"), message);
+    QMessageBox::information(this, tr("MPS Help"), message);
 
     lastHelpMessage = message;
 }
 
-IntroPage::IntroPage(QWidget *parent)
+InitPage::InitPage(QWidget *parent)
     : QWizardPage(parent)
 {
-    setTitle(tr("Introduction"));
-    setPixmap(QWizard::WatermarkPixmap, QPixmap(":/images/watermark.png"));
+    setTitle(tr("Init Page Title"));
+    //setPixmap(QWizard::WatermarkPixmap, QPixmap(":/images/watermark.png"));
 
-    topLabel = new QLabel(tr("This wizard will help you register your copy of "
-                             "<i>Super Product One</i>&trade; or start "
-                             "evaluating the product."));
+    topLabel = new QLabel(tr("This software will help you configure the product"));
     topLabel->setWordWrap(true);
-
-    registerRadioButton = new QRadioButton(tr("&Register your copy"));
-    evaluateRadioButton = new QRadioButton(tr("&Evaluate the product for 30 "
-                                              "days"));
-    registerRadioButton->setChecked(true);
 
     QVBoxLayout *layout = new QVBoxLayout;
     layout->addWidget(topLabel);
-    layout->addWidget(registerRadioButton);
-    layout->addWidget(evaluateRadioButton);
     setLayout(layout);
 }
 
-int IntroPage::nextId() const
+int InitPage::nextId() const
 {
-    if (evaluateRadioButton->isChecked()) {
-        return MPSWizard::Page_Evaluate;
+    return MPSWizard::PAGE_CONNECT_E;
+}
+
+ConnectPage::ConnectPage(QWidget *parent)
+    : QWizardPage(parent)
+{
+    setTitle(tr("Connection"));
+    setSubTitle(tr("Select the IP you want to connect to."));
+
+    connectLabel = new QLabel(tr("Connect to PSU"));
+    ipLineEdit = new QLineEdit(tr("192.168.0.111"));
+
+    QGridLayout *layout = new QGridLayout;
+    layout->addWidget(ipLineEdit, 1, 1);
+    layout->addWidget(connectLabel, 1, 0);
+    setLayout(layout);
+}
+
+int ConnectPage::nextId() const
+{
+    return MPSWizard::PAGE_SEL_TOMO_E;
+}
+
+SelectTomoPage::SelectTomoPage(QWidget *parent)
+    : QWizardPage(parent)
+{
+    setTitle(tr("Device selection"));
+    setSubTitle(tr("Here you can select manufacturer and model of tomograph"));
+
+    manufLabel = new QLabel(tr("Manufacturer:"));
+    manufLineEdit = new QLineEdit;
+    manufLabel->setBuddy(manufLineEdit);
+
+    modelLabel = new QLabel(tr("Model:"));
+    modelLineEdit = new QLineEdit;
+    modelLabel->setBuddy(modelLineEdit);
+
+    //registerField("register.name*", manufLineEdit);
+    //registerField("register.upgradeKey", modelLineEdit);
+
+    QGridLayout *layout = new QGridLayout;
+    layout->addWidget(manufLabel, 0, 0);
+    layout->addWidget(manufLineEdit, 0, 1);
+    layout->addWidget(modelLabel, 1, 0);
+    layout->addWidget(modelLineEdit, 1, 1);
+    setLayout(layout);
+}
+
+int SelectTomoPage::nextId() const
+{
+    if (modelLineEdit->text().isEmpty()) {
+        qInfo("Model not selected!");
+    } else if(manufLineEdit->text().isEmpty()) {
+        qInfo("Manufacturer not selected!");
     } else {
-        return MPSWizard::Page_Register;
+        //return MPSWizard::PAGE_PROCESS_E;
     }
+    return MPSWizard::PAGE_PROCESS_E;
 }
 
-EvaluatePage::EvaluatePage(QWidget *parent)
+ProcessPage::ProcessPage(QWidget *parent)
     : QWizardPage(parent)
 {
-    setTitle(tr("Evaluate <i>Super Product One</i>&trade;"));
-    setSubTitle(tr("Please fill both fields. Make sure to provide a valid "
-                   "email address (e.g., john.smith@example.com)."));
+    setTitle(tr("Process of MPS"));
+    setSubTitle(tr("Most of work should be done here"));
 
-    nameLabel = new QLabel(tr("N&ame:"));
-    nameLineEdit = new QLineEdit;
-    nameLabel->setBuddy(nameLineEdit);
+    workButton = new QPushButton(tr("Main"), this);
+    workButton->setFixedSize(80, 30);
 
-    emailLabel = new QLabel(tr("&Email address:"));
-    emailLineEdit = new QLineEdit;
-    emailLineEdit->setValidator(new QRegularExpressionValidator(QRegularExpression(emailRegExp), this));
-    emailLabel->setBuddy(emailLineEdit);
-
-    registerField("evaluate.name*", nameLineEdit);
-    registerField("evaluate.email*", emailLineEdit);
+    QPushButton *btnShim = new QPushButton(tr("SHIM"), this);
+    btnShim->setFixedSize(80, 30);
 
     QGridLayout *layout = new QGridLayout;
-    layout->addWidget(nameLabel, 0, 0);
-    layout->addWidget(nameLineEdit, 0, 1);
-    layout->addWidget(emailLabel, 1, 0);
-    layout->addWidget(emailLineEdit, 1, 1);
+    layout->addWidget(workButton, 0, 0);
+    layout->addWidget(btnShim, 0, 1);
     setLayout(layout);
 }
 
-int EvaluatePage::nextId() const
+int ProcessPage::nextId() const
 {
-    return MPSWizard::Page_Conclusion;
+    return MPSWizard::PAGE_FINAL_E;
 }
 
-RegisterPage::RegisterPage(QWidget *parent)
+FinalPage::FinalPage(QWidget *parent)
     : QWizardPage(parent)
 {
-    setTitle(tr("Register Your Copy of <i>Super Product One</i>&trade;"));
-    setSubTitle(tr("If you have an upgrade key, please fill in "
-                   "the appropriate field."));
-
-    nameLabel = new QLabel(tr("N&ame:"));
-    nameLineEdit = new QLineEdit;
-    nameLabel->setBuddy(nameLineEdit);
-
-    upgradeKeyLabel = new QLabel(tr("&Upgrade key:"));
-    upgradeKeyLineEdit = new QLineEdit;
-    upgradeKeyLabel->setBuddy(upgradeKeyLineEdit);
-
-    registerField("register.name*", nameLineEdit);
-    registerField("register.upgradeKey", upgradeKeyLineEdit);
-
-    QGridLayout *layout = new QGridLayout;
-    layout->addWidget(nameLabel, 0, 0);
-    layout->addWidget(nameLineEdit, 0, 1);
-    layout->addWidget(upgradeKeyLabel, 1, 0);
-    layout->addWidget(upgradeKeyLineEdit, 1, 1);
-    setLayout(layout);
-}
-
-int RegisterPage::nextId() const
-{
-    if (upgradeKeyLineEdit->text().isEmpty()) {
-        return MPSWizard::Page_Details;
-    } else {
-        return MPSWizard::Page_Conclusion;
-    }
-}
-
-DetailsPage::DetailsPage(QWidget *parent)
-    : QWizardPage(parent)
-{
-    setTitle(tr("Fill In Your Details"));
-    setSubTitle(tr("Please fill all three fields. Make sure to provide a valid "
-                   "email address (e.g., tanaka.aya@example.co.jp)."));
-
-    companyLabel = new QLabel(tr("&Company name:"));
-    companyLineEdit = new QLineEdit;
-    companyLabel->setBuddy(companyLineEdit);
-
-    emailLabel = new QLabel(tr("&Email address:"));
-    emailLineEdit = new QLineEdit;
-    emailLineEdit->setValidator(new QRegularExpressionValidator(QRegularExpression(emailRegExp), this));
-    emailLabel->setBuddy(emailLineEdit);
-
-    postalLabel = new QLabel(tr("&Postal address:"));
-    postalLineEdit = new QLineEdit;
-    postalLabel->setBuddy(postalLineEdit);
-
-    registerField("details.company*", companyLineEdit);
-    registerField("details.email*", emailLineEdit);
-    registerField("details.postal*", postalLineEdit);
-
-    QGridLayout *layout = new QGridLayout;
-    layout->addWidget(companyLabel, 0, 0);
-    layout->addWidget(companyLineEdit, 0, 1);
-    layout->addWidget(emailLabel, 1, 0);
-    layout->addWidget(emailLineEdit, 1, 1);
-    layout->addWidget(postalLabel, 2, 0);
-    layout->addWidget(postalLineEdit, 2, 1);
-    setLayout(layout);
-}
-
-int DetailsPage::nextId() const
-{
-    return MPSWizard::Page_Conclusion;
-}
-
-ConclusionPage::ConclusionPage(QWidget *parent)
-    : QWizardPage(parent)
-{
-    setTitle(tr("Complete Your Registration"));
+    setTitle(tr("Final Page"));
     setPixmap(QWizard::WatermarkPixmap, QPixmap(":/images/watermark.png"));
 
     bottomLabel = new QLabel;
     bottomLabel->setWordWrap(true);
 
-    agreeCheckBox = new QCheckBox(tr("I agree to the terms of the license"));
+    agreeCheckBox = new QCheckBox(tr("Select this to exit from MPS"));
 
     registerField("conclusion.agree*", agreeCheckBox);
 
@@ -228,32 +182,29 @@ ConclusionPage::ConclusionPage(QWidget *parent)
     setLayout(layout);
 }
 
-int ConclusionPage::nextId() const
+int FinalPage::nextId() const
 {
+    qInfo("Exiting from MPS");
     return -1;
 }
 
-void ConclusionPage::initializePage()
+void FinalPage::initializePage()
 {
-    QString licenseText;
+    QString text;
+    text = tr("Visited: ");
 
-    if (wizard()->hasVisitedPage(MPSWizard::Page_Evaluate)) {
-        licenseText = tr("<u>Evaluation License Agreement:</u> "
-                         "You can use this software for 30 days and make one "
-                         "backup, but you are not allowed to distribute it.");
-    } else if (wizard()->hasVisitedPage(MPSWizard::Page_Details)) {
-        licenseText = tr("<u>First-Time License Agreement:</u> "
-                         "You can use this software subject to the license "
-                         "you will receive by email.");
-    } else {
-        licenseText = tr("<u>Upgrade License Agreement:</u> "
-                         "This software is licensed under the terms of your "
-                         "current license.");
+    if (wizard()->hasVisitedPage(MPSWizard::PAGE_CONNECT_E)) {
+        text.append("PAGE_CONNECT_E,");
     }
-    bottomLabel->setText(licenseText);
+
+    if (wizard()->hasVisitedPage(MPSWizard::PAGE_PROCESS_E)) {
+        text.append("PAGE_PROCESS_E,");
+    }
+
+    bottomLabel->setText(text);
 }
 
-void ConclusionPage::setVisible(bool visible)
+void FinalPage::setVisible(bool visible)
 {
     QWizardPage::setVisible(visible);
 
@@ -261,15 +212,15 @@ void ConclusionPage::setVisible(bool visible)
         wizard()->setButtonText(QWizard::CustomButton1, tr("&Print"));
         wizard()->setOption(QWizard::HaveCustomButton1, true);
         connect(wizard(), &QWizard::customButtonClicked,
-                this, &ConclusionPage::printButtonClicked);
+                this, &FinalPage::printButtonClicked);
     } else {
         wizard()->setOption(QWizard::HaveCustomButton1, false);
         disconnect(wizard(), &QWizard::customButtonClicked,
-                   this, &ConclusionPage::printButtonClicked);
+                   this, &FinalPage::printButtonClicked);
     }
 }
 
-void ConclusionPage::printButtonClicked()
+void FinalPage::printButtonClicked()
 {
-    qInfo ("printed");
+    qInfo ("print clicked");
 }

@@ -96,8 +96,8 @@ set(RESOURCE_FILES
 )
 
 qt_add_resources(mps2gui "mps2gui"
-#    PREFIX
-#        "/"
+    PREFIX
+        "/"
     FILES
         ${RESOURCE_FILES}
 )
