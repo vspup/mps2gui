@@ -1,12 +1,7 @@
-// Copyright (C) 2016 The Qt Company Ltd.
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
 #include <QtWidgets>
 #include <QDebug>
 #include "inc/mpswizard.h"
 #include "inc/mainwindow.h"
-
-QString emailRegExp = QStringLiteral(".+@.+");
 
 MPSWizard::MPSWizard(QWidget *parent)
     : QWizard(parent)
@@ -68,10 +63,10 @@ void MPSWizard::showHelp()
 InitPage::InitPage(QWidget *parent)
     : QWizardPage(parent)
 {
-    setTitle(tr("Init Page Title"));
+    setTitle(tr("Welcome"));
     setPixmap(QWizard::WatermarkPixmap, QPixmap(":/images/watermark.png"));
 
-    topLabel = new QLabel(tr("This software will help you configure the product"));
+    QLabel *topLabel = new QLabel(tr("This software will help you configure the product"));
     topLabel->setWordWrap(true);
 
     QVBoxLayout *layout = new QVBoxLayout;
@@ -90,14 +85,14 @@ ConnectPage::ConnectPage(QWidget *parent)
     setTitle(tr("Connection"));
     setSubTitle(tr("Select the IP you want to connect to."));
 
-    connectLabel = new QLabel(tr("Connect to PSU"));
+    QLabel *connectLabel = new QLabel(tr("Connect to PSU"));
     ipComBox = new QComboBox;
 
     ipComBox->addItem("192.168.0.101");
     ipComBox->addItem("192.168.0.102");
     ipComBox->addItem("192.168.0.103");
 
-    connectButton = new QPushButton(tr("Select IP"), this);
+    QPushButton* connectButton = new QPushButton(tr("Select IP"), this);
     connect(connectButton, &QPushButton::clicked, this, &ConnectPage::handleButtonClicked);
 
     QGridLayout *layout = new QGridLayout;
@@ -112,6 +107,9 @@ void ConnectPage::handleButtonClicked()
 {
     QString ipAddr = ipComBox->currentText();
     qInfo() << "Selected IP: " << ipAddr;
+
+    int nextPageId = MPSWizard::PAGE_SEL_TOMO_E;
+    wizard()->setCurrentId(nextPageId);
 }
 
 int ConnectPage::nextId() const
@@ -125,13 +123,13 @@ SelectTomoPage::SelectTomoPage(QWidget *parent)
     setTitle(tr("Device selection"));
     setSubTitle(tr("Here you can select manufacturer and model of tomograph"));
 
-    manufLabel = new QLabel(tr("Manufacturer:"));
+    QLabel *manufLabel = new QLabel(tr("Manufacturer:"));
     manufComBox = new QComboBox;
     manufComBox->addItem("Manufacturer 1");
     manufComBox->addItem("Manufacturer 2");
     manufComBox->addItem("Manufacturer 3");
 
-    modelLabel = new QLabel(tr("Model:"));
+    QLabel *modelLabel = new QLabel(tr("Model:"));
     modelComBox = new QComboBox;
     modelComBox->addItem("Model 1");
     modelComBox->addItem("Model 2");
@@ -228,7 +226,7 @@ ProcessPage::ProcessPage(QWidget *parent)
     setTitle(tr("Process of MPS"));
     setSubTitle(tr("Most of work should be done here"));
 
-    workButton = new QPushButton(tr("Dummy"), this);
+    QPushButton *workButton = new QPushButton(tr("Dummy"), this);
     workButton->setFixedSize(80, 30);
 
     QPushButton *runOld = new QPushButton(tr("Run old UI"), this);
@@ -282,18 +280,18 @@ int FinalPage::nextId() const
 void FinalPage::initializePage()
 {
     QString text;
-    text = tr("Visited: ");
+    text = tr("Visited pages: \n");
 
     if (wizard()->hasVisitedPage(MPSWizard::PAGE_CONNECT_E)) {
-        text.append("PAGE_CONNECT_E, ");
+        text.append("PAGE_CONNECT_E, \n");
     }
 
     if (wizard()->hasVisitedPage(MPSWizard::PAGE_SEL_TOMO_E)) {
-        text.append("PAGE_SEL_TOMO_E, ");
+        text.append("PAGE_SEL_TOMO_E, \n");
     }
 
     if (wizard()->hasVisitedPage(MPSWizard::PAGE_PROCESS_E)) {
-        text.append("PAGE_PROCESS_E, ");
+        text.append("PAGE_PROCESS_E, \n");
     }
 
     bottomLabel->setText(text);
@@ -304,18 +302,18 @@ void FinalPage::setVisible(bool visible)
     QWizardPage::setVisible(visible);
 
     if (visible) {
-        wizard()->setButtonText(QWizard::CustomButton1, tr("&Print"));
+        wizard()->setButtonText(QWizard::CustomButton1, tr("Custom Button"));
         wizard()->setOption(QWizard::HaveCustomButton1, true);
         connect(wizard(), &QWizard::customButtonClicked,
-                this, &FinalPage::printButtonClicked);
+                this, &FinalPage::printCustomButtonClicked);
     } else {
         wizard()->setOption(QWizard::HaveCustomButton1, false);
         disconnect(wizard(), &QWizard::customButtonClicked,
-                   this, &FinalPage::printButtonClicked);
+                   this, &FinalPage::printCustomButtonClicked);
     }
 }
 
-void FinalPage::printButtonClicked()
+void FinalPage::printCustomButtonClicked()
 {
-    qInfo ("print clicked");
+    qInfo ("Custom button clicked");
 }

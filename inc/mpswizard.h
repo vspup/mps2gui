@@ -41,11 +41,10 @@ class InitPage : public QWizardPage
 
 public:
     InitPage(QWidget *parent = nullptr);
-
     int nextId() const override;
 
 private:
-    QLabel *topLabel;
+
 };
 
 class ConnectPage : public QWizardPage
@@ -58,9 +57,7 @@ public:
     int nextId() const override;
 
 private:
-    QLabel *connectLabel;
     QComboBox *ipComBox;
-    QPushButton* connectButton;
 };
 
 class SelectTomoPage : public QWizardPage
@@ -89,8 +86,6 @@ public:
     int nextId() const override;
 
 private:
-    QLabel *manufLabel;
-    QLabel *modelLabel;
     QComboBox *manufComBox;
     QComboBox *modelComBox;
     QLabel *pictureLabel;
@@ -107,7 +102,7 @@ public:
     int nextId() const override;
 
 private:
-    QPushButton *workButton;
+
 };
 
 class FinalPage : public QWizardPage
@@ -122,7 +117,7 @@ public:
     void setVisible(bool visible) override;
 
 private slots:
-    void printButtonClicked();
+    void printCustomButtonClicked();
 
 private:
     QLabel *bottomLabel;
