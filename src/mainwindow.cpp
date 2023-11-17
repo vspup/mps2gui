@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
-    timer->start(50);
+    timer->start(100);//timer->start(50);
     connect(this,SIGNAL(transmit_to_nng(int)),this,SLOT(nngGetRequest(int)));
 }
 
@@ -950,8 +950,10 @@ void MainWindow::HandleReceivedData(void)
        //if(connectionAttempts == 0)
        {
            nng_close(nng_sock);
+           writeLog("NNG CLOSED, try reopen");
            char tempBuff[64] = {0};
-           QByteArray ba=tempStr.toLatin1();
+           QString tempStrCB =ui->comboBox->currentText();
+           QByteArray ba=tempStrCB.toLatin1();
            sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
            //ui->gbConnection->setTitle("CONNECTION: CONNECTING...");
            //ui->gbConnection->repaint();
@@ -1048,9 +1050,9 @@ void MainWindow::on_btConnect_clicked()
 
 
    char tempBuff[64] = {0};
-   QString tempStr =ui->comboBox->currentText();
+   QString tempStrCB =ui->comboBox->currentText();
 
-   QByteArray ba=tempStr.toLatin1();
+   QByteArray ba=tempStrCB.toLatin1();
    sprintf((char*)&tempBuff[0], "tcp://%s:5555", ba.data());
    ui->gbConnection->setTitle("CONNECTION: CONNECTING...");
    ui->gbConnection->repaint();
