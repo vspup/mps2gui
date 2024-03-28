@@ -19,9 +19,19 @@
 #include <getopt.h>
 #include <ctype.h>
 
-
 #include <QFile>
 #include <QTextStream>
+
+
+#include "inc/chart.h"
+#include "inc/chartview.h"
+
+#include <QApplication>
+#include <QtCharts/QLineSeries>
+#include <QMainWindow>
+#include <QRandomGenerator>
+#include <QtMath>
+#include <QtCharts/QValueAxis>
 
 int main(int argc, char *argv[])
 {
@@ -30,5 +40,33 @@ int main(int argc, char *argv[])
     w.show();
 
     return a.exec();
+
+//    QApplication a(argc, argv);
+
+//    auto series = new QLineSeries;
+//    for (int i = 0; i < 500; i++) {
+//        QPointF p((qreal) i, qSin(M_PI / 50 * i) * 100);
+//        p.ry() += QRandomGenerator::global()->bounded(20);
+//        *series << p;
+//    }
+
+//    auto chart = new Chart;
+//    chart->addSeries(series);
+//    chart->setTitle("Zoom in/out example");
+//    chart->setAnimationOptions(QChart::SeriesAnimations);
+//    chart->legend()->hide();
+//    chart->createDefaultAxes();
+
+//    auto chartView = new ChartView(chart);
+//    chartView->setRenderHint(QPainter::Antialiasing);
+
+//    QMainWindow window;
+//    window.setCentralWidget(chartView);
+//    window.resize(400, 300);
+//    window.grabGesture(Qt::PanGesture);
+//    window.grabGesture(Qt::PinchGesture);
+//    window.show();
+
+//    return a.exec();
 }
 

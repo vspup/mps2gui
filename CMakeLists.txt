@@ -16,8 +16,8 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMake")
 endif()
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Charts Core Gui)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Charts Core Gui)
 find_package(nng REQUIRED)
 
 set(PROJECT_SOURCES
@@ -46,6 +46,10 @@ set(PROJECT_SOURCES
         lib/electabuzz_client_helpers.c
         inc/electabuzz_client_helpers.h
         inc/commands.h
+        src/chart.cpp
+        inc/chart.h
+        src/chartview.cpp
+        inc/chartview.h
 )
 
 message(STATUS "PROJECT_SOURCES=" ${PROJECT_SOURCES})
@@ -78,7 +82,7 @@ endif()
 #target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${nng_LIBRARY}::nng)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+    target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui)
 else ()
     #target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${nng_LIBRARY}::nng)
     target_link_libraries(mps2gui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets nng::nng)
