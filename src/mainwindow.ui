@@ -37,7 +37,7 @@ QGroupBox::title {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="stackedWidgetSelect"/>
     <widget class="QWidget" name="stackedWidgetSHIM">
@@ -2995,6 +2995,28 @@ QGroupBox::title {
      <string>CONNECTION:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnGoChart">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>733</y>
+      <width>121</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Graphic charts</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
    <zorder>gbConnection</zorder>
    <zorder>gbStatus</zorder>
    <zorder>label_26</zorder>
@@ -3099,6 +3121,7 @@ QGroupBox::title {
    <zorder>comboBox</zorder>
    <zorder>btConnect</zorder>
    <zorder>stackedWidget</zorder>
+   <zorder>btnGoChart</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

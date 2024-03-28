@@ -82,6 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(100);//timer->start(50);
     connect(this,SIGNAL(transmit_to_nng(int)),this,SLOT(nngGetRequest(int)));
+    connect ( ui->btnGoChart, SIGNAL( clicked() ), this, SLOT( on_btGoChart_clicked() ) );
 }
 
 MainWindow::~MainWindow()
@@ -1297,6 +1298,53 @@ void MainWindow::on_btPSH_AX_SetI_clicked()
     emit transmit_to_nng(CMD_SET_PSH_AX_I);
 }
 
+#include<QDebug>
+
+#include "inc/chart.h"
+#include "inc/chartview.h"
+
+#include <QApplication>
+#include <QtCharts/QLineSeries>
+#include <QMainWindow>
+#include <QRandomGenerator>
+#include <QtMath>
+#include <QtCharts/QValueAxis>
+
+void MainWindow::on_btGoChart_clicked()
+{
+    qInfo() << "Swithcing to Graphic Charts window";
+
+
+    auto series = new QLineSeries;
+    for (int i = 0; i < 500; i++) {
+        QPointF p((qreal) i, qSin(M_PI / 50 * i) * 100);
+        p.ry() += QRandomGenerator::global()->bounded(20);
+        *series << p;
+    }
+
+    auto chart = new Chart;
+    chart->addSeries(series);
+    chart->setTitle("MPS Charts");
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+    chart->legend()->hide();
+    chart->createDefaultAxes();
+
+    auto chartView = new ChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+
+    QMainWindow *window = new QMainWindow(this);
+    window->setCentralWidget(chartView);
+    window->resize(640, 480);
+    window->grabGesture(Qt::PanGesture);
+    window->grabGesture(Qt::PinchGesture);
+
+    qInfo() << "hiding main window";
+    this->hide();
+    qInfo() << "shows new main window";
+    window->show();
+
+}
 
 void MainWindow::ClearTable (void)
 {
