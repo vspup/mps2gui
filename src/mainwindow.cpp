@@ -37,6 +37,15 @@
 #include <QTime>
 #include <QThread>
 #include <QDir>
+
+#include<QDebug>
+#include "inc/chart.h"
+#include "inc/chartview.h"
+#include <QtCharts/QLineSeries>
+#include <QRandomGenerator>
+#include <QtMath>
+#include <QtCharts/QValueAxis>
+
 QFile filelog;
 
 
@@ -1298,32 +1307,31 @@ void MainWindow::on_btPSH_AX_SetI_clicked()
     emit transmit_to_nng(CMD_SET_PSH_AX_I);
 }
 
-#include<QDebug>
-
-#include "inc/chart.h"
-#include "inc/chartview.h"
-
-#include <QApplication>
-#include <QtCharts/QLineSeries>
-#include <QMainWindow>
-#include <QRandomGenerator>
-#include <QtMath>
-#include <QtCharts/QValueAxis>
 
 void MainWindow::on_btGoChart_clicked()
 {
     qInfo() << "Swithcing to Graphic Charts window";
 
 
-    auto series = new QLineSeries;
+    auto series1 = new QLineSeries;
     for (int i = 0; i < 500; i++) {
         QPointF p((qreal) i, qSin(M_PI / 50 * i) * 100);
         p.ry() += QRandomGenerator::global()->bounded(20);
-        *series << p;
+        *series1 << p;
+    }
+
+    auto series2 = new QLineSeries;
+    for (int i = 0; i < 500; i++) {
+        QPointF p((qreal) i+10, qSin(M_PI / 50 * i) * 100);
+        p.ry() += QRandomGenerator::global()->bounded(30);
+        *series2 << p;
     }
 
     auto chart = new Chart;
-    chart->addSeries(series);
+    chart->addSeries(series1);
+    series1->setColor(QColorConstants::Red);
+    chart->addSeries(series2);
+    series2->setColor(QColorConstants::Green);
     chart->setTitle("MPS Charts");
     chart->setAnimationOptions(QChart::SeriesAnimations);
     chart->legend()->hide();
@@ -1331,7 +1339,6 @@ void MainWindow::on_btGoChart_clicked()
 
     auto chartView = new ChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-
 
     QMainWindow *window = new QMainWindow(this);
     window->setCentralWidget(chartView);
