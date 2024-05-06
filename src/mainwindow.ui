@@ -2894,8 +2894,8 @@ QGroupBox::title {
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>760</y>
+      <x>60</x>
+      <y>660</y>
       <width>201</width>
       <height>31</height>
      </rect>
@@ -2904,25 +2904,12 @@ QGroupBox::title {
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btConnect">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>760</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CONNECT</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="gbStatus">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>730</y>
-      <width>361</width>
+      <width>391</width>
       <height>81</height>
      </rect>
     </property>
@@ -2958,7 +2945,7 @@ QGroupBox::title {
     <widget class="QPushButton" name="btSetSHIM_Tab">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>220</x>
        <y>30</y>
        <width>151</width>
        <height>31</height>
@@ -2972,8 +2959,8 @@ QGroupBox::title {
    <widget class="QGroupBox" name="gbConnection">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>729</y>
+      <x>40</x>
+      <y>629</y>
       <width>391</width>
       <height>81</height>
      </rect>
@@ -2994,18 +2981,31 @@ QGroupBox::title {
     <property name="title">
      <string>CONNECTION:</string>
     </property>
+    <widget class="QPushButton" name="btConnect">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>30</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CONNECT</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="gbPWR_FUSE_SHIM">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>730</y>
+      <x>530</x>
+      <y>630</y>
       <width>221</width>
       <height>81</height>
      </rect>
     </property>
     <property name="title">
-     <string>PWR FUSE:</string>
+     <string>POWER ON:</string>
     </property>
     <widget class="QPushButton" name="btShimPwrFuseOn">
      <property name="geometry">
@@ -3021,7 +3021,6 @@ QGroupBox::title {
      </property>
     </widget>
    </widget>
-   <zorder>gbPWR_FUSE_SHIM</zorder>
    <zorder>gbConnection</zorder>
    <zorder>gbStatus</zorder>
    <zorder>label_26</zorder>
@@ -3124,8 +3123,8 @@ QGroupBox::title {
    <zorder>txtIin7</zorder>
    <zorder>txtVin7</zorder>
    <zorder>comboBox</zorder>
-   <zorder>btConnect</zorder>
    <zorder>stackedWidget</zorder>
+   <zorder>gbPWR_FUSE_SHIM</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

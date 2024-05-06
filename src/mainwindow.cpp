@@ -77,6 +77,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->btSetMain_Tab->setDisabled(true);
     ui->btSetSHIM_Tab->setDisabled(true);
     ui->gbStatus->setDisabled(true);
+    ui->btShimPwrFuseOn->setDisabled(true);
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
@@ -435,8 +436,9 @@ void MainWindow::nngGetRequest( int cmd)
                dp_write.data_point_id = SET_PWR_FUSE_ON;
                dp_write.array_length = 8;
                dp_write.type = EB_TYPE_BOOL;
-               writeLog("USER: SET FUSES ON");
+
            }
+           writeLog("USER: SET FUSES ON");
 
        break;
    }
@@ -1031,12 +1033,13 @@ void MainWindow::on_btConnect_clicked()
      ui->gbStatus->setTitle("STATUS: ");
      ui->gbStatus->setDisabled(true);
      mode = 0;
-/*
+
      ui->btSetSHIM_Tab->setDisabled(true);
      ui->btSetMain_Tab->setDisabled(true);
 
      ui->stackedWidget->setCurrentIndex(0);
-     ClearTable();*/
+     ui->btShimPwrFuseOn->setDisabled(true);
+     ClearTable();
      filelog.close();
      return;
    }
@@ -1083,11 +1086,14 @@ void MainWindow::on_btConnect_clicked()
        dp_write.type = EB_TYPE_DOUBLE;
        dp_write.elements_p = data_elements_p;
        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);*/
+
+
        ui->btConnect->setText("DISCONNECT");
        ui->gbConnection->setTitle("CONNECTION: CONNECTED");
-       ui->btSetMain_Tab->setEnabled(true);
+       ui->btShimPwrFuseOn->setEnabled(true);
+      /* ui->btSetMain_Tab->setEnabled(true);
        ui->btSetSHIM_Tab->setEnabled(true);
-       ui->gbStatus->setEnabled(true);
+       ui->gbStatus->setEnabled(true);*/
 
 
        connectionStatus = 1;
@@ -1420,15 +1426,13 @@ void MainWindow::ClearTable (void)
 void MainWindow::on_btShimPwrFuseOn_clicked()
 {
 
-
-     //emit transmit_to_nng(CMD_SET_PWR_FUSE_ON);
     writeLog("USER: CLICED \"PWR FUSE ON\"");
 
-    ui->btSetSHIM_Tab->setDisabled(true);
-    ui->btSetMain_Tab->setDisabled(true);
-
-    ui->stackedWidget->setCurrentIndex(0);
-    ClearTable();
+    ui->btSetMain_Tab->setEnabled(true);
+    ui->btSetSHIM_Tab->setEnabled(true);
+    ui->gbStatus->setEnabled(true);
     filelog.close();
+
+    emit transmit_to_nng(CMD_SET_PWR_FUSE_ON);
 }
 
