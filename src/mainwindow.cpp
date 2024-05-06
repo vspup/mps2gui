@@ -1092,6 +1092,7 @@ void MainWindow::on_btConnect_clicked()
        writeLog("REQUEST READ FUSE STATE");
        data_id = SET_PWR_FUSE_ON;
        eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+       HandleReceivedData();
        QString tempData;
        writeLog(" READ FUSE STAT " + tempData.number(dataReadBoolArray[0]) + ", "
                 + tempData.number(dataReadBoolArray[1]) + ", "
