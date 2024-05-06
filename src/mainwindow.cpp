@@ -1038,7 +1038,9 @@ void MainWindow::on_btConnect_clicked()
      ui->btSetMain_Tab->setDisabled(true);
 
      ui->stackedWidget->setCurrentIndex(0);
+     ui->btShimPwrFuseOn->setHidden(false);
      ui->btShimPwrFuseOn->setDisabled(true);
+     ui->gbPWR_FUSE_SHIM->setHidden(false);
      ClearTable();
      filelog.close();
      return;
@@ -1225,6 +1227,8 @@ void MainWindow::on_btSetSHIM_Tab_clicked()
     ui->btShimOnOff -> setDisabled(true);
     ui->stackedWidget->setCurrentIndex(1);
     exeMode = SHIM_MODE;
+    ui->btShimPwrFuseOn->setHidden(true);
+    ui->gbPWR_FUSE_SHIM->setHidden(true);
 }
 
 
@@ -1253,6 +1257,8 @@ void MainWindow::on_btSetMain_Tab_clicked()
     tempStr.setNum((setpointCurrPSH[1] * 1000), 'f', 0);
     ui->plTextChPSH->setPlainText(tempStr);
     exeMode = MAIN_MODE;
+    ui->btShimPwrFuseOn->setHidden(true);
+    ui->gbPWR_FUSE_SHIM->setHidden(true);
 }
 
 

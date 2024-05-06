@@ -1218,7 +1218,7 @@ QGroupBox::title {
      <widget class="QGroupBox" name="groupBox_10">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>40</x>
         <y>340</y>
         <width>591</width>
         <height>161</height>
@@ -2891,19 +2891,6 @@ QGroupBox::title {
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>660</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="editable">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="gbStatus">
     <property name="geometry">
      <rect>
@@ -2959,8 +2946,8 @@ QGroupBox::title {
    <widget class="QGroupBox" name="gbConnection">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>629</y>
+      <x>460</x>
+      <y>730</y>
       <width>391</width>
       <height>81</height>
      </rect>
@@ -2994,12 +2981,25 @@ QGroupBox::title {
       <string>CONNECT</string>
      </property>
     </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="gbPWR_FUSE_SHIM">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>630</y>
+      <x>460</x>
+      <y>620</y>
       <width>221</width>
       <height>81</height>
      </rect>
@@ -3122,7 +3122,6 @@ QGroupBox::title {
    <zorder>txtTemp7</zorder>
    <zorder>txtIin7</zorder>
    <zorder>txtVin7</zorder>
-   <zorder>comboBox</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>gbPWR_FUSE_SHIM</zorder>
   </widget>
