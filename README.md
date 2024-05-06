@@ -6,5 +6,5 @@ mps_wizard >> step by step wizard
 multi_win >> no good
 new_cmd >>
 separate_window >> ???
-win_build >> work !!!!
+### win_build >> work !!!!
 win_build_plot >> add graf
