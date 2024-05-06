@@ -432,7 +432,7 @@ void MainWindow::nngGetRequest( int cmd)
            for(int i = 0; i< 8; i++)
            {
                dataBoolArray[i] = true;
-               data_elements_p[i].value_p = &dataBoolArray[0];
+               data_elements_p[i].value_p = &dataBoolArray[i];
                dp_write.data_point_id = SET_PWR_FUSE_ON;
                dp_write.array_length = 8;
                dp_write.type = EB_TYPE_BOOL;
@@ -1089,6 +1089,18 @@ void MainWindow::on_btConnect_clicked()
        dp_write.elements_p = data_elements_p;
        eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);*/
 
+       writeLog("REQUEST READ FUSE STATE");
+       data_id = SET_PWR_FUSE_ON;
+       eb_send_read_request(&data_id, 1, &transaction_id, &eb_read_data_response_handler, NULL);
+       QString tempData;
+       writeLog(" READ FUSE STAT " + tempData.number(dataReadBoolArray[0]) + ", "
+                + tempData.number(dataReadBoolArray[1]) + ", "
+                + tempData.number(dataReadBoolArray[2]) + ", "
+                + tempData.number(dataReadBoolArray[3]) + ", "
+                + tempData.number(dataReadBoolArray[4]) + ", "
+                + tempData.number(dataReadBoolArray[5]) + ", "
+                + tempData.number(dataReadBoolArray[6]) + ", "
+                + tempData.number(dataReadBoolArray[7]) );
 
        ui->btConnect->setText("DISCONNECT");
        ui->gbConnection->setTitle("CONNECTION: CONNECTED");

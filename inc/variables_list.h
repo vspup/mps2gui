@@ -67,3 +67,4 @@ extern int connectionStatusLost;
 extern float dataFloatArray[2];
 extern int connectionAttempts;
 extern bool   dataBoolArray[8];
+extern bool   dataReadBoolArray[8];
