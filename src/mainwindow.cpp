@@ -1419,6 +1419,6 @@ void MainWindow::ClearTable (void)
 
 void MainWindow::on_btShimPwrFuseOn_clicked()
 {
-     emit transmit_to_nng(CMD_SET_PSH_AX_I_0);
+     emit transmit_to_nng(CMD_SET_PWR_FUSE_ON);
 }
 
