@@ -135,7 +135,7 @@ void MainWindow::nngGetRequest( int cmd)
    double data;
    uint32_t dataU32 =0;
    struct eb_write_data_point_info_s dp_write = {0};
-   struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*6);
+   struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*8);  //*6
 
    data_elements_p[0].value_p = &data;
    dp_write.array_length = 0;
@@ -425,6 +425,19 @@ void MainWindow::nngGetRequest( int cmd)
             dp_write.array_length = 2;
             dp_write.type = EB_TYPE_FLOAT;
             writeLog("USER: SET PSH AX CURRENT VALUES " +  tempData.number(dataFloatArray[0]) + ", " + tempData.number(dataFloatArray[1]));
+       break;
+
+       case CMD_SET_PWR_FUSE_ON:
+           for(int i = 0; i< 8; i++)
+           {
+               dataBoolArray[i] = true;
+               data_elements_p[i].value_p = &dataBoolArray[0];
+               dp_write.data_point_id = SET_PWR_FUSE_ON;
+               dp_write.array_length = 8;
+               dp_write.type = EB_TYPE_BOOL;
+               writeLog("USER: SET FUSES ON");
+           }
+
        break;
    }
 
@@ -1402,4 +1415,10 @@ void MainWindow::ClearTable (void)
     ui->txtTemp7->setPlainText(tempStr);
 }
 
+
+
+void MainWindow::on_btShimPwrFuseOn_clicked()
+{
+     emit transmit_to_nng(CMD_SET_PSH_AX_I_0);
+}
 

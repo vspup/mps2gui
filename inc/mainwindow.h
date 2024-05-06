@@ -98,6 +98,8 @@ private slots:
 
     void on_btPSH_AX_SetI_clicked();
 
+    void on_btShimPwrFuseOn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer;

@@ -37,7 +37,7 @@
 #define  GET_SET_CURRENT_HEATERS      0x0101
 #define  GET_SET_I_SETPOINT_HEATERS   0x0100
 
-
+#define SET_PWR_FUSE_ON               0x3107 // bool  array (8)  //RW
 
 
 #define CMD_UPDATE_BY_TIMER           1
@@ -61,6 +61,7 @@
 #define CMD_SET_PSH_MAIN_I            19
 #define CMD_SET_PSH_AX_I_0            20
 #define CMD_SET_PSH_AX_I              21
+#define CMD_SET_PWR_FUSE_ON           22
 
 #define MODE_SELECTING   0
 #define SHIM_MODE        1
