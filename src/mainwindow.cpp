@@ -1031,12 +1031,12 @@ void MainWindow::on_btConnect_clicked()
      ui->gbStatus->setTitle("STATUS: ");
      ui->gbStatus->setDisabled(true);
      mode = 0;
-
+/*
      ui->btSetSHIM_Tab->setDisabled(true);
      ui->btSetMain_Tab->setDisabled(true);
 
      ui->stackedWidget->setCurrentIndex(0);
-     ClearTable();
+     ClearTable();*/
      filelog.close();
      return;
    }
@@ -1419,6 +1419,16 @@ void MainWindow::ClearTable (void)
 
 void MainWindow::on_btShimPwrFuseOn_clicked()
 {
-     emit transmit_to_nng(CMD_SET_PWR_FUSE_ON);
+
+
+     //emit transmit_to_nng(CMD_SET_PWR_FUSE_ON);
+    writeLog("USER: CLICED \"PWR FUSE ON\"");
+
+    ui->btSetSHIM_Tab->setDisabled(true);
+    ui->btSetMain_Tab->setDisabled(true);
+
+    ui->stackedWidget->setCurrentIndex(0);
+    ClearTable();
+    filelog.close();
 }
 

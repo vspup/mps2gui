@@ -1018,32 +1018,6 @@ QGroupBox::title {
        <string>STATUS:</string>
       </property>
      </widget>
-     <widget class="QGroupBox" name="gbPWR_FUSE_SHIM">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>400</y>
-        <width>161</width>
-        <height>91</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>PWR FUSE:</string>
-      </property>
-      <widget class="QPushButton" name="btShimPwrFuseOn">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>121</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ON</string>
-       </property>
-      </widget>
-     </widget>
      <zorder>gbStatusSHIM</zorder>
      <zorder>groupBox_5</zorder>
      <zorder>gbChannel_SHIM</zorder>
@@ -1054,7 +1028,6 @@ QGroupBox::title {
      <zorder>pushButton_T2</zorder>
      <zorder>groupBox_4</zorder>
      <zorder>btShimOnOff</zorder>
-     <zorder>gbPWR_FUSE_SHIM</zorder>
     </widget>
     <widget class="QWidget" name="stackedWidgetMain">
      <widget class="QGroupBox" name="groupBox_8">
@@ -3022,6 +2995,33 @@ QGroupBox::title {
      <string>CONNECTION:</string>
     </property>
    </widget>
+   <widget class="QGroupBox" name="gbPWR_FUSE_SHIM">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>730</y>
+      <width>221</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>PWR FUSE:</string>
+    </property>
+    <widget class="QPushButton" name="btShimPwrFuseOn">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>30</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>ON</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>gbPWR_FUSE_SHIM</zorder>
    <zorder>gbConnection</zorder>
    <zorder>gbStatus</zorder>
    <zorder>label_26</zorder>
