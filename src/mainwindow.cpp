@@ -1253,7 +1253,7 @@ void MainWindow::on_pushButton_setmain_clicked()
 
 void MainWindow::on_btSetSHIM_Tab_clicked()
 {
-       double data = 0.35;
+       double data = 0.40;
        struct eb_write_data_point_info_s dp_write = {0};
        struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
 
@@ -1339,8 +1339,8 @@ void MainWindow::on_btPSH_Main_SetI_clicked()
 
     if((dataFloatArray[0] < 0) || (dataFloatArray[0] > 1000))
     {
-      QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
-      return;
+      //QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
+      //return;
     }
 
     emit transmit_to_nng(CMD_SET_PSH_MAIN_I);
