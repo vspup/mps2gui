@@ -1019,6 +1019,8 @@ void MainWindow::writeLog(QString logstr)
     filelog.flush();
 }
 
+int modulesReady = 0;
+
 void MainWindow::on_btConnect_clicked()
 {
 
@@ -1110,6 +1112,24 @@ void MainWindow::on_btConnect_clicked()
        ui->btSetSHIM_Tab->setEnabled(true);
        ui->gbStatus->setEnabled(true);*/
 
+       modulesReady = 1;
+
+       for(int i =0 ; i < 8; i ++ )  //is module queantyti
+       {
+           if(dataReadBoolArray[i] == false)
+           {
+                modulesReady = 0;
+                break;
+           }
+       }
+
+       if(modulesReady)
+       {
+          ui->btSetMain_Tab->setEnabled(true);
+          ui->btSetSHIM_Tab->setEnabled(true);
+          ui->gbStatus->setEnabled(true);
+          ui->btShimPwrFuseOn->setEnabled(false);
+       }
 
        connectionStatus = 1;
        writeLog("CONNECTED");
