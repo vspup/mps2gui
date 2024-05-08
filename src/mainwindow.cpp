@@ -1253,6 +1253,19 @@ void MainWindow::on_pushButton_setmain_clicked()
 
 void MainWindow::on_btSetSHIM_Tab_clicked()
 {
+       double data = 0.35;
+       struct eb_write_data_point_info_s dp_write = {0};
+       struct eb_data_element_s* data_elements_p = (eb_data_element_s*)malloc(sizeof(struct eb_data_element_s)*1);
+
+       data_elements_p[0].value_p = &data;
+
+       data_point_id = GET_SET_FAN_PWM;
+       dp_write.data_point_id = data_point_id;
+       dp_write.array_length = 0;
+       dp_write.type = EB_TYPE_DOUBLE;
+       dp_write.elements_p = data_elements_p;
+       eb_send_multi_write_request(&dp_write, 1, &transaction_id, &eb_write_data_response_handler, NULL);
+
     mode = SHIM_MODE;
 
     ui->btPSH_ShimSetCurrent0 ->  setDisabled(true);
