@@ -1183,8 +1183,8 @@ void MainWindow::on_pushButton_setI_clicked()
 
      if((data < 0) || (data > 800))
      {
-        QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 800A");
-        return;
+        //QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 800A");
+        //return;
      }
 
      emit transmit_to_nng(CMD_SET_CURRENT_MAIN);
@@ -1227,8 +1227,8 @@ void MainWindow::on_pushButton_setmain_clicked()
 
      if((data[0] < 0) || (data[0] > 1000))
      {
-       QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
-       return;
+       //QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
+       //return;
      }
 
      struct eb_write_data_point_info_s dp_write = {0};
@@ -1361,8 +1361,8 @@ void MainWindow::on_btPSH_AX_SetI_clicked()
 
     if((dataFloatArray[1] < 0) || (dataFloatArray[1] > 1000))
     {
-      QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
-      return;
+      //QMessageBox::warning(this, "Error set current", "Value must be in reange from 0 to 1000 mA");
+      //return;
     }
 
     emit transmit_to_nng(CMD_SET_PSH_AX_I);
