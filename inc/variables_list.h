@@ -68,3 +68,4 @@ extern float dataFloatArray[2];
 extern int connectionAttempts;
 extern bool   dataBoolArray[8];
 extern bool   dataReadBoolArray[8];
+extern double    ReadVA3103[8];

@@ -468,6 +468,7 @@ int cmdList[] =
    GET_ON_OFF_STATUS,
    GET_CURRENT,
    GET_VA,
+   GET_VA_3103,
    GET_VB,
    GET_TEMP_A,
    GET_TEMP_B,
@@ -500,7 +501,7 @@ void MainWindow::updateGeneralGUI(void)
     logTransaction = "";
     cmdCounter++;
 
-    if(cmdCounter >= 12)
+    if(cmdCounter >= 13)
     {
        cmdCounter = 0;
     }
@@ -558,6 +559,8 @@ break;
 
 case GET_VA:
     //ReadVA
+    if(mode == MAIN_MODE)
+    {
     tempStr.setNum(ReadVA[0], 'f', 4);
     ui->txtUa0->setPlainText(tempStr);
     tempStr.setNum(ReadVA[1], 'f', 4);
@@ -574,7 +577,31 @@ case GET_VA:
     ui->txtUa6->setPlainText(tempStr);
     tempStr.setNum(ReadVA[7], 'f', 4);
     ui->txtUa7->setPlainText(tempStr);
+    }
 break;
+
+case GET_VA_3103:
+    //ReadVA
+    if(mode == SHIM_MODE)
+    {
+        tempStr.setNum(ReadVA3103[0], 'f', 4);
+        ui->txtUa0->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[1], 'f', 4);
+        ui->txtUa1->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[2], 'f', 4);
+        ui->txtUa2->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[3], 'f', 4);
+        ui->txtUa3->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[4], 'f', 4);
+        ui->txtUa4->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[5], 'f', 4);
+        ui->txtUa5->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[6], 'f', 4);
+        ui->txtUa6->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[7], 'f', 4);
+        ui->txtUa7->setPlainText(tempStr);
+    }
+    break;
 
 case GET_VB:
     //ReadVB

@@ -123,6 +123,10 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
     {
         ReadVA[read_result_p->element_index] = *((double*)read_result_p->value_p);
     }
+    else if(read_result_p->data_point_id == GET_VA_3103)
+    {
+        ReadVA3103[read_result_p->element_index] = *((double*)read_result_p->value_p);
+    }
     else if(read_result_p->data_point_id == GET_VB)
     {
         ReadVB[read_result_p->element_index] = *((double*)read_result_p->value_p);

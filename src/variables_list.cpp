@@ -44,6 +44,7 @@ double    SetCurrentData[6]  = {0};
 double    ReadCurrentData[8] = {0};
 double    ReadVA[8] ={0};
 double    ReadVB[8] ={0};
+double    ReadVA3103[8] ={0};
 
 float     ReadVIN[8] ={0};
 float     ReadIIN[8] ={0};
