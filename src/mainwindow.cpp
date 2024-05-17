@@ -39,6 +39,7 @@
 #include <QDir>
 QFile filelog;
 
+#define VERSION_MPS ("MPS v1.0.1")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -72,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->comboBox->addItem(line);
     }
 
-
+    this->setWindowTitle(VERSION_MPS);
 
     ui->btSetMain_Tab->setDisabled(true);
     ui->btSetSHIM_Tab->setDisabled(true);

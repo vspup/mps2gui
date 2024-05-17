@@ -7,7 +7,7 @@
 
 #define  GET_CURRENT                  0x1000
 #define  GET_VA                       0x3101
-#define  GET_VA_3103                   0x3103
+#define  GET_VA_3103                  0x3103
 #define  GET_VB                       0x3102
 #define  GET_TEMP_A                   0x3104
 #define  GET_TEMP_B                   0x3105
