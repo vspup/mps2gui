@@ -1043,19 +1043,6 @@ QGroupBox::title {
       <property name="title">
        <string>Kp</string>
       </property>
-      <widget class="QPushButton" name="btReadKp">
-       <property name="geometry">
-        <rect>
-         <x>19</x>
-         <y>25</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Read</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="btSetKp">
        <property name="geometry">
         <rect>
@@ -1077,6 +1064,11 @@ QGroupBox::title {
          <width>101</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="maximumBlockCount">
         <number>1</number>
@@ -1112,6 +1104,11 @@ QGroupBox::title {
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
        <property name="maximumBlockCount">
         <number>1</number>
        </property>
@@ -1124,6 +1121,11 @@ QGroupBox::title {
          <width>101</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="maximumBlockCount">
         <number>1</number>
@@ -1138,6 +1140,11 @@ QGroupBox::title {
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
        <property name="maximumBlockCount">
         <number>1</number>
        </property>
@@ -1151,6 +1158,11 @@ QGroupBox::title {
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
        <property name="maximumBlockCount">
         <number>1</number>
        </property>
@@ -1163,6 +1175,11 @@ QGroupBox::title {
          <width>101</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="maximumBlockCount">
         <number>1</number>
@@ -1299,19 +1316,6 @@ QGroupBox::title {
       <property name="title">
        <string>Fz</string>
       </property>
-      <widget class="QPushButton" name="btReadFz">
-       <property name="geometry">
-        <rect>
-         <x>19</x>
-         <y>25</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Read</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="btSetFz">
        <property name="geometry">
         <rect>
@@ -1333,6 +1337,11 @@ QGroupBox::title {
          <width>101</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="maximumBlockCount">
         <number>1</number>
@@ -1368,6 +1377,11 @@ QGroupBox::title {
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
        <property name="maximumBlockCount">
         <number>1</number>
        </property>
@@ -1380,6 +1394,11 @@ QGroupBox::title {
          <width>101</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="maximumBlockCount">
         <number>1</number>
@@ -1394,6 +1413,11 @@ QGroupBox::title {
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
        <property name="maximumBlockCount">
         <number>1</number>
        </property>
@@ -1407,6 +1431,11 @@ QGroupBox::title {
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
        <property name="maximumBlockCount">
         <number>1</number>
        </property>
@@ -1419,6 +1448,11 @@ QGroupBox::title {
          <width>101</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="maximumBlockCount">
         <number>1</number>

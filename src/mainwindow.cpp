@@ -39,6 +39,9 @@
 #include <QDir>
 QFile filelog;
 
+char kpDataSet = 0;
+char fzDataSet = 0;
+
 #define VERSION_MPS ("MPS v1.0.3")
 
 MainWindow::MainWindow(QWidget *parent)
@@ -863,6 +866,26 @@ case GET_KP:
      tempStr.setNum(dataKp[5], 'f', 3);
      ui->plabel_Kp_6->setText(tempStr);
 
+     if(kpDataSet == 0)
+     {
+         tempStr.setNum(dataKp[0], 'f', 3);
+         ui->pTextEditKp_1->setPlainText(tempStr);
+         tempStr.setNum(dataKp[1], 'f', 3);
+         ui->pTextEditKp_1->setPlainText(tempStr);
+         tempStr.setNum(dataKp[2], 'f', 3);
+         ui->pTextEditKp_1->setPlainText(tempStr);
+         tempStr.setNum(dataKp[3], 'f', 3);
+         ui->pTextEditKp_1->setPlainText(tempStr);
+         tempStr.setNum(dataKp[4], 'f', 3);
+         ui->pTextEditKp_1->setPlainText(tempStr);
+         tempStr.setNum(dataKp[5], 'f', 3);
+         ui->pTextEditKp_1->setPlainText(tempStr);
+
+        ui->btSetKp->setEnabled(true);
+        kpDataSet = 1;
+     }
+
+
 break;
 
 case GET_FZ:
@@ -878,6 +901,25 @@ case GET_FZ:
     ui->plabel_Fz5->setText(tempStr);
     tempStr.setNum(dataFz[5], 'f', 3);
     ui->plabel_Fz6->setText(tempStr);
+
+    if(fzDataSet == 0)
+    {
+        tempStr.setNum(dataFz[0], 'f', 3);
+        ui->pTextEditFz_1->setPlainText(tempStr);
+        tempStr.setNum(dataFz[1], 'f', 3);
+        ui->pTextEditFz_1->setPlainText(tempStr);
+        tempStr.setNum(dataFz[2], 'f', 3);
+        ui->pTextEditFz_1->setPlainText(tempStr);
+        tempStr.setNum(dataFz[3], 'f', 3);
+        ui->pTextEditFz_1->setPlainText(tempStr);
+        tempStr.setNum(dataFz[4], 'f', 3);
+        ui->pTextEditFz_1->setPlainText(tempStr);
+        tempStr.setNum(dataFz[5], 'f', 3);
+        ui->pTextEditFz_1->setPlainText(tempStr);
+
+        fzDataSet = 1;
+        ui->btSetFz->setEnabled(true);
+    }
 
 break;
 
@@ -1390,6 +1432,8 @@ void MainWindow::on_btSetSHIM_Tab_clicked()
     exeMode = SHIM_MODE;
     ui->btShimPwrFuseOn->setHidden(true);
     ui->gbPWR_FUSE_SHIM->setHidden(true);
+    ui->btSetKp->setDisabled(true);
+    ui->btSetFz->setDisabled(true);
 }
 
 
@@ -1613,13 +1657,13 @@ void MainWindow::on_btShimPwrFuseOn_clicked()
     emit transmit_to_nng(CMD_SET_PWR_FUSE_ON);
 }
 
-
+/*
 void MainWindow::on_btReadKp_clicked()
 {
       writeLog("USER: CLICED \"Read Kp\"");
       emit transmit_to_nng(CMD_SET_RD_KP);
 }
-
+*/
 
 void MainWindow::on_btSetKp_clicked()
 {
@@ -1627,13 +1671,13 @@ void MainWindow::on_btSetKp_clicked()
      emit transmit_to_nng(CMD_SET_WR_KP);
 }
 
-
+/*
 void MainWindow::on_btReadFz_clicked()
 {
     writeLog("USER: CLICED \"Read Fz\"");
     emit transmit_to_nng(CMD_SET_RD_FZ);
 }
-
+*/
 
 
 void MainWindow::on_btSetFz_clicked()
