@@ -871,15 +871,15 @@ case GET_KP:
          tempStr.setNum(dataKp[0], 'f', 3);
          ui->pTextEditKp_1->setPlainText(tempStr);
          tempStr.setNum(dataKp[1], 'f', 3);
-         ui->pTextEditKp_1->setPlainText(tempStr);
+         ui->pTextEditKp_2->setPlainText(tempStr);
          tempStr.setNum(dataKp[2], 'f', 3);
-         ui->pTextEditKp_1->setPlainText(tempStr);
+         ui->pTextEditKp_3->setPlainText(tempStr);
          tempStr.setNum(dataKp[3], 'f', 3);
-         ui->pTextEditKp_1->setPlainText(tempStr);
+         ui->pTextEditKp_4->setPlainText(tempStr);
          tempStr.setNum(dataKp[4], 'f', 3);
-         ui->pTextEditKp_1->setPlainText(tempStr);
+         ui->pTextEditKp_5->setPlainText(tempStr);
          tempStr.setNum(dataKp[5], 'f', 3);
-         ui->pTextEditKp_1->setPlainText(tempStr);
+         ui->pTextEditKp_6->setPlainText(tempStr);
 
         ui->btSetKp->setEnabled(true);
         kpDataSet = 1;
@@ -907,15 +907,15 @@ case GET_FZ:
         tempStr.setNum(dataFz[0], 'f', 3);
         ui->pTextEditFz_1->setPlainText(tempStr);
         tempStr.setNum(dataFz[1], 'f', 3);
-        ui->pTextEditFz_1->setPlainText(tempStr);
+        ui->pTextEditFz_2->setPlainText(tempStr);
         tempStr.setNum(dataFz[2], 'f', 3);
-        ui->pTextEditFz_1->setPlainText(tempStr);
+        ui->pTextEditFz_3->setPlainText(tempStr);
         tempStr.setNum(dataFz[3], 'f', 3);
-        ui->pTextEditFz_1->setPlainText(tempStr);
+        ui->pTextEditFz_4->setPlainText(tempStr);
         tempStr.setNum(dataFz[4], 'f', 3);
-        ui->pTextEditFz_1->setPlainText(tempStr);
+        ui->pTextEditFz_5->setPlainText(tempStr);
         tempStr.setNum(dataFz[5], 'f', 3);
-        ui->pTextEditFz_1->setPlainText(tempStr);
+        ui->pTextEditFz_6->setPlainText(tempStr);
 
         fzDataSet = 1;
         ui->btSetFz->setEnabled(true);
