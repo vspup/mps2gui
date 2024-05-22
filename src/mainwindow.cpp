@@ -798,8 +798,8 @@ case GET_BCM_TEMP:
     tempStr.setNum(BCMtemp[2], 'f', 1);
     ui->txtTemp2->setPlainText(tempStr);
     tempStr.setNum(BCMtemp[3], 'f', 1);
-   /* ui->txtTemp3->setPlainText(tempStr);
-    tempStr.setNum(BCMtemp[4], 'f', 1);
+    ui->txtTemp3->setPlainText(tempStr);
+    /*tempStr.setNum(BCMtemp[4], 'f', 1);
     ui->txtTemp4->setPlainText(tempStr);
     tempStr.setNum(BCMtemp[5], 'f', 1);
     ui->txtTemp5->setPlainText(tempStr);
@@ -823,26 +823,26 @@ case GET_SET_FAN_PWM:
 break;
 
 case GET_DUTY_A:
-    tempStr.setNum(dataDutyA[0], 'f', 1);
+    tempStr.setNum(dataDutyA[0], 'f', 5);
     ui->txtDuty1->setText(tempStr);
-    tempStr.setNum(dataDutyA[1], 'f', 1);
+    tempStr.setNum(dataDutyA[1], 'f', 5);
     ui->txtDuty2->setText(tempStr);
-    tempStr.setNum(dataDutyA[2], 'f', 1);
+    tempStr.setNum(dataDutyA[2], 'f', 5);
     ui->txtDuty3->setText(tempStr);
-    tempStr.setNum(dataDutyA[3], 'f', 1);
+    tempStr.setNum(dataDutyA[3], 'f', 5);
     ui->txtDuty4->setText(tempStr);
-    tempStr.setNum(dataDutyA[4], 'f', 1);
+    tempStr.setNum(dataDutyA[4], 'f', 5);
     ui->txtDuty5->setText(tempStr);
-    tempStr.setNum(dataDutyA[5], 'f', 1);
+    tempStr.setNum(dataDutyA[5], 'f', 5);
     ui->txtDuty6->setText(tempStr);
-    tempStr.setNum(dataDutyA[6], 'f', 1);
+    tempStr.setNum(dataDutyA[6], 'f', 5);
     ui->txtDuty7->setText(tempStr);
-    tempStr.setNum(dataDutyA[7], 'f', 1);
+    tempStr.setNum(dataDutyA[7], 'f', 5);
     ui->txtDuty8->setText(tempStr);
 break;
 
 case GET_DUTY_B:
-     tempStr.setNum(dataDutyB, 'f', 1);
+     tempStr.setNum(dataDutyB, 'f', 5);
      ui->txtDuty_B->setText(tempStr);
 break;
  }
@@ -1550,6 +1550,16 @@ void MainWindow::ClearTable (void)
     ui->txtTemp5->setPlainText(tempStr);
     ui->txtTemp6->setPlainText(tempStr);
     ui->txtTemp7->setPlainText(tempStr);*/
+    ui->txtDuty1->setPlainText(tempStr);
+    ui->txtDuty2->setPlainText(tempStr);
+    ui->txtDuty3->setPlainText(tempStr);
+    ui->txtDuty4->setPlainText(tempStr);
+    ui->txtDuty5->setPlainText(tempStr);
+    ui->txtDuty6->setPlainText(tempStr);
+    ui->txtDuty7->setPlainText(tempStr);
+    ui->txtDuty8->setPlainText(tempStr);
+
+     ui->txtDuty_B->setPlainText(tempStr);
 }
 
 
