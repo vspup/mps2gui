@@ -606,6 +606,7 @@ case GET_VA_3103:
 
 case GET_VB:
     //ReadVB
+
     tempStr.setNum(ReadVB[0], 'f', 4);
     ui->txtUb0->setPlainText(tempStr);
     tempStr.setNum(ReadVB[1], 'f', 4);
@@ -623,22 +624,46 @@ case GET_VB:
     tempStr.setNum(ReadVB[7], 'f', 4);
     ui->txtUb7->setPlainText(tempStr);
 
-    tempStr.setNum(ReadVA[0] - ReadVB[0], 'f', 4);
-    ui->txtUab0->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[1] - ReadVB[1], 'f', 4);
-    ui->txtUab1->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[2] - ReadVB[2], 'f', 4);
-    ui->txtUab2->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[3] - ReadVB[3], 'f', 4);
-    ui->txtUab3->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[4] - ReadVB[4], 'f', 4);
-    ui->txtUab4->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[5] - ReadVB[5], 'f', 4);
-    ui->txtUab5->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[6] - ReadVB[6], 'f', 4);
-    ui->txtUab6->setPlainText(tempStr);
-    tempStr.setNum(ReadVA[7] - ReadVB[7], 'f', 4);
-    ui->txtUab7->setPlainText(tempStr);
+    if(exeMode == MAIN_MODE)
+    {
+
+        tempStr.setNum(ReadVA[0] - ReadVB[0], 'f', 4);
+        ui->txtUab0->setPlainText(tempStr);
+        tempStr.setNum(ReadVA[1] - ReadVB[1], 'f', 4);
+        ui->txtUab1->setPlainText(tempStr);
+        tempStr.setNum(ReadVA[2] - ReadVB[2], 'f', 4);
+        ui->txtUab2->setPlainText(tempStr);
+        tempStr.setNum(ReadVA[3] - ReadVB[3], 'f', 4);
+        ui->txtUab3->setPlainText(tempStr);
+        tempStr.setNum(ReadVA[4] - ReadVB[4], 'f', 4);
+        ui->txtUab4->setPlainText(tempStr);
+        tempStr.setNum(ReadVA[5] - ReadVB[5], 'f', 4);
+        ui->txtUab5->setPlainText(tempStr);
+        tempStr.setNum(ReadVA[6] - ReadVB[6], 'f', 4);
+        ui->txtUab6->setPlainText(tempStr);
+        tempStr.setNum(ReadVA[7] - ReadVB[7], 'f', 4);
+        ui->txtUab7->setPlainText(tempStr);
+    }
+
+    if(exeMode == SHIM_MODE)
+    {
+        tempStr.setNum(ReadVA3103[0] - ReadVB[0], 'f', 4);
+        ui->txtUab0->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[1] - ReadVB[1], 'f', 4);
+        ui->txtUab1->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[2] - ReadVB[2], 'f', 4);
+        ui->txtUab2->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[3] - ReadVB[3], 'f', 4);
+        ui->txtUab3->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[4] - ReadVB[4], 'f', 4);
+        ui->txtUab4->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[5] - ReadVB[5], 'f', 4);
+        ui->txtUab5->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[6] - ReadVB[6], 'f', 4);
+        ui->txtUab6->setPlainText(tempStr);
+        tempStr.setNum(ReadVA3103[7] - ReadVB[7], 'f', 4);
+        ui->txtUab7->setPlainText(tempStr);
+    }
 break;
 
 case GET_TEMP_A:
