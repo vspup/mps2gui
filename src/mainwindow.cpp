@@ -39,7 +39,7 @@
 #include <QDir>
 QFile filelog;
 
-#define VERSION_MPS ("MPS v1.0.1")
+#define VERSION_MPS ("MPS v1.0.2")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -560,7 +560,7 @@ break;
 
 case GET_VA:
     //ReadVA
-    if(mode == MAIN_MODE)
+    if(exeMode == MAIN_MODE)
     {
     tempStr.setNum(ReadVA[0], 'f', 4);
     ui->txtUa0->setPlainText(tempStr);
@@ -583,7 +583,7 @@ break;
 
 case GET_VA_3103:
     //ReadVA
-    if(mode == SHIM_MODE)
+    if(exeMode == SHIM_MODE)
     {
         tempStr.setNum(ReadVA3103[0], 'f', 4);
         ui->txtUa0->setPlainText(tempStr);
