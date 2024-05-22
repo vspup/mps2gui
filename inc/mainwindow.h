@@ -100,6 +100,14 @@ private slots:
 
     void on_btShimPwrFuseOn_clicked();
 
+    void on_btReadKp_clicked();
+
+    void on_btSetKp_clicked();
+
+    void on_btReadFz_clicked();
+
+    void on_btSetFz_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer;

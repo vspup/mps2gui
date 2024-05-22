@@ -191,6 +191,14 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
     {
         dataReadBoolArray[read_result_p->element_index] = *((bool*)(read_result_p->value_p));
     }
+    else if (read_result_p->data_point_id == GET_DUTY_A)
+    {
+        dataDutyA[read_result_p->element_index] =  *((double*)read_result_p->value_p);
+    }
+    else if (read_result_p->data_point_id == GET_DUTY_B)
+    {
+        dataDutyB = *((double*)read_result_p->value_p);
+    }
   /*  else if(read_result_p->data_point_id == GET_RAMP_UP_STATUS)
     {
         rampUp_status = *((uint32_t*)read_result_p->value_p);

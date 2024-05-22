@@ -20,7 +20,7 @@
       <x>20</x>
       <y>-10</y>
       <width>941</width>
-      <height>621</height>
+      <height>731</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -690,19 +690,6 @@ QGroupBox::title {
       <zorder>pTextCurrCH1_set</zorder>
       <zorder>lnCh1</zorder>
      </widget>
-     <widget class="QPushButton" name="btShimOnOff">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>560</y>
-        <width>121</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>ON</string>
-      </property>
-     </widget>
      <widget class="QGroupBox" name="groupBox_5">
       <property name="geometry">
        <rect>
@@ -1008,15 +995,540 @@ QGroupBox::title {
      <widget class="QGroupBox" name="gbStatusSHIM">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>530</y>
-        <width>161</width>
-        <height>91</height>
+        <x>10</x>
+        <y>660</y>
+        <width>221</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="title">
        <string>STATUS:</string>
       </property>
+      <widget class="QPushButton" name="btShimOnOff">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>10</y>
+         <width>121</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ON</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_Par">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>390</y>
+        <width>911</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Par</string>
+      </property>
+      <widget class="QPushButton" name="btReadKp">
+       <property name="geometry">
+        <rect>
+         <x>19</x>
+         <y>25</y>
+         <width>89</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Read</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btSetKp">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>89</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SetI</string>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditKp_1">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Kp_1">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditKp_2">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditKp_3">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditKp_4">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditKp_5">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditKp_6">
+       <property name="geometry">
+        <rect>
+         <x>780</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Kp_2">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Kp_3">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Kp_4">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Kp_5">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Kp_6">
+       <property name="geometry">
+        <rect>
+         <x>790</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_Par_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>520</y>
+        <width>911</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+    font: bold; 
+    border: 1px solid silver;
+    border-radius: 6px;
+    margin-top: 6px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 7px;
+    padding: 0px 5px 0px 5px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Par</string>
+      </property>
+      <widget class="QPushButton" name="btReadFz">
+       <property name="geometry">
+        <rect>
+         <x>19</x>
+         <y>25</y>
+         <width>89</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Read</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btSetFz">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>89</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SetI</string>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditFz_1">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Fz1">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditFz_2">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditFz_3">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditFz_4">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditFz_5">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="pTextEditFz_6">
+       <property name="geometry">
+        <rect>
+         <x>780</x>
+         <y>80</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="maximumBlockCount">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Fz2">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Fz3">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Fz4">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Fz5">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plabel_Fz6">
+       <property name="geometry">
+        <rect>
+         <x>790</x>
+         <y>40</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
      </widget>
      <zorder>gbStatusSHIM</zorder>
      <zorder>groupBox_5</zorder>
@@ -1027,7 +1539,8 @@ QGroupBox::title {
      <zorder>pushButton_T1</zorder>
      <zorder>pushButton_T2</zorder>
      <zorder>groupBox_4</zorder>
-     <zorder>btShimOnOff</zorder>
+     <zorder>groupBox_Par</zorder>
+     <zorder>groupBox_Par_2</zorder>
     </widget>
     <widget class="QWidget" name="stackedWidgetMain">
      <widget class="QGroupBox" name="groupBox_8">
@@ -1804,8 +2317,8 @@ QGroupBox::title {
    <widget class="QLabel" name="label_31">
     <property name="geometry">
      <rect>
-      <x>1420</x>
-      <y>360</y>
+      <x>1530</x>
+      <y>520</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -1846,8 +2359,8 @@ QGroupBox::title {
    <widget class="QLabel" name="label_30">
     <property name="geometry">
      <rect>
-      <x>1320</x>
-      <y>360</y>
+      <x>1430</x>
+      <y>520</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -1888,8 +2401,8 @@ QGroupBox::title {
    <widget class="QLabel" name="label_29">
     <property name="geometry">
      <rect>
-      <x>1210</x>
-      <y>360</y>
+      <x>1320</x>
+      <y>520</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -1930,8 +2443,8 @@ QGroupBox::title {
    <widget class="QLabel" name="label_28">
     <property name="geometry">
      <rect>
-      <x>1110</x>
-      <y>360</y>
+      <x>1220</x>
+      <y>520</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -1972,8 +2485,8 @@ QGroupBox::title {
    <widget class="QLabel" name="label_27">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>360</y>
+      <x>1110</x>
+      <y>520</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -2020,16 +2533,6 @@ QGroupBox::title {
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtUab0">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>30</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="txtTa0">
     <property name="geometry">
      <rect>
@@ -2048,27 +2551,6 @@ QGroupBox::title {
       <width>101</width>
       <height>31</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_38">
-    <property name="geometry">
-     <rect>
-      <x>1320</x>
-      <y>0</y>
-      <width>51</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Ua-b</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
     </property>
    </widget>
    <widget class="QTextEdit" name="txtIm1">
@@ -2201,26 +2683,6 @@ QGroupBox::title {
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtUab5">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>230</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab4">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>190</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="txtUb4">
     <property name="geometry">
      <rect>
@@ -2241,51 +2703,11 @@ QGroupBox::title {
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtUab2">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>110</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab6">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>270</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab1">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="txtUb1">
     <property name="geometry">
      <rect>
       <x>1190</x>
       <y>70</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtUab3">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>150</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2431,21 +2853,11 @@ QGroupBox::title {
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtVin6">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>630</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="txtVin1">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>430</y>
+      <x>1080</x>
+      <y>590</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2454,8 +2866,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtVin0">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>390</y>
+      <x>1080</x>
+      <y>550</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2464,8 +2876,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtVin2">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>470</y>
+      <x>1080</x>
+      <y>630</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2474,28 +2886,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtVin3">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin4">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin5">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>590</y>
+      <x>1080</x>
+      <y>670</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2504,8 +2896,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIin0">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>390</y>
+      <x>1190</x>
+      <y>550</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2514,28 +2906,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIin3">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin4">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin5">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>590</y>
+      <x>1190</x>
+      <y>670</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2544,17 +2916,7 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIin2">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin6">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
+      <x>1190</x>
       <y>630</y>
       <width>101</width>
       <height>31</height>
@@ -2564,8 +2926,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIin1">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>430</y>
+      <x>1190</x>
+      <y>590</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2574,18 +2936,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtVout2">
     <property name="geometry">
      <rect>
-      <x>1190</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout4">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>550</y>
+      <x>1300</x>
+      <y>630</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2594,8 +2946,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtVout1">
     <property name="geometry">
      <rect>
-      <x>1190</x>
-      <y>430</y>
+      <x>1300</x>
+      <y>590</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2604,8 +2956,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtVout3">
     <property name="geometry">
      <rect>
-      <x>1190</x>
-      <y>510</y>
+      <x>1300</x>
+      <y>670</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2614,8 +2966,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtVout0">
     <property name="geometry">
      <rect>
-      <x>1190</x>
-      <y>390</y>
+      <x>1300</x>
+      <y>550</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2624,8 +2976,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIout1">
     <property name="geometry">
      <rect>
-      <x>1300</x>
-      <y>430</y>
+      <x>1410</x>
+      <y>590</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2634,8 +2986,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIout2">
     <property name="geometry">
      <rect>
-      <x>1300</x>
-      <y>470</y>
+      <x>1410</x>
+      <y>630</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2644,38 +2996,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIout3">
     <property name="geometry">
      <rect>
-      <x>1300</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout5">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>590</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout6">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>630</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout5">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>590</y>
+      <x>1410</x>
+      <y>670</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2684,28 +3006,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtIout0">
     <property name="geometry">
      <rect>
-      <x>1300</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout4">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
+      <x>1410</x>
       <y>550</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVout6">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>630</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2714,18 +3016,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtTemp2">
     <property name="geometry">
      <rect>
-      <x>1410</x>
-      <y>470</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp4">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>550</y>
+      <x>1520</x>
+      <y>630</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2734,8 +3026,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtTemp1">
     <property name="geometry">
      <rect>
-      <x>1410</x>
-      <y>430</y>
+      <x>1520</x>
+      <y>590</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2744,8 +3036,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtTemp3">
     <property name="geometry">
      <rect>
-      <x>1410</x>
-      <y>510</y>
+      <x>1520</x>
+      <y>670</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2754,28 +3046,8 @@ QGroupBox::title {
    <widget class="QTextEdit" name="txtTemp0">
     <property name="geometry">
      <rect>
-      <x>1410</x>
-      <y>390</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp5">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>590</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp6">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>630</y>
+      <x>1520</x>
+      <y>550</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -2811,16 +3083,6 @@ QGroupBox::title {
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtUab7">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>310</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="txtTa7">
     <property name="geometry">
      <rect>
@@ -2841,60 +3103,10 @@ QGroupBox::title {
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtVout7">
-    <property name="geometry">
-     <rect>
-      <x>1190</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIout7">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtTemp7">
-    <property name="geometry">
-     <rect>
-      <x>1410</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtIin7">
-    <property name="geometry">
-     <rect>
-      <x>1080</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="txtVin7">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>670</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="gbStatus">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>260</x>
       <y>730</y>
       <width>391</width>
       <height>81</height>
@@ -2946,7 +3158,7 @@ QGroupBox::title {
    <widget class="QGroupBox" name="gbConnection">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>680</x>
       <y>730</y>
       <width>391</width>
       <height>81</height>
@@ -2998,8 +3210,8 @@ QGroupBox::title {
    <widget class="QGroupBox" name="gbPWR_FUSE_SHIM">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>620</y>
+      <x>20</x>
+      <y>730</y>
       <width>221</width>
       <height>81</height>
      </rect>
@@ -3021,6 +3233,138 @@ QGroupBox::title {
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="label_38">
+    <property name="geometry">
+     <rect>
+      <x>1320</x>
+      <y>0</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>duty A</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty1">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>30</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty2">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>70</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty3">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>110</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty4">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>150</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty5">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>190</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty6">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>230</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty7">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>270</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty8">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>310</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_39">
+    <property name="geometry">
+     <rect>
+      <x>1310</x>
+      <y>360</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>duty B</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtDuty_B">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>400</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>gbConnection</zorder>
    <zorder>gbStatus</zorder>
    <zorder>label_26</zorder>
@@ -3036,10 +3380,8 @@ QGroupBox::title {
    <zorder>txtIm0</zorder>
    <zorder>txtUa0</zorder>
    <zorder>txtUb0</zorder>
-   <zorder>txtUab0</zorder>
    <zorder>txtTa0</zorder>
    <zorder>txtTb0</zorder>
-   <zorder>label_38</zorder>
    <zorder>txtIm1</zorder>
    <zorder>txtIm2</zorder>
    <zorder>txtIm3</zorder>
@@ -3053,15 +3395,9 @@ QGroupBox::title {
    <zorder>txtUa4</zorder>
    <zorder>txtUa5</zorder>
    <zorder>txtUb6</zorder>
-   <zorder>txtUab5</zorder>
-   <zorder>txtUab4</zorder>
    <zorder>txtUb4</zorder>
    <zorder>txtUb3</zorder>
-   <zorder>txtUab2</zorder>
-   <zorder>txtUab6</zorder>
-   <zorder>txtUab1</zorder>
    <zorder>txtUb1</zorder>
-   <zorder>txtUab3</zorder>
    <zorder>txtUb2</zorder>
    <zorder>txtUb5</zorder>
    <zorder>txtTa6</zorder>
@@ -3076,54 +3412,44 @@ QGroupBox::title {
    <zorder>txtTb3</zorder>
    <zorder>txtTa2</zorder>
    <zorder>txtTa5</zorder>
-   <zorder>txtVin6</zorder>
    <zorder>txtVin1</zorder>
    <zorder>txtVin0</zorder>
    <zorder>txtVin2</zorder>
    <zorder>txtVin3</zorder>
-   <zorder>txtVin4</zorder>
-   <zorder>txtVin5</zorder>
    <zorder>txtIin0</zorder>
    <zorder>txtIin3</zorder>
-   <zorder>txtIin4</zorder>
-   <zorder>txtIin5</zorder>
    <zorder>txtIin2</zorder>
-   <zorder>txtIin6</zorder>
    <zorder>txtIin1</zorder>
    <zorder>txtVout2</zorder>
-   <zorder>txtVout4</zorder>
    <zorder>txtVout1</zorder>
    <zorder>txtVout3</zorder>
    <zorder>txtVout0</zorder>
    <zorder>txtIout1</zorder>
    <zorder>txtIout2</zorder>
    <zorder>txtIout3</zorder>
-   <zorder>txtVout5</zorder>
-   <zorder>txtIout6</zorder>
-   <zorder>txtIout5</zorder>
    <zorder>txtIout0</zorder>
-   <zorder>txtIout4</zorder>
-   <zorder>txtVout6</zorder>
    <zorder>txtTemp2</zorder>
-   <zorder>txtTemp4</zorder>
    <zorder>txtTemp1</zorder>
    <zorder>txtTemp3</zorder>
    <zorder>txtTemp0</zorder>
-   <zorder>txtTemp5</zorder>
-   <zorder>txtTemp6</zorder>
    <zorder>txtIm7</zorder>
    <zorder>txtTb7</zorder>
    <zorder>txtUb7</zorder>
-   <zorder>txtUab7</zorder>
    <zorder>txtTa7</zorder>
    <zorder>txtUa7</zorder>
-   <zorder>txtVout7</zorder>
-   <zorder>txtIout7</zorder>
-   <zorder>txtTemp7</zorder>
-   <zorder>txtIin7</zorder>
-   <zorder>txtVin7</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>gbPWR_FUSE_SHIM</zorder>
+   <zorder>label_38</zorder>
+   <zorder>txtDuty1</zorder>
+   <zorder>txtDuty2</zorder>
+   <zorder>txtDuty3</zorder>
+   <zorder>txtDuty4</zorder>
+   <zorder>txtDuty5</zorder>
+   <zorder>txtDuty6</zorder>
+   <zorder>txtDuty7</zorder>
+   <zorder>txtDuty8</zorder>
+   <zorder>label_39</zorder>
+   <zorder>txtDuty_B</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -3182,7 +3508,6 @@ QGroupBox::title {
   <tabstop>txtIm0</tabstop>
   <tabstop>txtUa0</tabstop>
   <tabstop>txtUb0</tabstop>
-  <tabstop>txtUab0</tabstop>
   <tabstop>txtTa0</tabstop>
   <tabstop>txtTb0</tabstop>
   <tabstop>txtIm1</tabstop>
@@ -3198,15 +3523,9 @@ QGroupBox::title {
   <tabstop>txtUa4</tabstop>
   <tabstop>txtUa5</tabstop>
   <tabstop>txtUb6</tabstop>
-  <tabstop>txtUab5</tabstop>
-  <tabstop>txtUab4</tabstop>
   <tabstop>txtUb4</tabstop>
   <tabstop>txtUb3</tabstop>
-  <tabstop>txtUab2</tabstop>
-  <tabstop>txtUab6</tabstop>
-  <tabstop>txtUab1</tabstop>
   <tabstop>txtUb1</tabstop>
-  <tabstop>txtUab3</tabstop>
   <tabstop>txtUb2</tabstop>
   <tabstop>txtUb5</tabstop>
   <tabstop>txtTa6</tabstop>
@@ -3221,52 +3540,31 @@ QGroupBox::title {
   <tabstop>txtTb3</tabstop>
   <tabstop>txtTa2</tabstop>
   <tabstop>txtTa5</tabstop>
-  <tabstop>txtVin6</tabstop>
   <tabstop>txtVin1</tabstop>
   <tabstop>txtVin0</tabstop>
   <tabstop>txtVin2</tabstop>
   <tabstop>txtVin3</tabstop>
-  <tabstop>txtVin4</tabstop>
-  <tabstop>txtVin5</tabstop>
   <tabstop>txtIin0</tabstop>
   <tabstop>txtIin3</tabstop>
-  <tabstop>txtIin4</tabstop>
-  <tabstop>txtIin5</tabstop>
   <tabstop>txtIin2</tabstop>
-  <tabstop>txtIin6</tabstop>
   <tabstop>txtIin1</tabstop>
   <tabstop>txtVout2</tabstop>
-  <tabstop>txtVout4</tabstop>
   <tabstop>txtVout1</tabstop>
   <tabstop>txtVout3</tabstop>
   <tabstop>txtVout0</tabstop>
   <tabstop>txtIout1</tabstop>
   <tabstop>txtIout2</tabstop>
   <tabstop>txtIout3</tabstop>
-  <tabstop>txtVout5</tabstop>
-  <tabstop>txtIout6</tabstop>
-  <tabstop>txtIout5</tabstop>
   <tabstop>txtIout0</tabstop>
-  <tabstop>txtIout4</tabstop>
-  <tabstop>txtVout6</tabstop>
   <tabstop>txtTemp2</tabstop>
-  <tabstop>txtTemp4</tabstop>
   <tabstop>txtTemp1</tabstop>
   <tabstop>txtTemp3</tabstop>
   <tabstop>txtTemp0</tabstop>
-  <tabstop>txtTemp5</tabstop>
-  <tabstop>txtTemp6</tabstop>
   <tabstop>txtIm7</tabstop>
   <tabstop>txtTb7</tabstop>
   <tabstop>txtUb7</tabstop>
-  <tabstop>txtUab7</tabstop>
   <tabstop>txtTa7</tabstop>
   <tabstop>txtUa7</tabstop>
-  <tabstop>txtVout7</tabstop>
-  <tabstop>txtIout7</tabstop>
-  <tabstop>txtTemp7</tabstop>
-  <tabstop>txtIin7</tabstop>
-  <tabstop>txtVin7</tabstop>
   <tabstop>comboBox</tabstop>
   <tabstop>pushButtonAX</tabstop>
   <tabstop>btSetMain_Tab</tabstop>

@@ -478,7 +478,9 @@ int cmdList[] =
    GET_IIN,
    GET_IOUT,
    GET_BCM_TEMP,
-   GET_SET_FAN_PWM
+   GET_SET_FAN_PWM,
+   GET_DUTY_A,
+   GET_DUTY_B
 };
 
 void MainWindow::updateGeneralGUI(void)
@@ -502,7 +504,7 @@ void MainWindow::updateGeneralGUI(void)
     logTransaction = "";
     cmdCounter++;
 
-    if(cmdCounter >= 13)
+    if(cmdCounter >= 15)
     {
        cmdCounter = 0;
     }
@@ -627,7 +629,7 @@ case GET_VB:
     if(exeMode == MAIN_MODE)
     {
 
-        tempStr.setNum(ReadVA[0] - ReadVB[0], 'f', 4);
+       /* tempStr.setNum(ReadVA[0] - ReadVB[0], 'f', 4);
         ui->txtUab0->setPlainText(tempStr);
         tempStr.setNum(ReadVA[1] - ReadVB[1], 'f', 4);
         ui->txtUab1->setPlainText(tempStr);
@@ -642,12 +644,12 @@ case GET_VB:
         tempStr.setNum(ReadVA[6] - ReadVB[6], 'f', 4);
         ui->txtUab6->setPlainText(tempStr);
         tempStr.setNum(ReadVA[7] - ReadVB[7], 'f', 4);
-        ui->txtUab7->setPlainText(tempStr);
+        ui->txtUab7->setPlainText(tempStr);*/
     }
 
     if(exeMode == SHIM_MODE)
     {
-        tempStr.setNum(ReadVA3103[0] - ReadVB[0], 'f', 4);
+       /* tempStr.setNum(ReadVA3103[0] - ReadVB[0], 'f', 4);
         ui->txtUab0->setPlainText(tempStr);
         tempStr.setNum(ReadVA3103[1] - ReadVB[1], 'f', 4);
         ui->txtUab1->setPlainText(tempStr);
@@ -662,7 +664,7 @@ case GET_VB:
         tempStr.setNum(ReadVA3103[6] - ReadVB[6], 'f', 4);
         ui->txtUab6->setPlainText(tempStr);
         tempStr.setNum(ReadVA3103[7] - ReadVB[7], 'f', 4);
-        ui->txtUab7->setPlainText(tempStr);
+        ui->txtUab7->setPlainText(tempStr);*/
     }
 break;
 
@@ -716,14 +718,14 @@ case GET_VIN:
     ui->txtVin2->setPlainText(tempStr);
     tempStr.setNum(ReadVIN[3],'f', 1);
     ui->txtVin3->setPlainText(tempStr);
-    tempStr.setNum(ReadVIN[4],'f', 1);
+    /*tempStr.setNum(ReadVIN[4],'f', 1);
     ui->txtVin4->setPlainText(tempStr);
     tempStr.setNum(ReadVIN[5],'f', 1);
     ui->txtVin5->setPlainText(tempStr);
     tempStr.setNum(ReadVIN[6],'f', 1);
     ui->txtVin6->setPlainText(tempStr);
     tempStr.setNum(ReadVIN[7],'f', 1);
-    ui->txtVin7->setPlainText(tempStr);
+    ui->txtVin7->setPlainText(tempStr);*/
 break;
 
 case GET_VOUT:
@@ -736,14 +738,14 @@ case GET_VOUT:
     ui->txtVout2->setPlainText(tempStr);
     tempStr.setNum(ReadVOUT[3], 'f', 4);
     ui->txtVout3->setPlainText(tempStr);
-    tempStr.setNum(ReadVOUT[4], 'f', 4);
+    /*tempStr.setNum(ReadVOUT[4], 'f', 4);
     ui->txtVout4->setPlainText(tempStr);
     tempStr.setNum(ReadVOUT[5], 'f', 4);
     ui->txtVout5->setPlainText(tempStr);
     tempStr.setNum(ReadVOUT[6], 'f', 4);
     ui->txtVout6->setPlainText(tempStr);
     tempStr.setNum(ReadVOUT[7], 'f', 4);
-    ui->txtVout7->setPlainText(tempStr);
+    ui->txtVout7->setPlainText(tempStr);*/
 break;
 
 case GET_IIN:
@@ -756,14 +758,14 @@ case GET_IIN:
     ui->txtIin2->setPlainText(tempStr);
     tempStr.setNum(ReadIIN[3], 'f', 4);
     ui->txtIin3->setPlainText(tempStr);
-    tempStr.setNum(ReadIIN[4], 'f', 4);
+    /*tempStr.setNum(ReadIIN[4], 'f', 4);
     ui->txtIin4->setPlainText(tempStr);
     tempStr.setNum(ReadIIN[5], 'f', 4);
     ui->txtIin5->setPlainText(tempStr);
     tempStr.setNum(ReadIIN[6], 'f', 4);
     ui->txtIin6->setPlainText(tempStr);
     tempStr.setNum(ReadIIN[7], 'f', 4);
-    ui->txtIin7->setPlainText(tempStr);
+    ui->txtIin7->setPlainText(tempStr);*/
 break;
 
 case GET_IOUT:
@@ -776,14 +778,14 @@ case GET_IOUT:
     ui->txtIout2->setPlainText(tempStr);
     tempStr.setNum(ReadIOUT[3], 'f', 4);
     ui->txtIout3->setPlainText(tempStr);
-    tempStr.setNum(ReadIOUT[4], 'f', 4);
+   /* tempStr.setNum(ReadIOUT[4], 'f', 4);
     ui->txtIout4->setPlainText(tempStr);
     tempStr.setNum(ReadIOUT[5], 'f', 4);
     ui->txtIout5->setPlainText(tempStr);
     tempStr.setNum(ReadIOUT[6], 'f', 4);
     ui->txtIout6->setPlainText(tempStr);
     tempStr.setNum(ReadIOUT[7], 'f', 4);
-    ui->txtIout7->setPlainText(tempStr);
+    ui->txtIout7->setPlainText(tempStr);*/
 break;
 
 
@@ -796,7 +798,7 @@ case GET_BCM_TEMP:
     tempStr.setNum(BCMtemp[2], 'f', 1);
     ui->txtTemp2->setPlainText(tempStr);
     tempStr.setNum(BCMtemp[3], 'f', 1);
-    ui->txtTemp3->setPlainText(tempStr);
+   /* ui->txtTemp3->setPlainText(tempStr);
     tempStr.setNum(BCMtemp[4], 'f', 1);
     ui->txtTemp4->setPlainText(tempStr);
     tempStr.setNum(BCMtemp[5], 'f', 1);
@@ -804,7 +806,7 @@ case GET_BCM_TEMP:
     tempStr.setNum(BCMtemp[6], 'f', 1);
     ui->txtTemp6->setPlainText(tempStr);
     tempStr.setNum(BCMtemp[7], 'f', 1);
-    ui->txtTemp7->setPlainText(tempStr);
+    ui->txtTemp7->setPlainText(tempStr);*/
 break;
 
   /*  data_id = GET_M_FAN_SPEED;
@@ -818,6 +820,30 @@ case GET_SET_FAN_PWM:
     tempStr.setNum((pwmFAN * 100), 'f', 0);
     ui->lbFAN_value->setText(tempStr);
     ui->lbFAN_value_2->setText(tempStr);
+break;
+
+case GET_DUTY_A:
+    tempStr.setNum(dataDutyA[0], 'f', 1);
+    ui->txtDuty1->setText(tempStr);
+    tempStr.setNum(dataDutyA[1], 'f', 1);
+    ui->txtDuty2->setText(tempStr);
+    tempStr.setNum(dataDutyA[2], 'f', 1);
+    ui->txtDuty3->setText(tempStr);
+    tempStr.setNum(dataDutyA[3], 'f', 1);
+    ui->txtDuty4->setText(tempStr);
+    tempStr.setNum(dataDutyA[4], 'f', 1);
+    ui->txtDuty5->setText(tempStr);
+    tempStr.setNum(dataDutyA[5], 'f', 1);
+    ui->txtDuty6->setText(tempStr);
+    tempStr.setNum(dataDutyA[6], 'f', 1);
+    ui->txtDuty7->setText(tempStr);
+    tempStr.setNum(dataDutyA[7], 'f', 1);
+    ui->txtDuty8->setText(tempStr);
+break;
+
+case GET_DUTY_B:
+     tempStr.setNum(dataDutyB, 'f', 1);
+     ui->txtDuty_B->setText(tempStr);
 break;
  }
 
@@ -1453,14 +1479,14 @@ void MainWindow::ClearTable (void)
     ui->txtUb6->setPlainText(tempStr);
     ui->txtUb7->setPlainText(tempStr);
 
-    ui->txtUab0->setPlainText(tempStr);
+  /*  ui->txtUab0->setPlainText(tempStr);
     ui->txtUab1->setPlainText(tempStr);
     ui->txtUab2->setPlainText(tempStr);
     ui->txtUab3->setPlainText(tempStr);
     ui->txtUab4->setPlainText(tempStr);
     ui->txtUab5->setPlainText(tempStr);
     ui->txtUab6->setPlainText(tempStr);
-    ui->txtUab7->setPlainText(tempStr);
+    ui->txtUab7->setPlainText(tempStr);*/
 
     ui->txtTa0->setPlainText(tempStr);
     ui->txtTa1->setPlainText(tempStr);
@@ -1484,46 +1510,46 @@ void MainWindow::ClearTable (void)
     ui->txtVin1->setPlainText(tempStr);
     ui->txtVin2->setPlainText(tempStr);
     ui->txtVin3->setPlainText(tempStr);
-    ui->txtVin4->setPlainText(tempStr);
+    /*ui->txtVin4->setPlainText(tempStr);
     ui->txtVin5->setPlainText(tempStr);
     ui->txtVin6->setPlainText(tempStr);
-    ui->txtVin7->setPlainText(tempStr);
+    ui->txtVin7->setPlainText(tempStr);*/
 
     ui->txtVout0->setPlainText(tempStr);
     ui->txtVout1->setPlainText(tempStr);
     ui->txtVout2->setPlainText(tempStr);
     ui->txtVout3->setPlainText(tempStr);
-    ui->txtVout4->setPlainText(tempStr);
+   /* ui->txtVout4->setPlainText(tempStr);
     ui->txtVout5->setPlainText(tempStr);
     ui->txtVout6->setPlainText(tempStr);
-    ui->txtVout7->setPlainText(tempStr);
+    ui->txtVout7->setPlainText(tempStr);*/
 
     ui->txtIin0->setPlainText(tempStr);
     ui->txtIin1->setPlainText(tempStr);
     ui->txtIin2->setPlainText(tempStr);
     ui->txtIin3->setPlainText(tempStr);
-    ui->txtIin4->setPlainText(tempStr);
+   /* ui->txtIin4->setPlainText(tempStr);
     ui->txtIin5->setPlainText(tempStr);
     ui->txtIin6->setPlainText(tempStr);
-    ui->txtIin7->setPlainText(tempStr);
+    ui->txtIin7->setPlainText(tempStr);*/
 
     ui->txtIout0->setPlainText(tempStr);
     ui->txtIout1->setPlainText(tempStr);
     ui->txtIout2->setPlainText(tempStr);
     ui->txtIout3->setPlainText(tempStr);
-    ui->txtIout4->setPlainText(tempStr);
+   /* ui->txtIout4->setPlainText(tempStr);
     ui->txtIout5->setPlainText(tempStr);
     ui->txtIout6->setPlainText(tempStr);
-    ui->txtIout7->setPlainText(tempStr);
+    ui->txtIout7->setPlainText(tempStr);*/
 
     ui->txtTemp0->setPlainText(tempStr);
     ui->txtTemp1->setPlainText(tempStr);
     ui->txtTemp2->setPlainText(tempStr);
     ui->txtTemp3->setPlainText(tempStr);
-    ui->txtTemp4->setPlainText(tempStr);
+   /* ui->txtTemp4->setPlainText(tempStr);
     ui->txtTemp5->setPlainText(tempStr);
     ui->txtTemp6->setPlainText(tempStr);
-    ui->txtTemp7->setPlainText(tempStr);
+    ui->txtTemp7->setPlainText(tempStr);*/
 }
 
 
@@ -1539,5 +1565,34 @@ void MainWindow::on_btShimPwrFuseOn_clicked()
     filelog.close();
 
     emit transmit_to_nng(CMD_SET_PWR_FUSE_ON);
+}
+
+
+void MainWindow::on_btReadKp_clicked()
+{
+      writeLog("USER: CLICED \"Read Kp\"");
+      emit transmit_to_nng(CMD_SET_RD_KP);
+}
+
+
+void MainWindow::on_btSetKp_clicked()
+{
+     writeLog("USER: CLICED \"Write Kp\"");
+     emit transmit_to_nng(CMD_SET_WR_KP);
+}
+
+
+void MainWindow::on_btReadFz_clicked()
+{
+    writeLog("USER: CLICED \"Read Fz\"");
+    emit transmit_to_nng(CMD_SET_RD_FZ);
+}
+
+
+
+void MainWindow::on_btSetFz_clicked()
+{
+    writeLog("USER: CLICED \"Write Fz\"");
+    emit transmit_to_nng(CMD_SET_WR_FZ);
 }
 

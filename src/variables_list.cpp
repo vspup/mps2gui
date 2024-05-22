@@ -78,3 +78,6 @@ double dataArray[6] = {0};
 float  dataFloatArray[2] = {0};
 bool   dataBoolArray[8] = {0};
 bool   dataReadBoolArray[8] = {0};
+
+double dataDutyA[8] ={0};
+double dataDutyB ={0};

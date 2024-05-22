@@ -69,3 +69,5 @@ extern int connectionAttempts;
 extern bool   dataBoolArray[8];
 extern bool   dataReadBoolArray[8];
 extern double    ReadVA3103[8];
+extern double dataDutyA[8];
+extern double dataDutyB;
