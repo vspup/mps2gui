@@ -71,3 +71,6 @@ extern bool   dataReadBoolArray[8];
 extern double    ReadVA3103[8];
 extern double dataDutyA[8];
 extern double dataDutyB;
+
+extern double dataKp[6];
+extern double dataFz[6];

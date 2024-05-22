@@ -199,6 +199,16 @@ void eb_read_data_response_handler(const struct eb_read_data_point_result_s* rea
     {
         dataDutyB = *((double*)read_result_p->value_p);
     }
+    else if (read_result_p->data_point_id == GET_KP)
+    {
+        dataKp[read_result_p->element_index] = *((double*)read_result_p->value_p);
+    }
+    else if (read_result_p->data_point_id == GET_FZ)
+    {
+        dataFz[read_result_p->element_index] = *((double*)read_result_p->value_p);
+    }
+
+
   /*  else if(read_result_p->data_point_id == GET_RAMP_UP_STATUS)
     {
         rampUp_status = *((uint32_t*)read_result_p->value_p);

@@ -37,7 +37,7 @@ QGroupBox::title {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="stackedWidgetSelect"/>
     <widget class="QWidget" name="stackedWidgetSHIM">
@@ -1041,7 +1041,7 @@ QGroupBox::title {
 }</string>
       </property>
       <property name="title">
-       <string>Par</string>
+       <string>Kp</string>
       </property>
       <widget class="QPushButton" name="btReadKp">
        <property name="geometry">
@@ -1297,7 +1297,7 @@ QGroupBox::title {
 }</string>
       </property>
       <property name="title">
-       <string>Par</string>
+       <string>Fz</string>
       </property>
       <widget class="QPushButton" name="btReadFz">
        <property name="geometry">

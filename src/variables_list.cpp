@@ -81,3 +81,5 @@ bool   dataReadBoolArray[8] = {0};
 
 double dataDutyA[8] ={0};
 double dataDutyB ={0};
+double dataKp[6] ={0};
+double dataFz[6] ={0};

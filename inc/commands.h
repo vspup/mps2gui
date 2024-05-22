@@ -41,7 +41,8 @@
 #define SET_PWR_FUSE_ON               0x3107 // bool  array (8)  //RW
 #define GET_DUTY_A                    0x4000
 #define GET_DUTY_B                    0x4001
-
+#define GET_KP                        0x1300
+#define GET_FZ                        0x1301
 
 #define CMD_UPDATE_BY_TIMER           1
 #define CMD_SET_FAN                   2

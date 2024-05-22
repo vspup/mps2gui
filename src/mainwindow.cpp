@@ -39,7 +39,7 @@
 #include <QDir>
 QFile filelog;
 
-#define VERSION_MPS ("MPS v1.0.2")
+#define VERSION_MPS ("MPS v1.0.3")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -480,7 +480,10 @@ int cmdList[] =
    GET_BCM_TEMP,
    GET_SET_FAN_PWM,
    GET_DUTY_A,
-   GET_DUTY_B
+   GET_DUTY_B,
+   GET_KP,
+   GET_FZ
+
 };
 
 void MainWindow::updateGeneralGUI(void)
@@ -504,7 +507,7 @@ void MainWindow::updateGeneralGUI(void)
     logTransaction = "";
     cmdCounter++;
 
-    if(cmdCounter >= 15)
+    if(cmdCounter >= 17)
     {
        cmdCounter = 0;
     }
@@ -845,6 +848,39 @@ case GET_DUTY_B:
      tempStr.setNum(dataDutyB, 'f', 5);
      ui->txtDuty_B->setText(tempStr);
 break;
+
+case GET_KP:
+     tempStr.setNum(dataKp[0], 'f', 3);
+     ui->plabel_Kp_1->setText(tempStr);
+     tempStr.setNum(dataKp[1], 'f', 3);
+     ui->plabel_Kp_2->setText(tempStr);
+     tempStr.setNum(dataKp[2], 'f', 3);
+     ui->plabel_Kp_3->setText(tempStr);
+     tempStr.setNum(dataKp[3], 'f', 3);
+     ui->plabel_Kp_4->setText(tempStr);
+     tempStr.setNum(dataKp[4], 'f', 3);
+     ui->plabel_Kp_5->setText(tempStr);
+     tempStr.setNum(dataKp[5], 'f', 3);
+     ui->plabel_Kp_6->setText(tempStr);
+
+break;
+
+case GET_FZ:
+    tempStr.setNum(dataFz[0], 'f', 3);
+    ui->plabel_Fz1->setText(tempStr);
+    tempStr.setNum(dataFz[1], 'f', 3);
+    ui->plabel_Fz2->setText(tempStr);
+    tempStr.setNum(dataFz[2], 'f', 3);
+    ui->plabel_Fz3->setText(tempStr);
+    tempStr.setNum(dataFz[3], 'f', 3);
+    ui->plabel_Fz4->setText(tempStr);
+    tempStr.setNum(dataFz[4], 'f', 3);
+    ui->plabel_Fz5->setText(tempStr);
+    tempStr.setNum(dataFz[5], 'f', 3);
+    ui->plabel_Fz6->setText(tempStr);
+
+break;
+
  }
 
 }
