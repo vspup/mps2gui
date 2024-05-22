@@ -261,6 +261,43 @@ void MainWindow::nngGetRequest( int cmd)
                                               + tempData.number(dataArray[5]) );
 
       break;
+      case CMD_SET_WR_KP:
+          data_elements_p[0].value_p = &dataArray[0];
+          data_elements_p[1].value_p = &dataArray[1];
+          data_elements_p[2].value_p = &dataArray[2];
+          data_elements_p[3].value_p = &dataArray[3];
+          data_elements_p[4].value_p = &dataArray[4];
+          data_elements_p[5].value_p = &dataArray[5];
+          dp_write.data_point_id = GET_KP;
+          dp_write.array_length = 6;
+          dp_write.type = EB_TYPE_DOUBLE;
+          writeLog("USER: SET KP " + tempData.number(dataArray[0]) + ", "
+                   + tempData.number(dataArray[1]) + ", "
+                   + tempData.number(dataArray[2]) + ", "
+                   + tempData.number(dataArray[3]) + ", "
+                   + tempData.number(dataArray[4]) + ", "
+                   + tempData.number(dataArray[5]) );
+
+      break;
+
+      case CMD_SET_WR_FZ:
+          data_elements_p[0].value_p = &dataArray[0];
+          data_elements_p[1].value_p = &dataArray[1];
+          data_elements_p[2].value_p = &dataArray[2];
+          data_elements_p[3].value_p = &dataArray[3];
+          data_elements_p[4].value_p = &dataArray[4];
+          data_elements_p[5].value_p = &dataArray[5];
+          dp_write.data_point_id = GET_FZ;
+          dp_write.array_length = 6;
+          dp_write.type = EB_TYPE_DOUBLE;
+          writeLog("USER: SET FZ " + tempData.number(dataArray[0]) + ", "
+                   + tempData.number(dataArray[1]) + ", "
+                   + tempData.number(dataArray[2]) + ", "
+                   + tempData.number(dataArray[3]) + ", "
+                   + tempData.number(dataArray[4]) + ", "
+                   + tempData.number(dataArray[5]) );
+
+       break;
 
       case CMD_SET_CURRENT0_SHIM:
            for(int i=0; i<6; i++)
@@ -1667,8 +1704,23 @@ void MainWindow::on_btReadKp_clicked()
 
 void MainWindow::on_btSetKp_clicked()
 {
+     QString tempData;
      writeLog("USER: CLICED \"Write Kp\"");
-     emit transmit_to_nng(CMD_SET_WR_KP);
+
+    tempData = ui->pTextEditKp_1->toPlainText();
+    dataArray[0] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_2->toPlainText();
+    dataArray[1] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_3->toPlainText();
+    dataArray[2] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_4->toPlainText();
+    dataArray[3] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_5->toPlainText();
+    dataArray[4] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_6->toPlainText();
+    dataArray[5] =  tempData.toDouble();
+
+    emit transmit_to_nng(CMD_SET_WR_KP);
 }
 
 /*
@@ -1682,7 +1734,22 @@ void MainWindow::on_btReadFz_clicked()
 
 void MainWindow::on_btSetFz_clicked()
 {
+    QString tempData;
     writeLog("USER: CLICED \"Write Fz\"");
+
+    tempData = ui->pTextEditFz_1->toPlainText();
+    dataArray[0] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_2->toPlainText();
+    dataArray[1] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_3->toPlainText();
+    dataArray[2] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_4->toPlainText();
+    dataArray[3] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_5->toPlainText();
+    dataArray[4] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_6->toPlainText();
+    dataArray[5] =  tempData.toDouble();
+
     emit transmit_to_nng(CMD_SET_WR_FZ);
 }
 
