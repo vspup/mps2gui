@@ -83,6 +83,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->gbStatus->setDisabled(true);
     ui->btShimPwrFuseOn->setDisabled(true);
 
+    ui->label_40->setHidden(true);
+    ui->label_43->setHidden(true);
+    ui->label_44->setHidden(true);
+    ui->label_45->setHidden(true);
+    ui->label_46->setHidden(true);
+    ui->label_47->setHidden(true);
+
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(100);//timer->start(50);
@@ -1239,6 +1246,10 @@ void MainWindow::on_btConnect_clicked()
      ui->gbPWR_FUSE_SHIM->setHidden(false);
      ClearTable();
      filelog.close();
+
+     kpDataSet = 0;
+     fzDataSet = 0;
+
      return;
    }
 
@@ -1469,6 +1480,13 @@ void MainWindow::on_btSetSHIM_Tab_clicked()
     exeMode = SHIM_MODE;
     ui->btShimPwrFuseOn->setHidden(true);
     ui->gbPWR_FUSE_SHIM->setHidden(true);
+    ui->label_40->setHidden(false);
+    ui->label_43->setHidden(false);
+    ui->label_44->setHidden(false);
+    ui->label_45->setHidden(false);
+    ui->label_46->setHidden(false);
+    ui->label_47->setHidden(false);
+
     //ui->btSetKp->setDisabled(true);
     //ui->btSetFz->setDisabled(true);
 }
@@ -1501,6 +1519,13 @@ void MainWindow::on_btSetMain_Tab_clicked()
     exeMode = MAIN_MODE;
     ui->btShimPwrFuseOn->setHidden(true);
     ui->gbPWR_FUSE_SHIM->setHidden(true);
+
+    ui->label_40->setHidden(true);
+    ui->label_43->setHidden(true);
+    ui->label_44->setHidden(true);
+    ui->label_45->setHidden(true);
+    ui->label_46->setHidden(true);
+    ui->label_47->setHidden(true);
 }
 
 
