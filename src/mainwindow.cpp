@@ -42,7 +42,7 @@ QFile filelog;
 char kpDataSet = 0;
 char fzDataSet = 0;
 
-#define VERSION_MPS ("MPS v1.0.3")
+#define VERSION_MPS ("MPS v1.0.4")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -1469,8 +1469,8 @@ void MainWindow::on_btSetSHIM_Tab_clicked()
     exeMode = SHIM_MODE;
     ui->btShimPwrFuseOn->setHidden(true);
     ui->gbPWR_FUSE_SHIM->setHidden(true);
-    ui->btSetKp->setDisabled(true);
-    ui->btSetFz->setDisabled(true);
+    //ui->btSetKp->setDisabled(true);
+    //ui->btSetFz->setDisabled(true);
 }
 
 
