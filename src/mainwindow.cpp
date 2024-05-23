@@ -868,7 +868,7 @@ break;
 case GET_DUTY_A:
     tempStr.setNum((dataDutyA[0] - dataDutyB)*100, 'f', 2);
     ui->txtDuty1->setText(tempStr);
-    tempStr.setNum((dataDutyA[1] - dataDutyB)*100, 'f', 5);
+    tempStr.setNum((dataDutyA[1] - dataDutyB)*100, 'f', 2);
     ui->txtDuty2->setText(tempStr);
     tempStr.setNum((dataDutyA[2] -dataDutyB)*100 , 'f', 2);
     ui->txtDuty3->setText(tempStr);
@@ -1801,6 +1801,29 @@ void MainWindow::on_on_btSetKp_clicked()
 }
 */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void MainWindow::on_btSetKp_clicked()
 {
     QString tempData;
@@ -1843,4 +1866,54 @@ void MainWindow::on_btSetFz_clicked()
 
     emit transmit_to_nng(CMD_SET_WR_FZ);
 }
+*/
+
+void MainWindow::on_btSetKp_clicked()
+{
+    QString tempData;
+    writeLog("USER: CLICED \"Write Kp\"");
+
+    tempData = ui->pTextEditKp_1->toPlainText();
+    dataArray[0] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_2->toPlainText();
+    dataArray[1] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_3->toPlainText();
+    dataArray[2] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_4->toPlainText();
+    dataArray[3] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_5->toPlainText();
+    dataArray[4] =  tempData.toDouble();
+    tempData = ui->pTextEditKp_6->toPlainText();
+    dataArray[5] =  tempData.toDouble();
+
+    emit transmit_to_nng(CMD_SET_WR_KP);
+}
+
+
+void MainWindow::on_btSetFz_clicked()
+{
+    QString tempData;
+    writeLog("USER: CLICED \"Write Fz\"");
+
+    tempData = ui->pTextEditFz_1->toPlainText();
+    dataArray[0] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_2->toPlainText();
+    dataArray[1] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_3->toPlainText();
+    dataArray[2] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_4->toPlainText();
+    dataArray[3] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_5->toPlainText();
+    dataArray[4] =  tempData.toDouble();
+    tempData = ui->pTextEditFz_6->toPlainText();
+    dataArray[5] =  tempData.toDouble();
+
+    emit transmit_to_nng(CMD_SET_WR_FZ);
+}
+
+
+
+
+
+
 

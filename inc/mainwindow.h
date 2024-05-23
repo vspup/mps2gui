@@ -105,6 +105,7 @@ private slots:
 
     void on_btSetFz_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
