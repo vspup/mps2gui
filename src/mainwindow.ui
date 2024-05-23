@@ -1043,19 +1043,6 @@ QGroupBox::title {
       <property name="title">
        <string>Kp</string>
       </property>
-      <widget class="QPushButton" name="btSetKp">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>80</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SetI</string>
-       </property>
-      </widget>
       <widget class="QPlainTextEdit" name="pTextEditKp_1">
        <property name="geometry">
         <rect>
@@ -1290,6 +1277,19 @@ QGroupBox::title {
         <enum>Qt::AutoText</enum>
        </property>
       </widget>
+      <widget class="QPushButton" name="btSetKp">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>80</y>
+         <width>89</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SetI</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_Par_2">
       <property name="geometry">
@@ -1316,19 +1316,6 @@ QGroupBox::title {
       <property name="title">
        <string>Fz</string>
       </property>
-      <widget class="QPushButton" name="btSetFz">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>80</y>
-         <width>89</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SetI</string>
-       </property>
-      </widget>
       <widget class="QPlainTextEdit" name="pTextEditFz_1">
        <property name="geometry">
         <rect>
@@ -1561,6 +1548,19 @@ QGroupBox::title {
        </property>
        <property name="textFormat">
         <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btSetFz">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>70</y>
+         <width>89</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SetI</string>
        </property>
       </widget>
      </widget>
